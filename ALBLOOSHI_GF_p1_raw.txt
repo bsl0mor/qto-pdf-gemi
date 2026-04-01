@@ -1,0 +1,171 @@
+{
+  "floor": "GF",
+  "ext_perim": 91.2,
+  "wet_rooms": [
+    {
+      "name": "Kitchen",
+      "L": 5.05,
+      "W": 4.5,
+      "area": 22.73,
+      "perim": 19.1
+    },
+    {
+      "name": "Laundry & Store",
+      "L": 2.7,
+      "W": 1.8,
+      "area": 4.86,
+      "perim": 9.0
+    },
+    {
+      "name": "Bath 1 (Maid's)",
+      "L": 2.8,
+      "W": 2.2,
+      "area": 6.16,
+      "perim": 10.0
+    },
+    {
+      "name": "W.C.",
+      "L": 2.0,
+      "W": 1.6,
+      "area": 3.2,
+      "perim": 7.2
+    },
+    {
+      "name": "Wash",
+      "L": 2.0,
+      "W": 1.6,
+      "area": 3.2,
+      "perim": 7.2
+    },
+    {
+      "name": "Bath 2 (Guest)",
+      "L": 2.8,
+      "W": 2.1,
+      "area": 5.88,
+      "perim": 9.8
+    },
+    {
+      "name": "Pantry",
+      "L": 2.8,
+      "W": 0.8,
+      "area": 2.24,
+      "perim": 7.2
+    }
+  ],
+  "wet_total_area": 48.27,
+  "wet_total_perim": 69.5,
+  "dry_rooms": [
+    {
+      "name": "Majlis",
+      "L": 7.7,
+      "W": 4.5,
+      "area": 34.65,
+      "perim": 24.4
+    },
+    {
+      "name": "Dining",
+      "L": 5.65,
+      "W": 4.25,
+      "area": 24.01,
+      "perim": 19.8
+    },
+    {
+      "name": "Family Hall",
+      "L": 8.8,
+      "W": 6.25,
+      "area": 55.0,
+      "perim": 30.1
+    },
+    {
+      "name": "Stairs",
+      "L": 5.0,
+      "W": 2.4,
+      "area": 12.0,
+      "perim": 14.8
+    },
+    {
+      "name": "G-Bedroom",
+      "L": 4.5,
+      "W": 4.0,
+      "area": 18.0,
+      "perim": 17.0
+    },
+    {
+      "name": "Maid Room",
+      "L": 2.8,
+      "W": 2.7,
+      "area": 7.56,
+      "perim": 11.0
+    },
+    {
+      "name": "Store (Kitchen)",
+      "L": 1.8,
+      "W": 0.9,
+      "area": 1.62,
+      "perim": 5.4
+    }
+  ],
+  "dry_total_area": 152.84,
+  "dry_total_perim": 122.5,
+  "walls_20cm_len": 129.6,
+  "walls_10cm_len": 5.4,
+  "win_area": 28.5,
+  "win_details": [
+    {
+      "type": "W.01",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.02",
+      "count_this_floor": 2,
+      "unit_area": 0
+    },
+    {
+      "type": "W.03",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.04",
+      "count_this_floor": 2,
+      "unit_area": 0
+    },
+    {
+      "type": "W.05",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.06",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.07",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.08",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.09",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.10",
+      "count_this_floor": 2,
+      "unit_area": 0
+    }
+  ],
+  "door_area_ext": 30.84,
+  "door_area_int": 12.26,
+  "door_width_sum": 18.8,
+  "balcony_area": 0,
+  "total_area_check": 201.11,
+  "notes": "The provided 'KNOWN total floor area' of 484.66 m² significantly differs from the area calculated from the plan's dimensions. The gross external area of the building footprint is approx. 287.1 m², and the net internal area (sum of rooms) is 201.11 m². The provided value may include external works or the plot area. Window areas, wall lengths, and the area for door SD2 are estimated due to missing schedule information. The D3 door dimensions (0.9x0.9m) are unusual but used as provided."
+}

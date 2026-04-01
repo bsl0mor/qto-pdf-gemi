@@ -1,0 +1,283 @@
+{
+  "observed": [
+    {
+      "t": "ext_walls",
+      "f": "GF",
+      "perim": 63.81
+    },
+    {
+      "t": "wet",
+      "f": "GF",
+      "area": 28.8,
+      "perim": 45.85,
+      "rooms": "Kitchen(4.1×3.35=13.74), Toilet(3.0×1.85=5.55), Bath(1.7×1.6=2.72), Toilet(1.6×1.4=2.24), Bath(2.4×2.05=4.92)"
+    },
+    {
+      "t": "dry",
+      "f": "GF",
+      "total": 351.93,
+      "dry": 323.13,
+      "perim": 117.82
+    },
+    {
+      "t": "balcony",
+      "f": "GF",
+      "area": 0.0
+    },
+    {
+      "t": "walls20",
+      "f": "GF",
+      "len": 57.8
+    },
+    {
+      "t": "walls10",
+      "f": "GF",
+      "len": 0.0
+    },
+    {
+      "t": "openings",
+      "f": "GF",
+      "win_area": 28.49,
+      "door_w": 13.32,
+      "door_area": 29.7,
+      "door_area_ext": 12.98,
+      "door_area_int": 16.72
+    },
+    {
+      "t": "ext_walls",
+      "f": "FF",
+      "perim": 54.91
+    },
+    {
+      "t": "wet",
+      "f": "FF",
+      "area": 22.77,
+      "perim": 38.95,
+      "rooms": "Bath (BR1)(2.1×1.8=3.78), Bath (BR2)(2.8×1.8=5.04), Bath (Master)(4.1×1.8=7.38), Pantry(3.5×2.25=7.88)"
+    },
+    {
+      "t": "dry",
+      "f": "FF",
+      "total": 351.93,
+      "dry": 329.16,
+      "perim": 176.85
+    },
+    {
+      "t": "balcony",
+      "f": "FF",
+      "area": 0.0
+    },
+    {
+      "t": "walls20",
+      "f": "FF",
+      "len": 56.6
+    },
+    {
+      "t": "walls10",
+      "f": "FF",
+      "len": 15.97
+    },
+    {
+      "t": "openings",
+      "f": "FF",
+      "win_area": 27.14,
+      "door_w": 8.93,
+      "door_area": 19.64,
+      "door_area_ext": 0.0,
+      "door_area_int": 19.64
+    }
+  ],
+  "dw": [],
+  "items": [
+    {
+      "id": "block_20_ext_gf",
+      "u": "m2",
+      "q": 238.527,
+      "bd": "63.81x4.65-28.49w-29.7d"
+    },
+    {
+      "id": "block_20_int_gf",
+      "u": "m2",
+      "q": 256.89,
+      "bd": "57.8x4.65-0.4x29.7"
+    },
+    {
+      "id": "block_10_int_gf",
+      "u": "m2",
+      "q": -11.88,
+      "bd": "0.0x4.65-0.4x29.7"
+    },
+    {
+      "id": "plaster_int_gf",
+      "u": "m2",
+      "q": 759.346,
+      "bd": "(57.8+0.0)x4.65x2+63.81x4.65-16.72x2-12.98-28.49"
+    },
+    {
+      "id": "flooring_dry_gf",
+      "u": "m2",
+      "q": 323.13,
+      "bd": "dry area GF"
+    },
+    {
+      "id": "flooring_wet_gf",
+      "u": "m2",
+      "q": 28.8,
+      "bd": "wet area GF"
+    },
+    {
+      "id": "skirting_gf",
+      "u": "m",
+      "q": 112.492,
+      "bd": "117.82-0.4x13.32"
+    },
+    {
+      "id": "paint_gf",
+      "u": "m2",
+      "q": 523.088,
+      "bd": "112.492x4.65"
+    },
+    {
+      "id": "ceiling_dry_gf",
+      "u": "m2",
+      "q": 323.13,
+      "bd": "=flooring_dry_gf"
+    },
+    {
+      "id": "ceiling_wet_gf",
+      "u": "m2",
+      "q": 28.8,
+      "bd": "=flooring_wet_gf"
+    },
+    {
+      "id": "tiles_wall_gf",
+      "u": "m2",
+      "q": 190.278,
+      "bd": "45.85x(4.65-0.5)"
+    },
+    {
+      "id": "block_20_ext_ff",
+      "u": "m2",
+      "q": 189.333,
+      "bd": "54.91x4.3-27.14w-19.64d"
+    },
+    {
+      "id": "block_20_int_ff",
+      "u": "m2",
+      "q": 235.524,
+      "bd": "56.6x4.3-0.4x19.64"
+    },
+    {
+      "id": "block_10_int_ff",
+      "u": "m2",
+      "q": 60.815,
+      "bd": "15.97x4.3-0.4x19.64"
+    },
+    {
+      "id": "plaster_int_ff",
+      "u": "m2",
+      "q": 793.795,
+      "bd": "(56.6+15.97)x4.3x2+54.91x4.3-19.64x2-0.0-27.14"
+    },
+    {
+      "id": "flooring_dry_ff",
+      "u": "m2",
+      "q": 329.16,
+      "bd": "dry area FF"
+    },
+    {
+      "id": "flooring_wet_ff",
+      "u": "m2",
+      "q": 22.77,
+      "bd": "wet area FF"
+    },
+    {
+      "id": "skirting_ff",
+      "u": "m",
+      "q": 173.278,
+      "bd": "176.85-0.4x8.93"
+    },
+    {
+      "id": "paint_ff",
+      "u": "m2",
+      "q": 745.095,
+      "bd": "173.278x4.3"
+    },
+    {
+      "id": "ceiling_dry_ff",
+      "u": "m2",
+      "q": 329.16,
+      "bd": "=flooring_dry_ff"
+    },
+    {
+      "id": "ceiling_wet_ff",
+      "u": "m2",
+      "q": 22.77,
+      "bd": "=flooring_wet_ff"
+    },
+    {
+      "id": "tiles_wall_ff",
+      "u": "m2",
+      "q": 148.01,
+      "bd": "38.95x(4.3-0.5)"
+    },
+    {
+      "id": "finish_ext",
+      "u": "m2",
+      "q": 647.672,
+      "bd": "63.81x10.15"
+    },
+    {
+      "id": "marble_threshold",
+      "u": "RM",
+      "q": 22.25,
+      "bd": "13.32+8.93"
+    },
+    {
+      "id": "balcony_flooring",
+      "u": "m2",
+      "q": 0.0,
+      "bd": "GF 0.0+FF 0.0"
+    },
+    {
+      "id": "balcony_wp",
+      "u": "m2",
+      "q": 0.0,
+      "bd": "=balcony_flooring"
+    },
+    {
+      "id": "waterproofing",
+      "u": "m2",
+      "q": 22.77,
+      "bd": "FF wet only"
+    },
+    {
+      "id": "roof_waterproofing",
+      "u": "m2",
+      "q": 148.68,
+      "bd": "roof slab area=148.68"
+    },
+    {
+      "id": "combo_roof",
+      "u": "m2",
+      "q": 178.416,
+      "bd": "148.68x1.2=178.416"
+    },
+    {
+      "id": "doors_schedule",
+      "u": "No.",
+      "q": 0,
+      "bd": "total doors GF+FF"
+    },
+    {
+      "id": "windows_schedule",
+      "u": "m2",
+      "q": 55.63,
+      "bd": "GF 28.49+FF 27.14"
+    }
+  ],
+  "warnings": [
+    "GF: wet(28.8)+dry(127.47)=156.27 vs grid 351.93 (ratio 0.44)",
+    "FF: wet(22.77)+dry(139.92)=162.69 vs grid 351.93 (ratio 0.46)"
+  ]
+}

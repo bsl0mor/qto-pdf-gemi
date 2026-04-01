@@ -1,0 +1,154 @@
+{
+  "floor": "GF",
+  "ext_perim": 75.04,
+  "wet_rooms": [
+    {
+      "name": "Kitchen",
+      "L": 4.1,
+      "W": 3.35,
+      "area": 13.74,
+      "perim": 14.9
+    },
+    {
+      "name": "Toilet 1",
+      "L": 3.0,
+      "W": 1.6,
+      "area": 4.8,
+      "perim": 9.2
+    },
+    {
+      "name": "Maid's Bath",
+      "L": 1.8,
+      "W": 1.7,
+      "area": 3.06,
+      "perim": 7.0
+    },
+    {
+      "name": "Bath 1",
+      "L": 2.4,
+      "W": 2.05,
+      "area": 4.92,
+      "perim": 8.9
+    },
+    {
+      "name": "Toilet 2",
+      "L": 1.6,
+      "W": 1.4,
+      "area": 2.24,
+      "perim": 6.0
+    }
+  ],
+  "wet_total_area": 28.76,
+  "wet_total_perim": 46.0,
+  "dry_rooms": [
+    {
+      "name": "Majlis",
+      "L": 5.7,
+      "W": 4.1,
+      "area": 23.37,
+      "perim": 19.6
+    },
+    {
+      "name": "Family Sitting",
+      "L": 5.9,
+      "W": 3.85,
+      "area": 22.72,
+      "perim": 19.5
+    },
+    {
+      "name": "Bedroom 1",
+      "L": 4.4,
+      "W": 4.3,
+      "area": 18.92,
+      "perim": 17.4
+    },
+    {
+      "name": "Maid Room",
+      "L": 3.25,
+      "W": 2.2,
+      "area": 7.15,
+      "perim": 10.9
+    },
+    {
+      "name": "Store",
+      "L": 1.8,
+      "W": 1.45,
+      "area": 2.61,
+      "perim": 6.5
+    },
+    {
+      "name": "Spiral Stair",
+      "L": 2.0,
+      "W": 1.85,
+      "area": 3.7,
+      "perim": 7.7
+    },
+    {
+      "name": "Main Stair",
+      "L": 3.65,
+      "W": 2.5,
+      "area": 9.13,
+      "perim": 12.3
+    },
+    {
+      "name": "Corridors/Lobby",
+      "L": 0,
+      "W": 0,
+      "area": 27.0,
+      "perim": 0
+    }
+  ],
+  "dry_total_area": 114.6,
+  "dry_total_perim": 93.9,
+  "walls_20cm_len": 53.59,
+  "walls_10cm_len": 0.0,
+  "win_area": 31.74,
+  "win_details": [
+    {
+      "type": "W1",
+      "count_this_floor": 2,
+      "unit_area": 4.32
+    },
+    {
+      "type": "W2",
+      "count_this_floor": 1,
+      "unit_area": 2.25
+    },
+    {
+      "type": "W3",
+      "count_this_floor": 1,
+      "unit_area": 6.24
+    },
+    {
+      "type": "W4",
+      "count_this_floor": 1,
+      "unit_area": 2.25
+    },
+    {
+      "type": "W5",
+      "count_this_floor": 1,
+      "unit_area": 1.5
+    },
+    {
+      "type": "W6",
+      "count_this_floor": 1,
+      "unit_area": 6.48
+    },
+    {
+      "type": "W7",
+      "count_this_floor": 1,
+      "unit_area": 1.5
+    },
+    {
+      "type": "V1",
+      "count_this_floor": 2,
+      "unit_area": 1.44
+    }
+  ],
+  "door_area_ext": 13.72,
+  "door_area_int": 15.84,
+  "door_width_sum": 13.0,
+  "balcony_area": 0.0,
+  "total_area_check": 143.36,
+  "notes": "KNOWN total floor area (351.93 m²) appears to be for the entire G+1 villa, not just the ground floor. Calculated Gross Floor Area for GF is approx. 172 m². The total_area_check field represents the Net Internal Area (143.36 m²). External perimeter is based on the provided anchor value as direct measurement from the complex plan is unreliable."
+}

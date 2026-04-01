@@ -1,0 +1,312 @@
+{
+  "project": "NAQI",
+  "source": "copilot_qto",
+  "qtoItems": [
+    {
+      "id": "excavation",
+      "u": "m3",
+      "q": 911.4,
+      "bd": "(26.0+2)x(19.7+2)x1.5"
+    },
+    {
+      "id": "road_base",
+      "u": "m3",
+      "q": 102.44,
+      "bd": "512.2x0.2"
+    },
+    {
+      "id": "pcc_footings",
+      "u": "m3",
+      "q": 30.952,
+      "bd": "sum all footings (L+0.1)(W+0.1)x0.10"
+    },
+    {
+      "id": "pcc_tb",
+      "u": "m3",
+      "q": 17.901,
+      "bd": "397.8x(0.25+0.20)x0.10"
+    },
+    {
+      "id": "footing_concrete",
+      "u": "m3",
+      "q": 118.42,
+      "bd": "sum all footings LxWxH"
+    },
+    {
+      "id": "neck_column",
+      "u": "m3",
+      "q": 4.685,
+      "bd": "sum footings col_b x col_d x h_neck"
+    },
+    {
+      "id": "tb_concrete",
+      "u": "m3",
+      "q": 59.67,
+      "bd": "397.8x0.25x0.6"
+    },
+    {
+      "id": "bitumen",
+      "u": "m2",
+      "q": 798.69,
+      "bd": "footing sides+tops+NC sides+blkwall+TB tops"
+    },
+    {
+      "id": "blockwall_solid_sub",
+      "u": "m2",
+      "q": 82.26,
+      "bd": "91.4x0.9"
+    },
+    {
+      "id": "slab_on_grade",
+      "u": "m3",
+      "q": 51.22,
+      "bd": "512.2x0.10"
+    },
+    {
+      "id": "polythene",
+      "u": "m2",
+      "q": 1000.73,
+      "bd": "PCC footings+TB areas+SOG area"
+    },
+    {
+      "id": "anti_termite",
+      "u": "m2",
+      "q": 1150.84,
+      "bd": "1000.73x1.15"
+    },
+    {
+      "id": "backfill",
+      "u": "m3",
+      "q": 509.66,
+      "bd": "911.4-299.3(concrete)-102.44(RB)"
+    },
+    {
+      "id": "gf_columns",
+      "u": "m3",
+      "q": 13.86,
+      "bd": "sum cols x b x d x 4.2m"
+    },
+    {
+      "id": "ff_columns",
+      "u": "m3",
+      "q": 13.86,
+      "bd": "sum cols x b x d x 4.2m"
+    },
+    {
+      "id": "ff_beams",
+      "u": "m3",
+      "q": 14.076,
+      "bd": "140.76x0.25x0.4(web)"
+    },
+    {
+      "id": "ff_slab",
+      "u": "m3",
+      "q": 82.11,
+      "bd": "410.55x0.2"
+    },
+    {
+      "id": "roof_beams",
+      "u": "m3",
+      "q": 14.076,
+      "bd": "140.76x0.25x0.4(web)"
+    },
+    {
+      "id": "roof_slab",
+      "u": "m3",
+      "q": 82.11,
+      "bd": "410.55x0.2"
+    },
+    {
+      "id": "parapet_concrete",
+      "u": "m3",
+      "q": 3.268,
+      "bd": "81.7x0.2x0.2"
+    },
+    {
+      "id": "parapet_block",
+      "u": "m2",
+      "q": 81.7,
+      "bd": "81.7x1.0"
+    },
+    {
+      "id": "block_20_ext_gf",
+      "u": "m2",
+      "q": 383.0,
+      "bd": "100.0x4.2-10.0w-27.0d"
+    },
+    {
+      "id": "block_20_int_gf",
+      "u": "m2",
+      "q": 115.2,
+      "bd": "30.0x4.2-0.4x27.0"
+    },
+    {
+      "id": "block_10_int_gf",
+      "u": "m2",
+      "q": 199.2,
+      "bd": "50.0x4.2-0.4x27.0"
+    },
+    {
+      "id": "plaster_int_gf",
+      "u": "m2",
+      "q": 1028.0,
+      "bd": "int walls+ext x4.2-openings"
+    },
+    {
+      "id": "flooring_dry_gf",
+      "u": "m2",
+      "q": 180.0,
+      "bd": "dry area GF"
+    },
+    {
+      "id": "flooring_wet_gf",
+      "u": "m2",
+      "q": 20.0,
+      "bd": "wet area GF"
+    },
+    {
+      "id": "skirting_gf",
+      "u": "m",
+      "q": 146.0,
+      "bd": "150.0-0.4x10.0"
+    },
+    {
+      "id": "paint_gf",
+      "u": "m2",
+      "q": 613.2,
+      "bd": "146.0x4.2"
+    },
+    {
+      "id": "ceiling_dry_gf",
+      "u": "m2",
+      "q": 180.0,
+      "bd": "=flooring_dry_gf"
+    },
+    {
+      "id": "ceiling_wet_gf",
+      "u": "m2",
+      "q": 20.0,
+      "bd": "=flooring_wet_gf"
+    },
+    {
+      "id": "tiles_wall_gf",
+      "u": "m2",
+      "q": 66.6,
+      "bd": "18.0x(4.2-0.5)"
+    },
+    {
+      "id": "block_20_ext_ff",
+      "u": "m2",
+      "q": 341.4,
+      "bd": "90.0x4.2-15.0w-21.6d"
+    },
+    {
+      "id": "block_20_int_ff",
+      "u": "m2",
+      "q": 96.36,
+      "bd": "25.0x4.2-0.4x21.6"
+    },
+    {
+      "id": "block_10_int_ff",
+      "u": "m2",
+      "q": 159.36,
+      "bd": "40.0x4.2-0.4x21.6"
+    },
+    {
+      "id": "plaster_int_ff",
+      "u": "m2",
+      "q": 865.8,
+      "bd": "int walls+ext x4.2-openings"
+    },
+    {
+      "id": "flooring_dry_ff",
+      "u": "m2",
+      "q": 155.0,
+      "bd": "dry area FF"
+    },
+    {
+      "id": "flooring_wet_ff",
+      "u": "m2",
+      "q": 25.0,
+      "bd": "wet area FF"
+    },
+    {
+      "id": "skirting_ff",
+      "u": "m",
+      "q": 126.8,
+      "bd": "130.0-0.4x8.0"
+    },
+    {
+      "id": "paint_ff",
+      "u": "m2",
+      "q": 532.56,
+      "bd": "126.8x4.2"
+    },
+    {
+      "id": "ceiling_dry_ff",
+      "u": "m2",
+      "q": 155.0,
+      "bd": "=flooring_dry_ff"
+    },
+    {
+      "id": "ceiling_wet_ff",
+      "u": "m2",
+      "q": 25.0,
+      "bd": "=flooring_wet_ff"
+    },
+    {
+      "id": "tiles_wall_ff",
+      "u": "m2",
+      "q": 74.0,
+      "bd": "20.0x(4.2-0.5)"
+    },
+    {
+      "id": "finish_ext",
+      "u": "m2",
+      "q": 990.0,
+      "bd": "100.0x9.9"
+    },
+    {
+      "id": "marble_threshold",
+      "u": "RM",
+      "q": 18.0,
+      "bd": "GF 10.0+FF 8.0"
+    },
+    {
+      "id": "balcony_flooring",
+      "u": "m2",
+      "q": 15.0,
+      "bd": "GF 0.0+FF 15.0"
+    },
+    {
+      "id": "balcony_wp",
+      "u": "m2",
+      "q": 15.0,
+      "bd": "=balcony_flooring"
+    },
+    {
+      "id": "waterproofing",
+      "u": "m2",
+      "q": 25.0,
+      "bd": "FF wet only"
+    },
+    {
+      "id": "combo_roof",
+      "u": "m2",
+      "q": 492.66,
+      "bd": "410.55x1.2"
+    },
+    {
+      "id": "doors_schedule",
+      "u": "No.",
+      "q": 31,
+      "bd": "total count GF+FF"
+    },
+    {
+      "id": "windows_schedule",
+      "u": "m2",
+      "q": 25.0,
+      "bd": "GF 10.0+FF 15.0"
+    }
+  ]
+}

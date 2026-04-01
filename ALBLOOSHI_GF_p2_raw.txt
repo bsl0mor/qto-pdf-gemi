@@ -1,0 +1,159 @@
+{
+  "floor": "GF",
+  "ext_perim": 88.3,
+  "wet_rooms": [
+    {
+      "name": "Kitchen",
+      "L": 4.5,
+      "W": 4.9,
+      "area": 22.05,
+      "perim": 18.8
+    },
+    {
+      "name": "Laundry & Store",
+      "L": 2.7,
+      "W": 1.8,
+      "area": 4.86,
+      "perim": 9.0
+    },
+    {
+      "name": "Maid Bath",
+      "L": 2.7,
+      "W": 1.6,
+      "area": 4.32,
+      "perim": 8.6
+    },
+    {
+      "name": "Pantry",
+      "L": 2.8,
+      "W": 1.9,
+      "area": 5.32,
+      "perim": 9.4
+    },
+    {
+      "name": "W.C",
+      "L": 3.2,
+      "W": 2.0,
+      "area": 6.4,
+      "perim": 10.4
+    },
+    {
+      "name": "G-Bedroom Bath",
+      "L": 2.8,
+      "W": 2.1,
+      "area": 5.88,
+      "perim": 9.8
+    }
+  ],
+  "wet_total_area": 48.83,
+  "wet_total_perim": 66.0,
+  "dry_rooms": [
+    {
+      "name": "Majlis",
+      "L": 7.7,
+      "W": 4.5,
+      "area": 34.65,
+      "perim": 24.4
+    },
+    {
+      "name": "Dining",
+      "L": 5.65,
+      "W": 4.25,
+      "area": 24.01,
+      "perim": 19.8
+    },
+    {
+      "name": "Family Hall",
+      "L": 8.8,
+      "W": 6.25,
+      "area": 55.0,
+      "perim": 30.1
+    },
+    {
+      "name": "G-Bedroom",
+      "L": 4.5,
+      "W": 4.0,
+      "area": 18.0,
+      "perim": 17.0
+    },
+    {
+      "name": "Maid Room",
+      "L": 2.8,
+      "W": 2.7,
+      "area": 7.56,
+      "perim": 11.0
+    },
+    {
+      "name": "Parking",
+      "L": 10.0,
+      "W": 6.0,
+      "area": 60.0,
+      "perim": 32.0
+    },
+    {
+      "name": "Circulation",
+      "L": 0,
+      "W": 0,
+      "area": 236.61,
+      "perim": 0
+    }
+  ],
+  "dry_total_area": 435.83,
+  "dry_total_perim": 134.3,
+  "walls_20cm_len": 275.2,
+  "walls_10cm_len": 0,
+  "win_area": 46.7,
+  "win_details": [
+    {
+      "type": "W.01",
+      "count_this_floor": 1,
+      "unit_area": 7.8
+    },
+    {
+      "type": "W.02",
+      "count_this_floor": 2,
+      "unit_area": 4.16
+    },
+    {
+      "type": "W.03",
+      "count_this_floor": 1,
+      "unit_area": 3.64
+    },
+    {
+      "type": "W.04",
+      "count_this_floor": 1,
+      "unit_area": 5.2
+    },
+    {
+      "type": "W.05",
+      "count_this_floor": 1,
+      "unit_area": 5.2
+    },
+    {
+      "type": "W.06",
+      "count_this_floor": 1,
+      "unit_area": 2.6
+    },
+    {
+      "type": "W.08",
+      "count_this_floor": 1,
+      "unit_area": 3.02
+    },
+    {
+      "type": "W.09",
+      "count_this_floor": 1,
+      "unit_area": 4.68
+    },
+    {
+      "type": "W.10",
+      "count_this_floor": 4,
+      "unit_area": 1.56
+    }
+  ],
+  "door_area_ext": 13.84,
+  "door_area_int": 12.66,
+  "door_width_sum": 12.8,
+  "balcony_area": 0,
+  "total_area_check": 484.66,
+  "notes": "Total dry area includes a calculated 236.61 m^2 for circulation (corridors, stairs, entrance) to match the known total floor area. Internal wall lengths are estimated based on a 15% wall area factor of the GFA. Window areas are calculated assuming a standard height of 2.6m as it was not provided."
+}

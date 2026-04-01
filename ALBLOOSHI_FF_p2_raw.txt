@@ -1,0 +1,137 @@
+{
+  "floor": "FF",
+  "ext_perim": 88.3,
+  "wet_rooms": [
+    {
+      "name": "Pantry",
+      "L": 2.2,
+      "W": 1.45,
+      "area": 3.19,
+      "perim": 7.3
+    },
+    {
+      "name": "Bath 1",
+      "L": 2.8,
+      "W": 1.8,
+      "area": 5.04,
+      "perim": 9.2
+    },
+    {
+      "name": "Bath 2",
+      "L": 4.75,
+      "W": 4.5,
+      "area": 21.38,
+      "perim": 18.5
+    }
+  ],
+  "wet_total_area": 29.61,
+  "wet_total_perim": 35.0,
+  "dry_rooms": [
+    {
+      "name": "Master Bedroom",
+      "L": 5.0,
+      "W": 4.5,
+      "area": 22.5,
+      "perim": 19.0
+    },
+    {
+      "name": "Dress 2",
+      "L": 4.75,
+      "W": 1.9,
+      "area": 9.03,
+      "perim": 13.3
+    },
+    {
+      "name": "Sitting",
+      "L": 7.05,
+      "W": 4.5,
+      "area": 31.73,
+      "perim": 23.1
+    },
+    {
+      "name": "Gaming Room",
+      "L": 5.45,
+      "W": 4.05,
+      "area": 22.07,
+      "perim": 19.0
+    },
+    {
+      "name": "Dress 1",
+      "L": 4.5,
+      "W": 4.05,
+      "area": 18.23,
+      "perim": 17.1
+    },
+    {
+      "name": "Bedroom",
+      "L": 4.05,
+      "W": 3.25,
+      "area": 13.16,
+      "perim": 14.6
+    },
+    {
+      "name": "Terrace",
+      "L": 10.0,
+      "W": 6.1,
+      "area": 61.0,
+      "perim": 32.2
+    },
+    {
+      "name": "Double Height",
+      "L": 7.55,
+      "W": 6.25,
+      "area": 47.19,
+      "perim": 27.6
+    },
+    {
+      "name": "Circulation/Stairs/Walls",
+      "L": 0,
+      "W": 0,
+      "area": 230.14,
+      "perim": 0
+    }
+  ],
+  "dry_total_area": 455.05,
+  "dry_total_perim": 165.9,
+  "walls_20cm_len": 67.8,
+  "walls_10cm_len": 11.5,
+  "win_area": 0,
+  "win_details": [
+    {
+      "type": "W.07",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.08",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.09",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.10",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.11",
+      "count_this_floor": 1,
+      "unit_area": 0
+    },
+    {
+      "type": "W.12",
+      "count_this_floor": 2,
+      "unit_area": 0
+    }
+  ],
+  "door_area_ext": 8.64,
+  "door_area_int": 14.45,
+  "door_width_sum": 10.9,
+  "balcony_area": 61.0,
+  "total_area_check": 484.66,
+  "notes": "Total area calculation includes non-enclosed areas like the Terrace and the footprint of the Double Height void to match the provided total floor area. A 'Circulation/Stairs/Walls' category was created to balance the area calculation. Window areas are zero as dimensions were not provided."
+}

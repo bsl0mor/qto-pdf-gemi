@@ -1,0 +1,486 @@
+{
+  "drawingInfo": {
+    "type": "Foundation Layout",
+    "title": "FOUNDATION LAYOUT",
+    "number": "S-03",
+    "scale": "1:100",
+    "revision": "A",
+    "discipline": "Structural",
+    "projectName": "PROPOSED PRIVATE VILLA (G+1)"
+  },
+  "observedElements": [
+    {
+      "type": "Footing",
+      "mark": "CF1",
+      "count": 2,
+      "dims": {
+        "L": 4.8,
+        "W": 2.5,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "D8, J10",
+      "notes": "480x250cm",
+      "boundingBox": [
+        530,
+        350,
+        570,
+        400
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 10,
+      "dims": {
+        "L": 2.3,
+        "W": 2.0,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "B2, F3, H5, J5, K7, J9, K10, B11, F13, L12",
+      "notes": "230x200cm",
+      "boundingBox": [
+        260,
+        200,
+        300,
+        240
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 20,
+      "dims": {
+        "L": 2.5,
+        "W": 2.5,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "C3, G4, C7, B9, D10, F7, H9, F10, J6, L8, D12, H14, J11, K15, B14, D15, G14, J13, L15, E15",
+      "notes": "250x250cm",
+      "boundingBox": [
+        300,
+        280,
+        340,
+        320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 1,
+      "dims": {
+        "L": 3.0,
+        "W": 3.0,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "E11",
+      "notes": "300x300cm",
+      "boundingBox": [
+        680,
+        420,
+        720,
+        460
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F4",
+      "count": 8,
+      "dims": {
+        "L": 2.8,
+        "W": 2.8,
+        "H": 0.45,
+        "unit": "m"
+      },
+      "location": "B5, D5, E2, J2, L4, B6, G8, G12",
+      "notes": "280x280cm",
+      "boundingBox": [
+        380,
+        200,
+        420,
+        240
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F6",
+      "count": 1,
+      "dims": {
+        "L": 3.2,
+        "W": 3.2,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "E6",
+      "notes": "320x320cm",
+      "boundingBox": [
+        450,
+        420,
+        490,
+        460
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF2",
+      "count": 1,
+      "dims": {
+        "L": 4.0,
+        "W": 2.5,
+        "H": 0.45,
+        "unit": "m"
+      },
+      "location": "D4",
+      "notes": "400x250cm",
+      "boundingBox": [
+        340,
+        350,
+        380,
+        400
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C1",
+      "count": 1,
+      "dims": {
+        "b": 0.2,
+        "d": 0.5,
+        "unit": "m"
+      },
+      "location": "Schedule of Columns",
+      "notes": "20x50cm",
+      "boundingBox": [
+        890,
+        280,
+        920,
+        320
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C2",
+      "count": 1,
+      "dims": {
+        "b": 0.25,
+        "d": 0.5,
+        "unit": "m"
+      },
+      "location": "Schedule of Columns",
+      "notes": "25x50cm",
+      "boundingBox": [
+        890,
+        350,
+        920,
+        390
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C3",
+      "count": 1,
+      "dims": {
+        "b": 0.2,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "location": "Schedule of Columns",
+      "notes": "20x60cm",
+      "boundingBox": [
+        890,
+        420,
+        920,
+        460
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C4",
+      "count": 1,
+      "dims": {
+        "b": 0.25,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "location": "Schedule of Columns",
+      "notes": "25x60cm",
+      "boundingBox": [
+        890,
+        490,
+        920,
+        530
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "NC1",
+      "count": 1,
+      "dims": {
+        "b": 0.2,
+        "d": 0.4,
+        "unit": "m"
+      },
+      "location": "Schedule of Columns",
+      "notes": "20x40cm",
+      "boundingBox": [
+        890,
+        560,
+        920,
+        600
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 302.6,
+        "b": 0.25,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "location": "Schedule of Tie Beams",
+      "notes": "Total length of TB1 segments",
+      "boundingBox": [
+        240,
+        400,
+        255,
+        440
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 35.0,
+        "b": 0.25,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "location": "Schedule of Tie Beams",
+      "notes": "Total length of TB2 segments",
+      "boundingBox": [
+        255,
+        400,
+        270,
+        440
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "CTB1",
+      "count": 1,
+      "dims": {
+        "L": 60.2,
+        "b": 0.25,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "location": "Schedule of Tie Beams",
+      "notes": "Total length of CTB1 segments",
+      "boundingBox": [
+        270,
+        400,
+        285,
+        440
+      ]
+    }
+  ],
+  "qtoItems": [
+    {
+      "id": "excavation",
+      "description": "Bulk Excavation",
+      "discipline": "Earthworks",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 911.4,
+      "breakdown": "(OverallL + 2.0) x (OverallW + 2.0) x excav_depth_m = (26.0 + 2.0) x (19.7 + 2.0) x 1.5 = 911.4 m3"
+    },
+    {
+      "id": "road_base",
+      "description": "Road Base",
+      "discipline": "Earthworks",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 76.83,
+      "breakdown": "OverallL x OverallW x road_base_thickness = 26.0 x 19.7 x 0.15 = 76.83 m3"
+    },
+    {
+      "id": "pcc_footings",
+      "description": "PCC Blinding under Isolated Footings",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "CF1",
+        "F2",
+        "F3",
+        "F5",
+        "F4",
+        "F6",
+        "CF2"
+      ],
+      "totalQty": 30.952,
+      "breakdown": "CF1: 2 x (4.80+0.10) x (2.50+0.10) x 0.10 = 2.548 m3\nF2: 10 x (2.30+0.10) x (2.00+0.10) x 0.10 = 5.04 m3\nF3: 20 x (2.50+0.10) x (2.50+0.10) x 0.10 = 13.52 m3\nF5: 1 x (3.00+0.10) x (3.00+0.10) x 0.10 = 0.961 m3\nF4: 8 x (2.80+0.10) x (2.80+0.10) x 0.10 = 6.728 m3\nF6: 1 x (3.20+0.10) x (3.20+0.10) x 0.10 = 1.089 m3\nCF2: 1 x (4.00+0.10) x (2.50+0.10) x 0.10 = 1.066 m3\nTotal = 30.952 m3"
+    },
+    {
+      "id": "pcc_tb",
+      "description": "PCC Blinding under Tie Beams",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "TB1",
+        "TB2",
+        "CTB1"
+      ],
+      "totalQty": 17.901,
+      "breakdown": "TB1: 302.60 x (0.25 + 0.20) x 0.10 = 13.617 m3\nTB2: 35.00 x (0.25 + 0.20) x 0.10 = 1.575 m3\nCTB1: 60.20 x (0.25 + 0.20) x 0.10 = 2.709 m3\nTotal = 17.901 m3"
+    },
+    {
+      "id": "footing_concrete",
+      "description": "Isolated Footing Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "CF1",
+        "F2",
+        "F3",
+        "F5",
+        "F4",
+        "F6",
+        "CF2"
+      ],
+      "totalQty": 118.42,
+      "breakdown": "CF1: 2 x 4.80 x 2.50 x 0.40 = 9.6 m3\nF2: 10 x 2.30 x 2.00 x 0.40 = 18.4 m3\nF3: 20 x 2.50 x 2.50 x 0.40 = 50.0 m3\nF5: 1 x 3.00 x 3.00 x 0.40 = 3.6 m3\nF4: 8 x 2.80 x 2.80 x 0.45 = 28.224 m3\nF6: 1 x 3.20 x 3.20 x 0.40 = 4.096 m3\nCF2: 1 x 4.00 x 2.50 x 0.45 = 4.5 m3\nTotal = 118.42 m3"
+    },
+    {
+      "id": "neck_column",
+      "description": "Neck Column Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "CF1",
+        "F2",
+        "F3",
+        "F5",
+        "F4",
+        "F6",
+        "CF2"
+      ],
+      "totalQty": 3.748,
+      "breakdown": "Using NC1 (0.20x0.40m) for all neck columns.\nH_neck = (1.50 + 0.00) - footing_H\nCF1: 2 x 0.20 x 0.40 x (1.50-0.40) = 0.176 m3\nF2: 10 x 0.20 x 0.40 x (1.50-0.40) = 0.88 m3\nF3: 20 x 0.20 x 0.40 x (1.50-0.40) = 1.76 m3\nF5: 1 x 0.20 x 0.40 x (1.50-0.40) = 0.088 m3\nF4: 8 x 0.20 x 0.40 x (1.50-0.45) = 0.672 m3\nF6: 1 x 0.20 x 0.40 x (1.50-0.40) = 0.088 m3\nCF2: 1 x 0.20 x 0.40 x (1.50-0.45) = 0.084 m3\nTotal = 3.748 m3"
+    },
+    {
+      "id": "tb_concrete",
+      "description": "Tie Beam RC Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "TB1",
+        "TB2",
+        "CTB1"
+      ],
+      "totalQty": 59.67,
+      "breakdown": "TB1: 302.60 x 0.25 x 0.60 = 45.39 m3\nTB2: 35.00 x 0.25 x 0.60 = 5.25 m3\nCTB1: 60.20 x 0.25 x 0.60 = 9.03 m3\nTotal = 59.67 m3"
+    },
+    {
+      "id": "bitumen",
+      "description": "Bituminous Waterproofing Sub-Structure",
+      "discipline": "Waterproofing",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [
+        "CF1",
+        "F2",
+        "F3",
+        "F5",
+        "F4",
+        "F6",
+        "CF2",
+        "NC1",
+        "TB1",
+        "TB2",
+        "CTB1"
+      ],
+      "totalQty": 789.32,
+      "breakdown": "Footing Sides:\nCF1: 2 x 2 x (4.80+2.50) x 0.40 = 11.68 m2\nF2: 10 x 2 x (2.30+2.00) x 0.40 = 34.4 m2\nF3: 20 x 2 x (2.50+2.50) x 0.40 = 80.0 m2\nF5: 1 x 2 x (3.00+3.00) x 0.40 = 4.8 m2\nF4: 8 x 2 x (2.80+2.80) x 0.45 = 40.32 m2\nF6: 1 x 2 x (3.20+3.20) x 0.40 = 5.12 m2\nCF2: 1 x 2 x (4.00+2.50) x 0.45 = 5.85 m2\nSubtotal Footing Sides = 182.17 m2\n\nFooting Tops:\nCF1: 2 x 4.80 x 2.50 = 24.0 m2\nF2: 10 x 2.30 x 2.00 = 46.0 m2\nF3: 20 x 2.50 x 2.50 = 125.0 m2\nF5: 1 x 3.00 x 3.00 = 9.0 m2\nF4: 8 x 2.80 x 2.80 = 62.72 m2\nF6: 1 x 3.20 x 3.20 = 10.24 m2\nCF2: 1 x 4.00 x 2.50 = 10.0 m2\nSubtotal Footing Tops = 286.96 m2\n\nNeck Column Sides (using NC1: 0.20x0.40m):\nCF1: 2 x 2 x (0.20+0.40) x 1.10 = 2.64 m2\nF2: 10 x 2 x (0.20+0.40) x 1.10 = 13.2 m2\nF3: 20 x 2 x (0.20+0.40) x 1.10 = 26.4 m2\nF5: 1 x 2 x (0.20+0.40) x 1.10 = 1.32 m2\nF4: 8 x 2 x (0.20+0.40) x 1.05 = 10.08 m2\nF6: 1 x 2 x (0.20+0.40) x 1.10 = 1.32 m2\nCF2: 1 x 2 x (0.20+0.40) x 1.05 = 1.26 m2\nSubtotal NC Sides = 56.22 m2\n\nSolid Block Sub-structure Sides:\nGFPerimeter = 2 x (26.0 + 19.7) = 91.4 m\nSolidBlockH = (excav_depth + GF_level) - deepest_TB_depth = (1.50 + 0.00) - 0.60 = 0.90 m\nArea = 91.4 x 0.90 x 2 = 164.52 m2\n\nTie Beam Tops:\nTotal TBLength = 302.60 + 35.00 + 60.20 = 397.80 m\nArea = 397.80 x 0.25 = 99.45 m2\n\nTotal Bitumen = 182.17 + 286.96 + 56.22 + 164.52 + 99.45 = 789.32 m2"
+    },
+    {
+      "id": "blockwall_solid_sub",
+      "description": "Solid Block Sub-Structure",
+      "discipline": "Masonry",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 82.26,
+      "breakdown": "GFPerimeter x ((excav_depth + GF_level) - deepest_TB_depth) = 91.4 x ((1.50 + 0.00) - 0.60) = 91.4 x 0.90 = 82.26 m2"
+    },
+    {
+      "id": "slab_on_grade",
+      "description": "Slab on Grade Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 51.22,
+      "breakdown": "OverallL x OverallW x 0.10m = 26.0 x 19.7 x 0.10 = 51.22 m3"
+    },
+    {
+      "id": "polythene",
+      "description": "Polythene Sheet 1000 gauge",
+      "discipline": "Waterproofing",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [
+        "CF1",
+        "F2",
+        "F3",
+        "F5",
+        "F4",
+        "F6",
+        "CF2",
+        "TB1",
+        "TB2",
+        "CTB1"
+      ],
+      "totalQty": 1000.73,
+      "breakdown": "PCC Footings Area:\nCF1: 2 x 4.90 x 2.60 = 25.48 m2\nF2: 10 x 2.40 x 2.10 = 50.4 m2\nF3: 20 x 2.60 x 2.60 = 135.2 m2\nF5: 1 x 3.10 x 3.10 = 9.61 m2\nF4: 8 x 2.90 x 2.90 = 67.28 m2\nF6: 1 x 3.30 x 3.30 = 10.89 m2\nCF2: 1 x 4.10 x 2.60 = 10.66 m2\nSubtotal PCC Footings Area = 309.52 m2\n\nPCC Tie Beams Area:\nTB1: 302.60 x (0.25 + 0.20) = 136.17 m2\nTB2: 35.00 x (0.25 + 0.20) = 15.75 m2\nCTB1: 60.20 x (0.25 + 0.20) = 27.09 m2\nSubtotal PCC Tie Beams Area = 179.01 m2\n\nSlab on Grade Area = OverallL x OverallW = 26.0 x 19.7 = 512.2 m2\n\nTotal Polythene = 309.52 + 179.01 + 512.2 = 1000.73 m2"
+    },
+    {
+      "id": "anti_termite",
+      "description": "Anti-Termite Treatment",
+      "discipline": "Pest Control",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 1150.8395,
+      "breakdown": "Polythene x 1.15 = 1000.73 x 1.15 = 1150.8395 m2"
+    },
+    {
+      "id": "backfill",
+      "description": "Backfill Compacted",
+      "discipline": "Earthworks",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 613.037,
+      "breakdown": "Excavation Volume = 911.4 m3\n\nTotal Concrete + Block Volume:\nPCC Footings = 30.952 m3\nPCC Tie Beams = 17.901 m3\nFooting Concrete = 118.42 m3\nNeck Column Concrete = 3.748 m3\nTie Beam RC Concrete = 59.67 m3\nSlab on Grade Concrete = 51.22 m3\nSolid Block Sub-structure Volume = 82.26 m2 x 0.20m = 16.452 m3\nSubtotal Concrete + Block Volume = 30.952 + 17.901 + 118.42 + 3.748 + 59.67 + 51.22 + 16.452 = 298.363 m3\n\nBackfill = 911.4 - 298.363 = 613.037 m3"
+    }
+  ],
+  "questions": [],
+  "summary": "Quantity Take-Off Summary:\nTotal Footings: 43\nTotal Tie Beam Length: 397.80 m\n\n1. Bulk Excavation: 911.4 m3\n2. Road Base: 76.83 m3\n3. PCC Blinding under Isolated Footings: 30.952 m3\n4. PCC Blinding under Tie Beams: 17.901 m3\n5. Isolated Footing Concrete: 118.42 m3\n6. Neck Column Concrete: 3.748 m3\n7. Tie Beam RC Concrete: 59.67 m3\n8. Bituminous Waterproofing Sub-Structure: 789.32 m2\n9. Solid Block Sub-Structure: 82.26 m2\n10. Slab on Grade Concrete: 51.22 m3\n11. Polythene Sheet 1000 gauge: 1000.73 m2\n12. Anti-Termite Treatment: 1150.8395 m2\n13. Backfill Compacted: 613.037 m3",
+  "warnings": [
+    "GF slab level was not found in text and assumed to be +0.00m for substructure calculations.",
+    "For neck column concrete calculation, NC1 (0.20m x 0.40m) was assumed to serve all footing types due to lack of explicit column-to-footing mapping in the drawings."
+  ]
+}

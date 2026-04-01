@@ -1,0 +1,149 @@
+{
+  "floor": "FF",
+  "ext_perim": 62.7,
+  "wet_rooms": [
+    {
+      "name": "Bath 1",
+      "L": 2.2,
+      "W": 2.0,
+      "area": 4.4,
+      "perim": 8.4
+    },
+    {
+      "name": "Bath 2",
+      "L": 2.8,
+      "W": 1.8,
+      "area": 5.04,
+      "perim": 9.2
+    },
+    {
+      "name": "Master Bath",
+      "L": 3.8,
+      "W": 3.0,
+      "area": 11.4,
+      "perim": 13.6
+    },
+    {
+      "name": "Pantry",
+      "L": 3.5,
+      "W": 2.25,
+      "area": 7.88,
+      "perim": 11.5
+    }
+  ],
+  "wet_total_area": 28.72,
+  "wet_total_perim": 42.7,
+  "dry_rooms": [
+    {
+      "name": "Bed Room 1",
+      "L": 4.3,
+      "W": 4.1,
+      "area": 17.63,
+      "perim": 16.8
+    },
+    {
+      "name": "Dress 1",
+      "L": 2.2,
+      "W": 2.1,
+      "area": 4.62,
+      "perim": 8.6
+    },
+    {
+      "name": "Bed Room 2",
+      "L": 4.0,
+      "W": 4.1,
+      "area": 16.4,
+      "perim": 16.2
+    },
+    {
+      "name": "Dress 2",
+      "L": 2.8,
+      "W": 1.9,
+      "area": 5.32,
+      "perim": 9.4
+    },
+    {
+      "name": "Master Bed Room",
+      "L": 5.7,
+      "W": 4.1,
+      "area": 23.37,
+      "perim": 19.6
+    },
+    {
+      "name": "Master Dress",
+      "L": 4.1,
+      "W": 1.4,
+      "area": 5.74,
+      "perim": 11.0
+    },
+    {
+      "name": "Sitting",
+      "L": 3.65,
+      "W": 3.4,
+      "area": 12.41,
+      "perim": 14.1
+    },
+    {
+      "name": "Stair",
+      "L": 3.5,
+      "W": 1.9,
+      "area": 6.65,
+      "perim": 10.8
+    },
+    {
+      "name": "Corridor",
+      "L": 8.15,
+      "W": 1.56,
+      "area": 12.72,
+      "perim": 19.42
+    }
+  ],
+  "dry_total_area": 104.86,
+  "dry_total_perim": 125.92,
+  "walls_20cm_len": 71.15,
+  "walls_10cm_len": 0,
+  "win_area": 35.15,
+  "win_details": [
+    {
+      "type": "W1",
+      "count_this_floor": 1,
+      "unit_area": 7.92
+    },
+    {
+      "type": "W2",
+      "count_this_floor": 1,
+      "unit_area": 5.09
+    },
+    {
+      "type": "W4",
+      "count_this_floor": 2,
+      "unit_area": 3.6
+    },
+    {
+      "type": "W6",
+      "count_this_floor": 1,
+      "unit_area": 7.38
+    },
+    {
+      "type": "W7",
+      "count_this_floor": 2,
+      "unit_area": 1.8
+    },
+    {
+      "type": "V1",
+      "count_this_floor": 1,
+      "unit_area": 0.36
+    },
+    {
+      "type": "V2",
+      "count_this_floor": 1,
+      "unit_area": 3.6
+    }
+  ],
+  "door_area_ext": 0,
+  "door_area_int": 12.54,
+  "door_width_sum": 5.7,
+  "balcony_area": 0,
+  "total_area_check": 133.58,
+  "notes": "Total area check (133.58 m²) is the calculated net internal area. The provided total floor area (351.93 m²) appears to be for the entire G+1 building. Calculated gross area for this floor is approx. 200 m². The provided external perimeter (75.04 m) also seems incorrect for this floor plan; calculated perimeter is 62.7 m."
+}

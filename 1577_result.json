@@ -1,0 +1,264 @@
+{
+  "observedElements": [
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 18,
+      "dims": {
+        "L": 1.6,
+        "W": 1.9,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [18, 18] → 18.0"
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 4,
+      "dims": {
+        "L": 2.4,
+        "W": 2.9,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [4, 4] → 4.0"
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 3,
+      "dims": {
+        "L": 1.9,
+        "W": 2.0,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [3, 3] → 3.0"
+    },
+    {
+      "type": "Footing",
+      "mark": "F4",
+      "count": 10,
+      "dims": {
+        "L": 2.2,
+        "W": 2.4,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [10, 10] → 10.0"
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 3.3,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [1, 1] → 1.0"
+    },
+    {
+      "type": "Footing",
+      "mark": "F6",
+      "count": 11,
+      "dims": {
+        "L": 1.0,
+        "W": 1.1,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [11, 11] → 11.0"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "dims": {
+        "L": 330.0,
+        "b": 0.3,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [330.0, 330.0] → 330.0"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "dims": {
+        "L": 12.0,
+        "b": 0.3,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [12.0, 12.0] → 12.0"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB3",
+      "dims": {
+        "L": 1.9,
+        "b": 0.3,
+        "d": 0.8,
+        "unit": "m"
+      },
+      "notes": "consensus of 2 passes: [1.9, 1.9] → 1.9"
+    },
+    {
+      "type": "Column",
+      "mark": "C1",
+      "count": 0,
+      "dims": {
+        "b": 20,
+        "d": 40,
+        "unit": "cm"
+      },
+      "notes": "consensus of 2 passes: [0, 0] → 0.0"
+    },
+    {
+      "type": "Column",
+      "mark": "C2",
+      "count": 0,
+      "dims": {
+        "b": 20,
+        "d": 50,
+        "unit": "cm"
+      },
+      "notes": "consensus of 2 passes: [0, 0] → 0.0"
+    },
+    {
+      "type": "Column",
+      "mark": "C3",
+      "count": 0,
+      "dims": {
+        "b": 20,
+        "d": 60,
+        "unit": "cm"
+      },
+      "notes": "consensus of 2 passes: [0, 0] → 0.0"
+    },
+    {
+      "type": "Column",
+      "mark": "C4",
+      "count": 0,
+      "dims": {
+        "b": 20,
+        "d": 70,
+        "unit": "cm"
+      },
+      "notes": "consensus of 2 passes: [0, 0] → 0.0"
+    }
+  ],
+  "gridDims": {
+    "L_m": 24.0,
+    "W_m": 18.4
+  },
+  "warnings": [],
+  "qtoItems": [
+    {
+      "id": "excavation",
+      "description": "Bulk Excavation",
+      "unit": "m3",
+      "totalQty": 795.6,
+      "breakdown": "(24.0+2)×(18.4+2)×1.5=795.6",
+      "source": "deterministic"
+    },
+    {
+      "id": "road_base",
+      "description": "Road Base",
+      "unit": "m3",
+      "totalQty": 88.32,
+      "breakdown": "24.0×18.4×0.2=88.32",
+      "source": "deterministic"
+    },
+    {
+      "id": "pcc_footings",
+      "description": "PCC under Footings",
+      "unit": "m3",
+      "totalQty": 18.568,
+      "breakdown": "F1:18×(1.6+0.1)×(1.9+0.1)×0.1=6.12 + F2:4×(2.4+0.1)×(2.9+0.1)×0.1=3.0 + F3:3×(1.9+0.1)×(2.0+0.1)×0.1=1.26 + F4:10×(2.2+0.1)×(2.4+0.1)×0.1=5.75 + F5:1×(2.8+0.1)×(3.3+0.1)×0.1=0.986 + F6:11×(1.0+0.1)×(1.1+0.1)×0.1=1.452",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "pcc_tb",
+      "description": "PCC under Tie Beams",
+      "unit": "m3",
+      "totalQty": 0,
+      "breakdown": "",
+      "source": "parser_dims + vision_lengths"
+    },
+    {
+      "id": "footing_concrete",
+      "description": "Isolated Footing Concrete",
+      "unit": "m3",
+      "totalQty": 67.24,
+      "breakdown": "F1:18×1.6×1.9×0.4=21.888 + F2:4×2.4×2.9×0.4=11.136 + F3:3×1.9×2.0×0.4=4.56 + F4:10×2.2×2.4×0.4=21.12 + F5:1×2.8×3.3×0.4=3.696 + F6:11×1.0×1.1×0.4=4.84",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "neck_column",
+      "description": "Neck Column Concrete",
+      "unit": "m3",
+      "totalQty": 11.787,
+      "breakdown": "F1:18×0.22×0.6×1.9=4.514 + F2:4×0.22×0.6×1.9=1.003 + F3:3×0.22×0.6×1.9=0.752 + F4:10×0.22×0.6×1.9=2.508 + F5:1×0.22×0.6×1.9=0.251 + F6:11×0.22×0.6×1.9=2.759",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "tb_concrete",
+      "description": "Tie Beam RC Concrete",
+      "unit": "m3",
+      "totalQty": 0,
+      "breakdown": "",
+      "source": "parser_dims + vision_lengths"
+    },
+    {
+      "id": "bitumen",
+      "description": "Bituminous Waterproofing",
+      "unit": "m2",
+      "totalQty": 733.548,
+      "breakdown": "ftg_sides=136.88+ftg_tops=161.896+nc_sides=146.452+block=288.32+tb=0.0",
+      "source": "deterministic"
+    },
+    {
+      "id": "blockwall_solid_sub",
+      "description": "Solid Block Sub-Structure",
+      "unit": "m2",
+      "totalQty": 144.16,
+      "breakdown": "84.8×1.7=144.16",
+      "source": "deterministic"
+    },
+    {
+      "id": "slab_on_grade",
+      "description": "Slab on Grade Concrete",
+      "unit": "m3",
+      "totalQty": 44.16,
+      "breakdown": "24.0×18.4×0.10=44.16",
+      "source": "deterministic"
+    },
+    {
+      "id": "polythene",
+      "description": "Polythene Sheet",
+      "unit": "m2",
+      "totalQty": 627.28,
+      "breakdown": "pcc_ftg=185.68+pcc_tb=0+sog=441.6",
+      "source": "deterministic"
+    },
+    {
+      "id": "anti_termite",
+      "description": "Anti-Termite Treatment",
+      "unit": "m2",
+      "totalQty": 721.372,
+      "breakdown": "627.28×1.15=721.372",
+      "source": "deterministic"
+    },
+    {
+      "id": "backfill",
+      "description": "Backfill Compacted",
+      "unit": "m3",
+      "totalQty": 979.581,
+      "breakdown": "excav_vol=1219.92-conc=123.187-block=28.832-rb=88.32",
+      "source": "deterministic"
+    }
+  ]
+}

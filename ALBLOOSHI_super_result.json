@@ -1,0 +1,137 @@
+{
+  "floorHeights": {
+    "gf_floor_height_m": 4.6,
+    "ff_floor_height_m": 4.6,
+    "parapet_height_m": 1.2,
+    "source": "consensus of 3 passes"
+  },
+  "observedElements": [
+    {
+      "type": "column",
+      "mark": "C1",
+      "floor": "GF",
+      "count": 49,
+      "notes": "consensus: [49, 49, 49] → 49"
+    },
+    {
+      "type": "column",
+      "mark": "C2",
+      "floor": "GF",
+      "count": 0,
+      "notes": "consensus: [0, 0, 0] → 0"
+    },
+    {
+      "type": "column",
+      "mark": "C3",
+      "floor": "GF",
+      "count": 0,
+      "notes": "consensus: [0, 0, 0] → 0"
+    },
+    {
+      "type": "column",
+      "mark": "C1",
+      "floor": "FF",
+      "count": 49,
+      "notes": "consensus: [49, 49, 49] → 49"
+    },
+    {
+      "type": "column",
+      "mark": "C2",
+      "floor": "FF",
+      "count": 0,
+      "notes": "consensus: [0, 0, 0] → 0"
+    },
+    {
+      "type": "column",
+      "mark": "C3",
+      "floor": "FF",
+      "count": 0,
+      "notes": "consensus: [0, 0, 0] → 0"
+    },
+    {
+      "type": "slab",
+      "floor": "FF",
+      "area_m2": 549.45,
+      "notes": "consensus: [549.45, 549.45, 549.45] → 549.45"
+    },
+    {
+      "type": "slab",
+      "floor": "ROOF",
+      "area_m2": 549.45,
+      "notes": "consensus: [549.45, 549.45, 549.45] → 549.45"
+    },
+    {
+      "type": "beam",
+      "floor": "FF",
+      "totalLength_m": 396.0,
+      "notes": "consensus: [396.0, 396.0, 396.0] → 396.0"
+    }
+  ],
+  "warnings": [],
+  "qtoItems": [
+    {
+      "id": "gf_columns",
+      "description": "GF Columns Concrete",
+      "unit": "m3",
+      "totalQty": 20.286,
+      "breakdown": "C1:49×0.3×0.3×4.6=20.286 + C2:0×0.3×0.3×4.6=0.0 + C3:0×0.3×0.3×4.6=0.0",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "ff_columns",
+      "description": "FF Columns Concrete",
+      "unit": "m3",
+      "totalQty": 20.286,
+      "breakdown": "C1:49×0.3×0.3×4.6=20.286 + C2:0×0.3×0.3×4.6=0.0 + C3:0×0.3×0.3×4.6=0.0",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "ff_beams",
+      "description": "First Floor Beams Concrete",
+      "unit": "m3",
+      "totalQty": 39.6,
+      "breakdown": "396.0×0.25×0.4=39.6",
+      "source": "vision_lengths + default_dims"
+    },
+    {
+      "id": "ff_slab",
+      "description": "First Floor Slab Concrete",
+      "unit": "m3",
+      "totalQty": 109.89,
+      "breakdown": "549.45×0.2=109.89",
+      "source": "vision_area + parser_thickness"
+    },
+    {
+      "id": "roof_beams",
+      "description": "Roof Beams Concrete",
+      "unit": "m3",
+      "totalQty": 0.0,
+      "breakdown": "0×0.25×0.4=0.0",
+      "source": "vision_lengths + default_dims"
+    },
+    {
+      "id": "roof_slab",
+      "description": "Roof Slab Concrete",
+      "unit": "m3",
+      "totalQty": 109.89,
+      "breakdown": "549.45×0.2=109.89",
+      "source": "vision_area + parser_thickness"
+    },
+    {
+      "id": "parapet_concrete",
+      "description": "Parapet Coping Concrete",
+      "unit": "m3",
+      "totalQty": 3.75,
+      "breakdown": "93.761×0.20×0.20=3.75",
+      "source": "deterministic"
+    },
+    {
+      "id": "parapet_block",
+      "description": "Parapet Block Work",
+      "unit": "m2",
+      "totalQty": 93.761,
+      "breakdown": "93.761×(1.2-0.20)=93.761",
+      "source": "deterministic"
+    }
+  ]
+}

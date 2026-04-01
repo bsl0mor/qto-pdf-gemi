@@ -1,0 +1,1786 @@
+{
+  "drawingInfo": {
+    "type": "Structural",
+    "title": "FOUNDATION LAYOUT",
+    "number": "S-03",
+    "scale": "1:100",
+    "revision": "",
+    "discipline": "Structural",
+    "projectName": "CONSTRUCTION OF G+1(7) KITCHEN BLOCK+CAR GARAGE+COMPOUND WALL"
+  },
+  "observedElements": [
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 1,
+      "dims": {
+        "L": 1.3,
+        "W": 1.7,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "A1",
+      "notes": "130x170cm",
+      "boundingBox": [
+        160,
+        160,
+        220,
+        200
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 1,
+      "dims": {
+        "L": 2.0,
+        "W": 2.6,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B1",
+      "notes": "200x260cm",
+      "boundingBox": [
+        160,
+        280,
+        220,
+        320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 1,
+      "dims": {
+        "L": 2.4,
+        "W": 2.8,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C1",
+      "notes": "240x280cm",
+      "boundingBox": [
+        160,
+        400,
+        220,
+        440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F4",
+      "count": 1,
+      "dims": {
+        "L": 2.6,
+        "W": 3.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D1",
+      "notes": "260x320cm",
+      "boundingBox": [
+        160,
+        520,
+        220,
+        560
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 3.4,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E1",
+      "notes": "280x340cm",
+      "boundingBox": [
+        160,
+        640,
+        220,
+        680
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 1,
+      "dims": {
+        "L": 2.0,
+        "W": 2.6,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A2",
+      "notes": "200x260cm",
+      "boundingBox": [
+        280,
+        160,
+        340,
+        200
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 1,
+      "dims": {
+        "L": 2.4,
+        "W": 2.8,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B2",
+      "notes": "240x280cm",
+      "boundingBox": [
+        280,
+        280,
+        340,
+        320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F4",
+      "count": 1,
+      "dims": {
+        "L": 2.6,
+        "W": 3.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C2",
+      "notes": "260x320cm",
+      "boundingBox": [
+        280,
+        400,
+        340,
+        440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 3.4,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D2",
+      "notes": "280x340cm",
+      "boundingBox": [
+        280,
+        520,
+        340,
+        560
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF2",
+      "count": 1,
+      "dims": {
+        "L": 3.0,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E2",
+      "notes": "300x400cm",
+      "boundingBox": [
+        280,
+        640,
+        340,
+        680
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 1,
+      "dims": {
+        "L": 2.4,
+        "W": 2.8,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A3",
+      "notes": "240x280cm",
+      "boundingBox": [
+        400,
+        160,
+        460,
+        200
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F4",
+      "count": 1,
+      "dims": {
+        "L": 2.6,
+        "W": 3.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B3",
+      "notes": "260x320cm",
+      "boundingBox": [
+        400,
+        280,
+        460,
+        320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 3.4,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C3",
+      "notes": "280x340cm",
+      "boundingBox": [
+        400,
+        400,
+        460,
+        440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF2",
+      "count": 1,
+      "dims": {
+        "L": 3.0,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D3",
+      "notes": "300x400cm",
+      "boundingBox": [
+        400,
+        520,
+        460,
+        560
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF1",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E3",
+      "notes": "280x400cm",
+      "boundingBox": [
+        400,
+        640,
+        460,
+        680
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F4",
+      "count": 1,
+      "dims": {
+        "L": 2.6,
+        "W": 3.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A4",
+      "notes": "260x320cm",
+      "boundingBox": [
+        520,
+        160,
+        580,
+        200
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 3.4,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B4",
+      "notes": "280x340cm",
+      "boundingBox": [
+        520,
+        280,
+        580,
+        320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF2",
+      "count": 1,
+      "dims": {
+        "L": 3.0,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C4",
+      "notes": "300x400cm",
+      "boundingBox": [
+        520,
+        400,
+        580,
+        440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF1",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D4",
+      "notes": "280x400cm",
+      "boundingBox": [
+        520,
+        520,
+        580,
+        560
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 1,
+      "dims": {
+        "L": 1.3,
+        "W": 1.7,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "E4",
+      "notes": "130x170cm",
+      "boundingBox": [
+        520,
+        640,
+        580,
+        680
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 3.4,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A5",
+      "notes": "280x340cm",
+      "boundingBox": [
+        640,
+        160,
+        700,
+        200
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF2",
+      "count": 1,
+      "dims": {
+        "L": 3.0,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B5",
+      "notes": "300x400cm",
+      "boundingBox": [
+        640,
+        280,
+        700,
+        320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF1",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C5",
+      "notes": "280x400cm",
+      "boundingBox": [
+        640,
+        400,
+        700,
+        440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 1,
+      "dims": {
+        "L": 1.3,
+        "W": 1.7,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "D5",
+      "notes": "130x170cm",
+      "boundingBox": [
+        640,
+        520,
+        700,
+        560
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 1,
+      "dims": {
+        "L": 2.0,
+        "W": 2.6,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E5",
+      "notes": "200x260cm",
+      "boundingBox": [
+        640,
+        640,
+        700,
+        680
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF2",
+      "count": 1,
+      "dims": {
+        "L": 3.0,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A6",
+      "notes": "300x400cm",
+      "boundingBox": [
+        760,
+        160,
+        820,
+        200
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF1",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 4.0,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B6",
+      "notes": "280x400cm",
+      "boundingBox": [
+        760,
+        280,
+        820,
+        320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 1,
+      "dims": {
+        "L": 1.3,
+        "W": 1.7,
+        "H": 0.4,
+        "unit": "m"
+      },
+      "location": "C6",
+      "notes": "130x170cm",
+      "boundingBox": [
+        760,
+        400,
+        820,
+        440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 1,
+      "dims": {
+        "L": 2.0,
+        "W": 2.6,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D6",
+      "notes": "200x260cm",
+      "boundingBox": [
+        760,
+        520,
+        820,
+        560
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 1,
+      "dims": {
+        "L": 2.4,
+        "W": 2.8,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E6",
+      "notes": "240x280cm",
+      "boundingBox": [
+        760,
+        640,
+        820,
+        680
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C1",
+      "count": 1,
+      "dims": {
+        "L": 0.2,
+        "W": 0.6,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Rectangular column",
+      "boundingBox": [
+        170,
+        600,
+        250,
+        700
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C2",
+      "count": 1,
+      "dims": {
+        "L": 0.2,
+        "W": 0.6,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Rectangular column",
+      "boundingBox": [
+        260,
+        600,
+        340,
+        700
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C3",
+      "count": 1,
+      "dims": {
+        "L": 0.25,
+        "W": 0.6,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Rectangular column",
+      "boundingBox": [
+        350,
+        600,
+        430,
+        700
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C4",
+      "count": 1,
+      "dims": {
+        "L": 0.3,
+        "W": 0.6,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Rectangular column",
+      "boundingBox": [
+        440,
+        600,
+        520,
+        700
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C5/DC",
+      "count": 1,
+      "dims": {
+        "L": 0.45,
+        "W": 0.45,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Circular column",
+      "boundingBox": [
+        530,
+        600,
+        610,
+        700
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A1-B1",
+      "notes": "",
+      "boundingBox": [
+        170,
+        200,
+        200,
+        280
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.2,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B1-C1",
+      "notes": "",
+      "boundingBox": [
+        170,
+        320,
+        200,
+        400
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.4,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C1-D1",
+      "notes": "",
+      "boundingBox": [
+        170,
+        440,
+        200,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.0,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D1-E1",
+      "notes": "",
+      "boundingBox": [
+        170,
+        560,
+        200,
+        640
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A2-B2",
+      "notes": "",
+      "boundingBox": [
+        290,
+        200,
+        320,
+        280
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.2,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B2-C2",
+      "notes": "",
+      "boundingBox": [
+        290,
+        320,
+        320,
+        400
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.4,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C2-D2",
+      "notes": "",
+      "boundingBox": [
+        290,
+        440,
+        320,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.0,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D2-E2",
+      "notes": "",
+      "boundingBox": [
+        290,
+        560,
+        320,
+        640
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A3-B3",
+      "notes": "",
+      "boundingBox": [
+        410,
+        200,
+        440,
+        280
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.2,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B3-C3",
+      "notes": "",
+      "boundingBox": [
+        410,
+        320,
+        440,
+        400
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.4,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C3-D3",
+      "notes": "",
+      "boundingBox": [
+        410,
+        440,
+        440,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.0,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D3-E3",
+      "notes": "",
+      "boundingBox": [
+        410,
+        560,
+        440,
+        640
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A4-B4",
+      "notes": "",
+      "boundingBox": [
+        530,
+        200,
+        560,
+        280
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.2,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B4-C4",
+      "notes": "",
+      "boundingBox": [
+        530,
+        320,
+        560,
+        400
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.4,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C4-D4",
+      "notes": "",
+      "boundingBox": [
+        530,
+        440,
+        560,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.0,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D4-E4",
+      "notes": "",
+      "boundingBox": [
+        530,
+        560,
+        560,
+        640
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A5-B5",
+      "notes": "",
+      "boundingBox": [
+        650,
+        200,
+        680,
+        280
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.2,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B5-C5",
+      "notes": "",
+      "boundingBox": [
+        650,
+        320,
+        680,
+        400
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.4,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C5-D5",
+      "notes": "",
+      "boundingBox": [
+        650,
+        440,
+        680,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.0,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D5-E5",
+      "notes": "",
+      "boundingBox": [
+        650,
+        560,
+        680,
+        640
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A6-B6",
+      "notes": "",
+      "boundingBox": [
+        770,
+        200,
+        800,
+        280
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.2,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B6-C6",
+      "notes": "",
+      "boundingBox": [
+        770,
+        320,
+        800,
+        400
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 4.4,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C6-D6",
+      "notes": "",
+      "boundingBox": [
+        770,
+        440,
+        800,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 5.0,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D6-E6",
+      "notes": "",
+      "boundingBox": [
+        770,
+        560,
+        800,
+        640
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A1-A2",
+      "notes": "",
+      "boundingBox": [
+        200,
+        170,
+        280,
+        200
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A2-A3",
+      "notes": "",
+      "boundingBox": [
+        320,
+        170,
+        400,
+        200
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A3-A4",
+      "notes": "",
+      "boundingBox": [
+        440,
+        170,
+        520,
+        200
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A4-A5",
+      "notes": "",
+      "boundingBox": [
+        560,
+        170,
+        640,
+        200
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "A5-A6",
+      "notes": "",
+      "boundingBox": [
+        680,
+        170,
+        760,
+        200
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B1-B2",
+      "notes": "",
+      "boundingBox": [
+        200,
+        290,
+        280,
+        320
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B2-B3",
+      "notes": "",
+      "boundingBox": [
+        320,
+        290,
+        400,
+        320
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B3-B4",
+      "notes": "",
+      "boundingBox": [
+        440,
+        290,
+        520,
+        320
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B4-B5",
+      "notes": "",
+      "boundingBox": [
+        560,
+        290,
+        640,
+        320
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "B5-B6",
+      "notes": "",
+      "boundingBox": [
+        680,
+        290,
+        760,
+        320
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C1-C2",
+      "notes": "",
+      "boundingBox": [
+        200,
+        410,
+        280,
+        440
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C2-C3",
+      "notes": "",
+      "boundingBox": [
+        320,
+        410,
+        400,
+        440
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C3-C4",
+      "notes": "",
+      "boundingBox": [
+        440,
+        410,
+        520,
+        440
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C4-C5",
+      "notes": "",
+      "boundingBox": [
+        560,
+        410,
+        640,
+        440
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "C5-C6",
+      "notes": "",
+      "boundingBox": [
+        680,
+        410,
+        760,
+        440
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D1-D2",
+      "notes": "",
+      "boundingBox": [
+        200,
+        530,
+        280,
+        560
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D2-D3",
+      "notes": "",
+      "boundingBox": [
+        320,
+        530,
+        400,
+        560
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D3-D4",
+      "notes": "",
+      "boundingBox": [
+        440,
+        530,
+        520,
+        560
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D4-D5",
+      "notes": "",
+      "boundingBox": [
+        560,
+        530,
+        640,
+        560
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "D5-D6",
+      "notes": "",
+      "boundingBox": [
+        680,
+        530,
+        760,
+        560
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E1-E2",
+      "notes": "",
+      "boundingBox": [
+        200,
+        650,
+        280,
+        680
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E2-E3",
+      "notes": "",
+      "boundingBox": [
+        320,
+        650,
+        400,
+        680
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E3-E4",
+      "notes": "",
+      "boundingBox": [
+        440,
+        650,
+        520,
+        680
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E4-E5",
+      "notes": "",
+      "boundingBox": [
+        560,
+        650,
+        640,
+        680
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 2.8,
+        "W": 0.2,
+        "H": 0.5,
+        "unit": "m"
+      },
+      "location": "E5-E6",
+      "notes": "",
+      "boundingBox": [
+        680,
+        650,
+        760,
+        680
+      ]
+    }
+  ],
+  "qtoItems": [
+    {
+      "id": "excavation",
+      "description": "Bulk Excavation",
+      "discipline": "Civil",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 609.968,
+      "breakdown": "(19.22 + 2.0) x (14.4 + 2.0) x 1.75"
+    },
+    {
+      "id": "road_base",
+      "description": "Road Base",
+      "discipline": "Civil",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 55.354,
+      "breakdown": "19.22 x 14.4 x 0.20"
+    },
+    {
+      "id": "pcc_footings",
+      "description": "PCC Blinding under Isolated Footings",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1"
+      ],
+      "totalQty": 25.926,
+      "breakdown": "F1: 4 x (1.30+0.10) x (1.70+0.10) x 0.10 = 1.008\nF2: 4 x (2.00+0.10) x (2.60+0.10) x 0.10 = 2.268\nF3: 4 x (2.40+0.10) x (2.80+0.10) x 0.10 = 2.900\nF4: 4 x (2.60+0.10) x (3.20+0.10) x 0.10 = 3.564\nF5: 5 x (2.80+0.10) x (3.40+0.10) x 0.10 = 5.075\nCF2: 5 x (3.00+0.10) x (4.00+0.10) x 0.10 = 6.355\nCF1: 4 x (2.80+0.10) x (4.00+0.10) x 0.10 = 4.756"
+    },
+    {
+      "id": "pcc_tb",
+      "description": "PCC Blinding under Tie Beams",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "TB1",
+        "TB2"
+      ],
+      "totalQty": 7.456,
+      "breakdown": "TB1: 116.40 x (0.20 + 0.20) x 0.10 = 4.656\nTB2: 70.00 x (0.20 + 0.20) x 0.10 = 2.800"
+    },
+    {
+      "id": "footing_concrete",
+      "description": "Isolated Footing Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1"
+      ],
+      "totalQty": 120.216,
+      "breakdown": "F1: 4 x 1.30 x 1.70 x 0.40 = 3.536\nF2: 4 x 2.00 x 2.60 x 0.50 = 10.400\nF3: 4 x 2.40 x 2.80 x 0.50 = 13.440\nF4: 4 x 2.60 x 3.20 x 0.50 = 16.640\nF5: 5 x 2.80 x 3.40 x 0.50 = 23.800\nCF2: 5 x 3.00 x 4.00 x 0.50 = 30.000\nCF1: 4 x 2.80 x 4.00 x 0.50 = 22.400"
+    },
+    {
+      "id": "neck_column",
+      "description": "Neck Column Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5/DC"
+      ],
+      "totalQty": 10.534,
+      "breakdown": "H_neck = (1.75 + 0.80) - Footing_H = 2.55 - Footing_H\nF1 (C1): 4 x 0.20 x 0.60 x (2.55 - 0.40) = 1.032\nF2 (C2): 4 x 0.20 x 0.60 x (2.55 - 0.50) = 0.984\nF3 (C3): 4 x 0.25 x 0.60 x (2.55 - 0.50) = 1.230\nF4 (C4): 4 x 0.30 x 0.60 x (2.55 - 0.50) = 1.476\nF5 (C5/DC): 5 x 0.45 x 0.45 x (2.55 - 0.50) = 2.076\nCF2 (C5/DC): 5 x 0.45 x 0.45 x (2.55 - 0.50) = 2.076\nCF1 (C5/DC): 4 x 0.45 x 0.45 x (2.55 - 0.50) = 1.661"
+    },
+    {
+      "id": "bitumen",
+      "description": "Bituminous Waterproofing Sub-Structure",
+      "discipline": "Finishes",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5/DC",
+        "TB1",
+        "TB2"
+      ],
+      "totalQty": 601.348,
+      "breakdown": "Footing Sides: 165.20 m2\nFooting Tops: 242.20 m2\nNeck Column Sides: 96.152 m2\nGFPerimeter x SolidBlockH x 2: (2 x (19.22+14.4)) x (0.80-0.35) x 2 = 67.24 x 0.45 x 2 = 60.516 m2\nTie Beam Tops: (116.40 x 0.20) + (70.00 x 0.20) = 23.28 + 14.00 = 37.28 m2"
+    },
+    {
+      "id": "blockwall_solid_sub",
+      "description": "Solid Block Sub-Structure",
+      "discipline": "Masonry",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 181.548,
+      "breakdown": "GFPerimeter x ((excav_depth + GF_level) - deepest_TB_depth)\n= (2 x (19.22 + 14.4)) x ((1.75 + 0.80) - (0.35 - 0.50))\n= 67.24 x (2.55 - (-0.15)) = 67.24 x 2.70"
+    },
+    {
+      "id": "slab_on_grade",
+      "description": "Slab on Grade Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 27.677,
+      "breakdown": "19.22 x 14.4 x 0.10"
+    },
+    {
+      "id": "polythene",
+      "description": "Polythene Sheet 1000 gauge",
+      "discipline": "Finishes",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1",
+        "TB1",
+        "TB2"
+      ],
+      "totalQty": 610.588,
+      "breakdown": "PCC Footings Area: 259.26 m2\nPCC Tie Beams Area: 74.56 m2\nSlab on Grade Area: 19.22 x 14.4 = 276.768 m2"
+    },
+    {
+      "id": "anti_termite",
+      "description": "Anti-Termite Treatment",
+      "discipline": "Finishes",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 702.179,
+      "breakdown": "610.588 x 1.15"
+    },
+    {
+      "id": "backfill",
+      "description": "Backfill Compacted",
+      "discipline": "Civil",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 326.495,
+      "breakdown": "Bulk Excavation Volume - Sum(Concrete & Block Volumes)\n= 609.968 - (25.926 + 7.456 + 120.216 + 10.534 + 27.677 + 55.354 + (181.548 x 0.20))\n= 609.968 - (25.926 + 7.456 + 120.216 + 10.534 + 27.677 + 55.354 + 36.310) = 609.968 - 283.473"
+    }
+  ],
+  "questions": [],
+  "summary": "Quantity Take-Off completed for the substructure elements based on the provided Foundation Layout (S-03), Column Layout (S-01), and Tie Beam Layout (S-04) drawings, along with user-provided and pre-parsed data. All 30 footings were identified and tallied by type. Column dimensions for C2, C3, C4 were extracted from S-01. Tie beam lengths for TB1 (116.40m) and TB2 (70.00m) were measured from S-04. All 12 mandatory QTO items have been calculated according to the provided QS rules.",
+  "warnings": [
+    "Tie beam types TB3, TB4, and TB5 are listed in the schedule on S-04 but no segments of these types were found on the Tie Beam Layout plan. Their total lengths are therefore reported as 0.00m."
+  ]
+}

@@ -1,0 +1,872 @@
+{
+  "gridMap": [
+    {
+      "grid": "A-1",
+      "footing": "F1",
+      "size_cm": "130x170"
+    },
+    {
+      "grid": "B-1",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "C-1",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "D-1",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "E-1",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "F-1",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "G-1",
+      "footing": "F1",
+      "size_cm": "130x170"
+    },
+    {
+      "grid": "A-2",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "B-2",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "C-2",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "D-2",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "E-2",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "F-2",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "G-2",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "A-3",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "B-3",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "C-3",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "D-3",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "E-3",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "F-3",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "G-3",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "A-4",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "B-4",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "C-4",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "D-4",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "E-4",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "F-4",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "G-4",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "A-5",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "B-5",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "C-5",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "D-5",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "E-5",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "F-5",
+      "footing": "F5",
+      "size_cm": "280x340"
+    },
+    {
+      "grid": "G-5",
+      "footing": "F2",
+      "size_cm": "200x260"
+    },
+    {
+      "grid": "A-6",
+      "footing": "F1",
+      "size_cm": "130x170"
+    },
+    {
+      "grid": "B-6",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "C-6",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "D-6",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "E-6",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "F-6",
+      "footing": "F3",
+      "size_cm": "240x280"
+    },
+    {
+      "grid": "G-6",
+      "footing": "F1",
+      "size_cm": "130x170"
+    }
+  ],
+  "tbSegments": [
+    {
+      "type": "TB1",
+      "from": "A-1",
+      "to": "B-1",
+      "length_m": 3.80,
+      "notes": "row 1"
+    },
+    {
+      "type": "TB1",
+      "from": "B-1",
+      "to": "C-1",
+      "length_m": 3.80,
+      "notes": "row 1"
+    },
+    {
+      "type": "TB1",
+      "from": "C-1",
+      "to": "D-1",
+      "length_m": 3.80,
+      "notes": "row 1"
+    },
+    {
+      "type": "TB1",
+      "from": "D-1",
+      "to": "E-1",
+      "length_m": 3.80,
+      "notes": "row 1"
+    },
+    {
+      "type": "TB1",
+      "from": "E-1",
+      "to": "F-1",
+      "length_m": 3.80,
+      "notes": "row 1"
+    },
+    {
+      "type": "TB1",
+      "from": "F-1",
+      "to": "G-1",
+      "length_m": 3.45,
+      "notes": "row 1"
+    },
+    {
+      "type": "TB2",
+      "from": "A-2",
+      "to": "B-2",
+      "length_m": 3.80,
+      "notes": "row 2"
+    },
+    {
+      "type": "TB2",
+      "from": "B-2",
+      "to": "C-2",
+      "length_m": 3.80,
+      "notes": "row 2"
+    },
+    {
+      "type": "TB2",
+      "from": "C-2",
+      "to": "D-2",
+      "length_m": 3.80,
+      "notes": "row 2"
+    },
+    {
+      "type": "TB2",
+      "from": "D-2",
+      "to": "E-2",
+      "length_m": 3.80,
+      "notes": "row 2"
+    },
+    {
+      "type": "TB2",
+      "from": "E-2",
+      "to": "F-2",
+      "length_m": 3.80,
+      "notes": "row 2"
+    },
+    {
+      "type": "TB2",
+      "from": "F-2",
+      "to": "G-2",
+      "length_m": 3.45,
+      "notes": "row 2"
+    },
+    {
+      "type": "TB2",
+      "from": "A-3",
+      "to": "B-3",
+      "length_m": 3.80,
+      "notes": "row 3"
+    },
+    {
+      "type": "TB2",
+      "from": "B-3",
+      "to": "C-3",
+      "length_m": 3.80,
+      "notes": "row 3"
+    },
+    {
+      "type": "TB2",
+      "from": "C-3",
+      "to": "D-3",
+      "length_m": 3.80,
+      "notes": "row 3"
+    },
+    {
+      "type": "TB2",
+      "from": "D-3",
+      "to": "E-3",
+      "length_m": 3.80,
+      "notes": "row 3"
+    },
+    {
+      "type": "TB2",
+      "from": "E-3",
+      "to": "F-3",
+      "length_m": 3.80,
+      "notes": "row 3"
+    },
+    {
+      "type": "TB2",
+      "from": "F-3",
+      "to": "G-3",
+      "length_m": 3.45,
+      "notes": "row 3"
+    },
+    {
+      "type": "TB2",
+      "from": "A-4",
+      "to": "B-4",
+      "length_m": 3.80,
+      "notes": "row 4"
+    },
+    {
+      "type": "TB2",
+      "from": "B-4",
+      "to": "C-4",
+      "length_m": 3.80,
+      "notes": "row 4"
+    },
+    {
+      "type": "TB2",
+      "from": "C-4",
+      "to": "D-4",
+      "length_m": 3.80,
+      "notes": "row 4"
+    },
+    {
+      "type": "TB2",
+      "from": "D-4",
+      "to": "E-4",
+      "length_m": 3.80,
+      "notes": "row 4"
+    },
+    {
+      "type": "TB2",
+      "from": "E-4",
+      "to": "F-4",
+      "length_m": 3.80,
+      "notes": "row 4"
+    },
+    {
+      "type": "TB2",
+      "from": "F-4",
+      "to": "G-4",
+      "length_m": 3.45,
+      "notes": "row 4"
+    },
+    {
+      "type": "TB2",
+      "from": "A-5",
+      "to": "B-5",
+      "length_m": 3.80,
+      "notes": "row 5"
+    },
+    {
+      "type": "TB2",
+      "from": "B-5",
+      "to": "C-5",
+      "length_m": 3.80,
+      "notes": "row 5"
+    },
+    {
+      "type": "TB2",
+      "from": "C-5",
+      "to": "D-5",
+      "length_m": 3.80,
+      "notes": "row 5"
+    },
+    {
+      "type": "TB2",
+      "from": "D-5",
+      "to": "E-5",
+      "length_m": 3.80,
+      "notes": "row 5"
+    },
+    {
+      "type": "TB2",
+      "from": "E-5",
+      "to": "F-5",
+      "length_m": 3.80,
+      "notes": "row 5"
+    },
+    {
+      "type": "TB2",
+      "from": "F-5",
+      "to": "G-5",
+      "length_m": 3.45,
+      "notes": "row 5"
+    },
+    {
+      "type": "TB1",
+      "from": "A-6",
+      "to": "B-6",
+      "length_m": 3.80,
+      "notes": "row 6"
+    },
+    {
+      "type": "TB1",
+      "from": "B-6",
+      "to": "C-6",
+      "length_m": 3.80,
+      "notes": "row 6"
+    },
+    {
+      "type": "TB1",
+      "from": "C-6",
+      "to": "D-6",
+      "length_m": 3.80,
+      "notes": "row 6"
+    },
+    {
+      "type": "TB1",
+      "from": "D-6",
+      "to": "E-6",
+      "length_m": 3.80,
+      "notes": "row 6"
+    },
+    {
+      "type": "TB1",
+      "from": "E-6",
+      "to": "F-6",
+      "length_m": 3.80,
+      "notes": "row 6"
+    },
+    {
+      "type": "TB1",
+      "from": "F-6",
+      "to": "G-6",
+      "length_m": 3.45,
+      "notes": "row 6"
+    },
+    {
+      "type": "TB1",
+      "from": "A-1",
+      "to": "A-2",
+      "length_m": 4.20,
+      "notes": "col A"
+    },
+    {
+      "type": "TB1",
+      "from": "A-2",
+      "to": "A-3",
+      "length_m": 2.75,
+      "notes": "col A"
+    },
+    {
+      "type": "TB1",
+      "from": "A-3",
+      "to": "A-4",
+      "length_m": 3.15,
+      "notes": "col A"
+    },
+    {
+      "type": "TB1",
+      "from": "A-4",
+      "to": "A-5",
+      "length_m": 3.15,
+      "notes": "col A"
+    },
+    {
+      "type": "TB1",
+      "from": "A-5",
+      "to": "A-6",
+      "length_m": 4.20,
+      "notes": "col A"
+    },
+    {
+      "type": "TB2",
+      "from": "B-1",
+      "to": "B-2",
+      "length_m": 4.20,
+      "notes": "col B"
+    },
+    {
+      "type": "TB2",
+      "from": "B-2",
+      "to": "B-3",
+      "length_m": 2.75,
+      "notes": "col B"
+    },
+    {
+      "type": "TB2",
+      "from": "B-3",
+      "to": "B-4",
+      "length_m": 3.15,
+      "notes": "col B"
+    },
+    {
+      "type": "TB2",
+      "from": "B-4",
+      "to": "B-5",
+      "length_m": 3.15,
+      "notes": "col B"
+    },
+    {
+      "type": "TB2",
+      "from": "B-5",
+      "to": "B-6",
+      "length_m": 4.20,
+      "notes": "col B"
+    },
+    {
+      "type": "TB2",
+      "from": "C-1",
+      "to": "C-2",
+      "length_m": 4.20,
+      "notes": "col C"
+    },
+    {
+      "type": "TB2",
+      "from": "C-2",
+      "to": "C-3",
+      "length_m": 2.75,
+      "notes": "col C"
+    },
+    {
+      "type": "TB2",
+      "from": "C-3",
+      "to": "C-4",
+      "length_m": 3.15,
+      "notes": "col C"
+    },
+    {
+      "type": "TB2",
+      "from": "C-4",
+      "to": "C-5",
+      "length_m": 3.15,
+      "notes": "col C"
+    },
+    {
+      "type": "TB2",
+      "from": "C-5",
+      "to": "C-6",
+      "length_m": 4.20,
+      "notes": "col C"
+    },
+    {
+      "type": "TB2",
+      "from": "D-1",
+      "to": "D-2",
+      "length_m": 4.20,
+      "notes": "col D"
+    },
+    {
+      "type": "TB2",
+      "from": "D-2",
+      "to": "D-3",
+      "length_m": 2.75,
+      "notes": "col D"
+    },
+    {
+      "type": "TB2",
+      "from": "D-3",
+      "to": "D-4",
+      "length_m": 3.15,
+      "notes": "col D"
+    },
+    {
+      "type": "TB2",
+      "from": "D-4",
+      "to": "D-5",
+      "length_m": 3.15,
+      "notes": "col D"
+    },
+    {
+      "type": "TB2",
+      "from": "D-5",
+      "to": "D-6",
+      "length_m": 4.20,
+      "notes": "col D"
+    },
+    {
+      "type": "TB2",
+      "from": "E-1",
+      "to": "E-2",
+      "length_m": 4.20,
+      "notes": "col E"
+    },
+    {
+      "type": "TB2",
+      "from": "E-2",
+      "to": "E-3",
+      "length_m": 2.75,
+      "notes": "col E"
+    },
+    {
+      "type": "TB2",
+      "from": "E-3",
+      "to": "E-4",
+      "length_m": 3.15,
+      "notes": "col E"
+    },
+    {
+      "type": "TB2",
+      "from": "E-4",
+      "to": "E-5",
+      "length_m": 3.15,
+      "notes": "col E"
+    },
+    {
+      "type": "TB2",
+      "from": "E-5",
+      "to": "E-6",
+      "length_m": 4.20,
+      "notes": "col E"
+    },
+    {
+      "type": "TB2",
+      "from": "F-1",
+      "to": "F-2",
+      "length_m": 4.20,
+      "notes": "col F"
+    },
+    {
+      "type": "TB2",
+      "from": "F-2",
+      "to": "F-3",
+      "length_m": 2.75,
+      "notes": "col F"
+    },
+    {
+      "type": "TB2",
+      "from": "F-3",
+      "to": "F-4",
+      "length_m": 3.15,
+      "notes": "col F"
+    },
+    {
+      "type": "TB2",
+      "from": "F-4",
+      "to": "F-5",
+      "length_m": 3.15,
+      "notes": "col F"
+    },
+    {
+      "type": "TB2",
+      "from": "F-5",
+      "to": "F-6",
+      "length_m": 4.20,
+      "notes": "col F"
+    },
+    {
+      "type": "TB1",
+      "from": "G-1",
+      "to": "G-2",
+      "length_m": 4.20,
+      "notes": "col G"
+    },
+    {
+      "type": "TB1",
+      "from": "G-2",
+      "to": "G-3",
+      "length_m": 2.75,
+      "notes": "col G"
+    },
+    {
+      "type": "TB1",
+      "from": "G-3",
+      "to": "G-4",
+      "length_m": 3.15,
+      "notes": "col G"
+    },
+    {
+      "type": "TB1",
+      "from": "G-4",
+      "to": "G-5",
+      "length_m": 3.15,
+      "notes": "col G"
+    },
+    {
+      "type": "TB1",
+      "from": "G-5",
+      "to": "G-6",
+      "length_m": 4.20,
+      "notes": "col G"
+    }
+  ],
+  "observedElements": [
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 4,
+      "dims": {
+        "L": 1.70,
+        "W": 1.30,
+        "H": null,
+        "unit": "m"
+      },
+      "locations": "A-1, G-1, A-6, G-6",
+      "notes": ""
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 8,
+      "dims": {
+        "L": 2.60,
+        "W": 2.00,
+        "H": null,
+        "unit": "m"
+      },
+      "locations": "A-2, G-2, A-3, G-3, A-4, G-4, A-5, G-5",
+      "notes": ""
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 10,
+      "dims": {
+        "L": 2.80,
+        "W": 2.40,
+        "H": null,
+        "unit": "m"
+      },
+      "locations": "B-1, C-1, D-1, E-1, F-1, B-6, C-6, D-6, E-6, F-6",
+      "notes": ""
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 20,
+      "dims": {
+        "L": 3.40,
+        "W": 2.80,
+        "H": null,
+        "unit": "m"
+      },
+      "locations": "B-2, C-2, D-2, E-2, F-2, B-3, C-3, D-3, E-3, F-3, B-4, C-4, D-4, E-4, F-4, B-5, C-5, D-5, E-5, F-5",
+      "notes": ""
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "dims": {
+        "L": 79.80,
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "total from segments"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "dims": {
+        "L": 177.05,
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "total from segments"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB3",
+      "dims": {
+        "L": 0.00,
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "from schedule, not used in layout"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB4",
+      "dims": {
+        "L": 0.00,
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "from schedule, not used in layout"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB5",
+      "dims": {
+        "L": 0.00,
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "from schedule, not used in layout"
+    },
+    {
+      "type": "Column",
+      "mark": "NC",
+      "dims": {
+        "b": 0.20,
+        "d": 0.20,
+        "unit": "m"
+      },
+      "notes": "from schedule"
+    },
+    {
+      "type": "Column",
+      "mark": "C1",
+      "dims": {
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "from schedule"
+    },
+    {
+      "type": "Column",
+      "mark": "C2",
+      "dims": {
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "from schedule"
+    },
+    {
+      "type": "Column",
+      "mark": "C3",
+      "dims": {
+        "b": 0.20,
+        "d": 0.60,
+        "unit": "m"
+      },
+      "notes": "from schedule"
+    }
+  ],
+  "gridDims": {
+    "L_m": 22.45,
+    "W_m": 17.45
+  },
+  "levels": {
+    "gf_slab": "+0.00m"
+  },
+  "warnings": [
+    "Discrepancy: Calculated grid dimensions (L=22.45m, W=17.45m) differ from parsed overall dimensions (L=23.7m, W=20.45m). Reported grid dimensions are based on explicit grid line spacing from drawings."
+  ]
+}

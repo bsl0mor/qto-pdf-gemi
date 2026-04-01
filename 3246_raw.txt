@@ -1,0 +1,548 @@
+{
+  "drawingInfo": {
+    "type": "Foundation Layout",
+    "title": "FOUNDATION LAYOUT",
+    "number": "S-03",
+    "scale": "1:100",
+    "revision": "",
+    "discipline": "Structural",
+    "projectName": "PROPOSED PROJECT: CONSTRUCTION OF G+11 VILLA BLOCK-C+GARAGE+COMPOUND WALL"
+  },
+  "observedElements": [
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 2,
+      "dims": {
+        "L": 1.30,
+        "W": 1.70,
+        "H": 0.40,
+        "unit": "m"
+      },
+      "location": "B6, C6",
+      "notes": "Matched 130x170cm dimensions",
+      "boundingBox": [
+        800,
+        280,
+        850,
+440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 6,
+      "dims": {
+        "L": 2.00,
+        "W": 2.60,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "A1, E1, A5, A6, E5, E6",
+      "notes": "Matched 200x260cm dimensions",
+      "boundingBox": [
+        150,
+        150,
+        850,
+600
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 5,
+      "dims": {
+        "L": 2.40,
+        "W": 2.80,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "B2, B3, C1, C3, B4",
+      "notes": "Matched 240x280cm dimensions",
+      "boundingBox": [
+        150,
+        280,
+        580,
+440
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F4",
+      "count": 5,
+      "dims": {
+        "L": 2.60,
+        "W": 3.20,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "D1, D2, D3, D4, D6",
+      "notes": "Matched 260x320cm dimensions",
+      "boundingBox": [
+        150,
+        470,
+        850,
+520
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 9,
+      "dims": {
+        "L": 2.80,
+        "W": 3.40,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "B1, A2, A3, C2, E2, E3, A4, C4, E4",
+      "notes": "Matched 280x340cm dimensions",
+      "boundingBox": [
+        150,
+        150,
+        580,
+600
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF2",
+      "count": 1,
+      "dims": {
+        "L": 3.00,
+        "W": 4.00,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "B5",
+      "notes": "Matched 300x400cm dimensions",
+      "boundingBox": [
+        680,
+        280,
+        730,
+320
+      ]
+    },
+    {
+      "type": "Footing",
+      "mark": "CF1",
+      "count": 2,
+      "dims": {
+        "L": 2.80,
+        "W": 4.00,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "C5, D5",
+      "notes": "Matched 280x400cm dimensions",
+      "boundingBox": [
+        680,
+        400,
+        730,
+520
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C1",
+      "count": 0,
+      "dims": {
+        "L": 0.20,
+        "W": 0.60,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Dimensions read from S-01 schedule",
+      "boundingBox": [
+        150,
+        650,
+        200,
+        750
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C2",
+      "count": 0,
+      "dims": {
+        "L": 0.20,
+        "W": 0.50,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Dimensions read from S-01 schedule",
+      "boundingBox": [
+        220,
+        650,
+        270,
+        750
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C3",
+      "count": 0,
+      "dims": {
+        "L": 0.20,
+        "W": 0.40,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Dimensions read from S-01 schedule",
+      "boundingBox": [
+        290,
+        650,
+        340,
+        750
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C4",
+      "count": 0,
+      "dims": {
+        "L": 0.20,
+        "W": 0.30,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Dimensions read from S-01 schedule",
+      "boundingBox": [
+        360,
+        650,
+        410,
+        750
+      ]
+    },
+    {
+      "type": "Column",
+      "mark": "C5/DC",
+      "count": 0,
+      "dims": {
+        "L": 0.45,
+        "W": 0.45,
+        "H": 0,
+        "unit": "m"
+      },
+      "location": "Schedule S-01",
+      "notes": "Dimensions read from S-01 schedule (circular)",
+      "boundingBox": [
+        430,
+        650,
+        480,
+        750
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "count": 1,
+      "dims": {
+        "L": 186.52,
+        "W": 0.20,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "Various on plan",
+      "notes": "Total length of all TB1 segments",
+      "boundingBox": [
+        150,
+        150,
+        850,
+        600
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "count": 1,
+      "dims": {
+        "L": 8.92,
+        "W": 0.20,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "B6-C6, C6-D6 (curved)",
+      "notes": "Total length of all TB2 segments (estimated due to lack of explicit dimension for curved segments)",
+      "boundingBox": [
+        800,
+        280,
+        850,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB3",
+      "count": 1,
+      "dims": {
+        "L": 8.40,
+        "W": 0.25,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "B5-6, C5-6, D5-6 (vertical)",
+      "notes": "Total length of all TB3 segments",
+      "boundingBox": [
+        680,
+        280,
+        780,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB4",
+      "count": 1,
+      "dims": {
+        "L": 8.62,
+        "W": 0.30,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "B6-C6, C6-D6 (horizontal)",
+      "notes": "Total length of all TB4 segments",
+      "boundingBox": [
+        800,
+        280,
+        820,
+        520
+      ]
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB5",
+      "count": 0,
+      "dims": {
+        "L": 0.00,
+        "W": 0.45,
+        "H": 0.50,
+        "unit": "m"
+      },
+      "location": "Not on plan",
+      "notes": "No TB5 segments found on the plan",
+      "boundingBox": [
+        820,
+        200,
+        840,
+        300
+      ]
+    }
+  ],
+  "qtoItems": [
+    {
+      "id": "excavation",
+      "description": "Bulk Excavation",
+      "discipline": "Earthworks",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 609.988,
+      "breakdown": "(19.22 + 2.0) * (14.4 + 2.0) * 1.75"
+    },
+    {
+      "id": "road_base",
+      "description": "Road Base",
+      "discipline": "Earthworks",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 55.3536,
+      "breakdown": "19.22 * 14.4 * 0.20"
+    },
+    {
+      "id": "pcc_footings",
+      "description": "PCC Blinding under Isolated Footings",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1"
+      ],
+      "totalQty": 24.77,
+      "breakdown": "F1: 2*(1.30+0.10)*(1.70+0.10)*0.10 = 0.504; F2: 6*(2.00+0.10)*(2.60+0.10)*0.10 = 3.402; F3: 5*(2.40+0.10)*(2.80+0.10)*0.10 = 3.625; F4: 5*(2.60+0.10)*(3.20+0.10)*0.10 = 4.455; F5: 9*(2.80+0.10)*(3.40+0.10)*0.10 = 9.135; CF2: 1*(3.00+0.10)*(4.00+0.10)*0.10 = 1.271; CF1: 2*(2.80+0.10)*(4.00+0.10)*0.10 = 2.378"
+    },
+    {
+      "id": "pcc_tb",
+      "description": "PCC Blinding under Tie Beams",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "TB1",
+        "TB2",
+        "TB3",
+        "TB4"
+      ],
+      "totalQty": 8.6266,
+      "breakdown": "TB1: 186.52*(0.20+0.20)*0.10 = 7.4608; TB2: 8.92*(0.20+0.20)*0.10 = 0.3568; TB3: 8.40*(0.25+0.20)*0.10 = 0.378; TB4: 8.62*(0.30+0.20)*0.10 = 0.431"
+    },
+    {
+      "id": "footing_concrete",
+      "description": "Isolated Footing Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1"
+      ],
+      "totalQty": 115.008,
+      "breakdown": "F1: 2*1.30*1.70*0.40 = 1.768; F2: 6*2.00*2.60*0.50 = 15.600; F3: 5*2.40*2.80*0.50 = 16.800; F4: 5*2.60*3.20*0.50 = 20.800; F5: 9*2.80*3.40*0.50 = 42.840; CF2: 1*3.00*4.00*0.50 = 6.000; CF1: 2*2.80*4.00*0.50 = 11.200"
+    },
+    {
+      "id": "neck_column",
+      "description": "Neck Column Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1(C4)",
+        "F2(C3)",
+        "F3(C2)",
+        "F4(C1)",
+        "F5(C1)",
+        "CF2(C1)",
+        "CF1(C1)"
+      ],
+      "totalQty": 6.449,
+      "breakdown": "H_neck = (1.75 + 0.80) - Footing_H. F1(C4): 2*0.20*0.30*2.15 = 0.258; F2(C3): 6*0.20*0.40*2.05 = 0.984; F3(C2): 5*0.20*0.50*2.05 = 1.025; F4(C1): 5*0.20*0.60*2.05 = 1.230; F5(C1): 9*0.20*0.60*2.05 = 2.214; CF2(C1): 1*0.20*0.60*2.05 = 0.246; CF1(C1): 2*0.20*0.60*2.05 = 0.492"
+    },
+    {
+      "id": "tb_concrete",
+      "description": "Tie Beam RC Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "TB1",
+        "TB2",
+        "TB3",
+        "TB4"
+      ],
+      "totalQty": 21.887,
+      "breakdown": "TB1: 186.52*0.20*0.50 = 18.652; TB2: 8.92*0.20*0.50 = 0.892; TB3: 8.40*0.25*0.50 = 1.050; TB4: 8.62*0.30*0.50 = 1.293"
+    },
+    {
+      "id": "bitumen",
+      "description": "Bituminous Waterproofing Sub-Structure",
+      "discipline": "Waterproofing",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "TB1",
+        "TB2",
+        "TB3",
+        "TB4"
+      ],
+      "totalQty": 655.40,
+      "breakdown": "Footing Sides: 163.80; Footing Tops: 230.90; NC Sides: 89.17; Blockwall Sides: 67.24 * 0.95 * 2 = 127.756; TB Tops: 43.774"
+    },
+    {
+      "id": "blockwall_solid_sub",
+      "description": "Solid Block Sub-Structure",
+      "discipline": "Masonry",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 63.878,
+      "breakdown": "GFPerimeter * ((excav_depth + GF_level) - deepest_TB_depth) = 67.24 * ((1.75 + 0.80) - 1.60) = 67.24 * 0.95"
+    },
+    {
+      "id": "slab_on_grade",
+      "description": "Slab on Grade Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 27.6768,
+      "breakdown": "19.22 * 14.4 * 0.10"
+    },
+    {
+      "id": "polythene",
+      "description": "Polythene Sheet 1000 gauge",
+      "discipline": "Waterproofing",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "CF2",
+        "CF1",
+        "TB1",
+        "TB2",
+        "TB3",
+        "TB4"
+      ],
+      "totalQty": 610.734,
+      "breakdown": "PCC Footings Area: 247.70; PCC TB Area: 86.266; SoG Area: 276.768"
+    },
+    {
+      "id": "anti_termite",
+      "description": "Anti-Termite Treatment",
+      "discipline": "Pest Control",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 702.3441,
+      "breakdown": "610.734 * 1.15"
+    },
+    {
+      "id": "backfill",
+      "description": "Backfill Compacted",
+      "discipline": "Earthworks",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 337.4414,
+      "breakdown": "Excavation Volume (609.988) - Sum of Concrete+Block Volumes (272.5466)"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "The length of the curved tie beam type TB2 was estimated based on chord length and assumed sagitta due to the absence of explicit dimensions on the plan. Is this estimation acceptable, or should a specific arc length/radius be provided?",
+      "unit": "",
+      "suggested": "",
+      "typicalRange": ""
+    },
+    {
+      "id": "Q2",
+      "text": "The mapping between footing types and neck column types (e.g., F1 served by C4, F2 by C3, etc.) was assumed based on fitting criteria (column size <= footing size) and a logical progression. Is there a specific column schedule or mapping to be followed for each footing type?",
+      "unit": "",
+      "suggested": "",
+      "typicalRange": ""
+    }
+  ],
+  "summary": "Quantity take-off for foundation and substructure elements completed based on provided drawings and QS rules. Total 30 footings identified and tallied by type. Tie beam lengths calculated, with an estimation for curved segments. All 13 mandatory QTO items have been calculated.",
+  "warnings": []
+}

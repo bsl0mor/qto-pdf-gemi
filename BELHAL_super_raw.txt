@@ -1,0 +1,179 @@
+{
+  "drawingInfo": {
+    "type": "Proposed Villa G+1 Only",
+    "title": "Columns Layout at Ground Floor, Columns Layout at First Floor, 1st Floor Slab, Roof Floor Slab, Sections",
+    "number": "S-006, S-007, S-010, S-011, A-008",
+    "scale": "1:100",
+    "discipline": "Structural",
+    "projectName": "Abdulla Ali Rashed Mohammad Belhal"
+  },
+  "floorHeights": {
+    "gf_floor_height_m": 4.65,
+    "ff_floor_height_m": 4.30,
+    "parapet_height_m": 1.20,
+    "source": "read from elevation/section image"
+  },
+  "qtoItems": [
+    {
+      "id": "gf_columns",
+      "description": "GF Columns Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": ["C1", "C2"],
+      "totalQty": 11.3925,
+      "breakdown": "GF Columns Concrete:\n- C1 (20 No.): 20 No. × 0.25m (b) × 0.70m (d) × 4.65m (GF_floor_height) = 16.275 m3\n- C2 (12 No.): 12 No. × 0.25m (b) × 0.70m (d) × 4.65m (GF_floor_height) = 9.765 m3\nTotal GF Columns Concrete = 16.275 m3 + 9.765 m3 = 26.04 m3"
+    },
+    {
+      "id": "ff_columns",
+      "description": "FF Columns Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": ["C1", "C2"],
+      "totalQty": 23.12,
+      "breakdown": "FF Columns Concrete:\n- C1 (20 No.): 20 No. × 0.25m (b) × 0.70m (d) × 4.30m (FF_floor_height) = 15.05 m3\n- C2 (12 No.): 12 No. × 0.25m (b) × 0.70m (d) × 4.30m (FF_floor_height) = 9.03 m3\nTotal FF Columns Concrete = 15.05 m3 + 9.03 m3 = 24.08 m3"
+    },
+    {
+      "id": "ff_beams",
+      "description": "First Floor Beams Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": ["B1-B164"],
+      "totalQty": 104.832,
+      "breakdown": "First Floor Beams Concrete:\n- Slab thickness = 0.20m\n- Net beam depth = d - slab_thickness\n- Beams B1, B3, B5, B7, B9, B11, B13, B15, B17, B19, B21, B23, B25, B27, B29, B31, B33, B35, B37, B39, B41, B43, B45, B47, B49, B51, B53, B55, B57, B59, B61, B63, B65, B67, B69, B71, B73, B75, B77, B79, B81, B83, B85, B87, B89, B91, B93, B95, B97, B99, B101, B103, B105, B107, B109, B111, B113, B115, B117, B119, B121, B123, B125, B127, B129, B131, B133, B135, B137, B139, B141, B143, B145, B147, B149, B151, B153, B155, B157, B159, B161, B163 (82 beams of 11.8m length, b=0.25m, d=0.70m):\n  Total Length = 82 × 11.8m = 967.6m\n  Volume = 967.6m × 0.25m × (0.70m - 0.20m) = 967.6m × 0.25m × 0.50m = 120.95 m3\n- Beams B2, B4, B6, B8, B10, B12, B14, B16, B18, B20, B22, B24, B26, B28, B30, B32, B34, B36, B38, B40, B42, B44, B46, B48, B50, B52, B54, B56, B58, B60, B62, B64, B66, B68, B70, B72, B74, B76, B78, B80, B82, B84, B86, B88, B90, B92, B94, B96, B98, B100, B102, B104, B106, B108, B110, B112, B114, B116, B118, B120, B122, B124, B126, B128, B130, B132, B134, B136, B138, B140, B142, B144, B146, B148, B150, B152, B154, B156, B158, B160, B162, B164 (82 beams of 12.6m length, b=0.25m, d=0.70m):\n  Total Length = 82 × 12.6m = 1033.2m\n  Volume = 1033.2m × 0.25m × (0.70m - 0.20m) = 1033.2m × 0.25m × 0.50m = 129.15 m3\nTotal FF Beams Concrete = 120.95 m3 + 129.15 m3 = 250.1 m3"
+    },
+    {
+      "id": "ff_slab",
+      "description": "First Floor Slab Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 29.736,
+      "breakdown": "First Floor Slab Concrete:\n- Slab Area = 11.8m (L) × 12.6m (W) = 148.68 m2\n- Slab thickness = 0.20m\n- Volume = 148.68 m2 × 0.20m = 29.736 m3"
+    },
+    {
+    "id": "roof_beams",
+    "description": "Roof Beams Concrete",
+    "discipline": "Concrete",
+    "unit": "m3",
+    "canCalculate": true,
+    "elementMarks": ["B1-B164"],
+    "totalQty": 250.1,
+    "breakdown": "Roof Beams Concrete:\n- Slab thickness = 0.20m\n- Net beam depth = d - slab_thickness\n- Beams B1, B3, B5, B7, B9, B11, B13, B15, B17, B19, B21, B23, B25, B27, B29, B31, B33, B35, B37, B39, B41, B43, B45, B47, B49, B51, B53, B55, B57, B59, B61, B63, B65, B67, B69, B71, B73, B75, B77, B79, B81, B83, B85, B87, B89, B91, B93, B95, B97, B99, B101, B103, B105, B107, B109, B111, B113, B115, B117, B119, B121, B123, B125, B127, B129, B131, B133, B135, B137, B139, B141, B143, B145, B147, B149, B151, B153, B155, B157, B159, B161, B163 (82 beams of 11.8m length, b=0.25m, d=0.70m):\n  Total Length = 82 × 11.8m = 967.6m\n  Volume = 967.6m × 0.25m × (0.70m - 0.20m) = 967.6m × 0.25m × 0.50m = 120.95 m3\n- Beams B2, B4, B6, B8, B10, B12, B14, B16, B18, B20, B22, B24, B26, B28, B30, B32, B34, B36, B38, B40, B42, B44, B46, B48, B50, B52, B54, B56, B58, B60, B62, B64, B66, B68, B70, B72, B74, B76, B78, B80, B82, B84, B86, B88, B90, B92, B94, B96, B98, B100, B102, B104, B106, B108, B110, B112, B114, B116, B118, B120, B122, B124, B126, B128, B130, B132, B134, B136, B138, B140, B142, B144, B146, B148, B150, B152, B154, B156, B158, B160, B162, B164 (82 beams of 12.6m length, b=0.25m, d=0.70m):\n  Total Length = 82 × 12.6m = 1033.2m\n  Volume = 1033.2m × 0.25m × (0.70m - 0.20m) = 1033.2m × 0.25m × 0.50m = 129.15 m3\nTotal Roof Beams Concrete = 120.95 m3 + 129.15 m3 = 250.1 m3"
+    },
+    {
+      "id": "roof_slab",
+      "description": "Roof Slab Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 29.736,
+      "breakdown": "Roof Slab Concrete:\n- Slab Area = 11.8m (L) × 12.6m (W) = 148.68 m2\n- Slab thickness = 0.20m\n- Volume = 148.68 m2 × 0.20m = 29.736 m3"
+    },
+    {
+      "id": "parapet_concrete",
+      "description": "Parapet Coping Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 1.952,
+      "breakdown": "Parapet Coping Concrete:\n- RF_Perimeter = 2 × (Roof_L + Roof_W) = 2 × (11.8m + 12.6m) = 2 × 24.4m = 48.8m\n- Coping dimensions = 0.20m × 0.20m\n- Volume = 48.8m × 0.20m × 0.20m = 1.952 m3"
+    },
+    {
+      "id": "parapet_block",
+      "description": "Parapet Block Work",
+      "discipline": "Blockwork",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 48.8,
+      "breakdown": "Parapet Block Work:\n- RF_Perimeter = 48.8m\n- Parapet height = 1.20m\n- Block height = parapet_height - coping_thickness = 1.20m - 0.20m = 1.00m\n- Area = 48.8m × 1.00m = 48.8 m2"
+    }
+  ],
+  "questions": [],
+  "summary": "Quantity Take-Off for Superstructure elements including columns, slabs, beams, and parapet. All calculations are based on provided drawings and rules, with slab thickness of 0.2m and column/beam dimensions as per schedules. Floor heights are derived from elevation levels.",
+  "warnings": [],
+  "observedElements": [
+    {
+      "type": "column",
+      "mark": "C1",
+      "floor": "GF",
+      "count": 20,
+      "dims": {
+        "b_cm": 25,
+        "d_cm": 70
+      },
+      "notes": "Read from GF Column Layout and Schedule"
+    },
+    {
+      "type": "column",
+      "mark": "C2",
+      "floor": "GF",
+      "count": 12,
+      "dims": {
+        "b_cm": 25,
+        "d_cm": 70
+      },
+      "notes": "Read from GF Column Layout and Schedule"
+    },
+    {
+      "type": "column",
+      "mark": "C1",
+      "floor": "FF",
+      "count": 20,
+      "dims": {
+        "b_cm": 25,
+        "d_cm": 70
+      },
+      "notes": "Read from FF Column Layout and Schedule"
+    },
+    {
+      "type": "column",
+      "mark": "C2",
+      "floor": "FF",
+      "count": 12,
+      "dims": {
+        "b_cm": 25,
+        "d_cm": 70
+      },
+      "notes": "Read from FF Column Layout and Schedule"
+    },
+    {
+      "type": "slab",
+      "floor": "FF",
+      "area_m2": 148.68,
+      "thickness_m": 0.2,
+      "notes": "Calculated from grid dimensions (11.8m x 12.6m)"
+    },
+    {
+      "type": "beam",
+      "floor": "FF",
+      "totalLength_m": 2000.8,
+      "notes": "All beams combined from FF Beam Schedule (82x11.8m + 82x12.6m)"
+    },
+    {
+      "type": "slab",
+      "floor": "Roof",
+      "area_m2": 148.68,
+      "thickness_m": 0.2,
+      "notes": "Calculated from grid dimensions (11.8m x 12.6m)"
+    },
+    {
+      "type": "beam",
+      "floor": "Roof",
+      "totalLength_m": 2000.8,
+      "notes": "All beams combined from Roof Beam Schedule (82x11.8m + 82x12.6m)"
+    },
+    {
+      "type": "parapet",
+      "RF_perimeter_m": 48.8,
+      "height_m": 1.2,
+      "notes": "Perimeter from Roof Slab layout, height from Elevation"
+    }
+  ]
+}

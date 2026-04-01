@@ -1,0 +1,267 @@
+{
+  "drawingInfo": {
+    "type": "",
+    "title": "",
+    "number": "",
+    "scale": "",
+    "discipline": "",
+    "projectName": ""
+  },
+  "floorHeights": {
+    "gf_floor_height_m": 4.20,
+    "ff_floor_height_m": 4.20,
+    "parapet_height_m": 1.20,
+    "source": "read from elevation/section image"
+  },
+  "qtoItems": [
+    {
+      "id": "gf_columns",
+      "description": "GF Columns Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "NC1"
+      ],
+      "totalQty": 13.86,
+      "breakdown": "33 cols * 0.20m * 0.50m * 4.20m"
+    },
+    {
+      "id": "ff_columns",
+      "description": "FF Columns Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "NC1"
+      ],
+      "totalQty": 13.86,
+      "breakdown": "33 cols * 0.20m * 0.50m * 4.20m"
+    },
+    {
+      "id": "ff_beams",
+      "description": "First Floor Beams Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "totalQty": 14.076,
+      "breakdown": "140.76m (total length) * 0.25m (b) * (0.60m (d) - 0.20m (slab_thickness))"
+    },
+    {
+      "id": "ff_slab",
+      "description": "First Floor Slab Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 82.11,
+      "breakdown": "410.55m2 (area) * 0.20m (thickness)"
+    },
+    {
+      "id": "roof_beams",
+      "description": "Roof Beams Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [
+        "B1",
+        "B2",
+        "B3",
+        "B4"
+      ],
+      "totalQty": 14.076,
+      "breakdown": "140.76m (total length) * 0.25m (b) * (0.60m (d) - 0.20m (slab_thickness))"
+    },
+    {
+      "id": "roof_slab",
+      "description": "Roof Slab Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 82.11,
+      "breakdown": "410.55m2 (area) * 0.20m (thickness)"
+    },
+    {
+      "id": "parapet_concrete",
+      "description": "Parapet Coping Concrete",
+      "discipline": "Concrete",
+      "unit": "m3",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 3.268,
+      "breakdown": "81.70m (perimeter) * 0.20m * 0.20m"
+    },
+    {
+      "id": "parapet_block",
+      "description": "Parapet Block Work",
+      "discipline": "Blockwork",
+      "unit": "m2",
+      "canCalculate": true,
+      "elementMarks": [],
+      "totalQty": 81.70,
+      "breakdown": "81.70m (perimeter) * (1.20m (parapet_height) - 0.20m (coping thickness))"
+    }
+  ],
+  "questions": [],
+  "summary": "",
+  "warnings": [],
+  "observedElements": [
+    {
+      "type": "column",
+      "mark": "C1",
+      "floor": "GF",
+      "count": 18,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "C2",
+      "floor": "GF",
+      "count": 6,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "C3",
+      "floor": "GF",
+      "count": 3,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "C4",
+      "floor": "GF",
+      "count": 3,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "NC1",
+      "floor": "GF",
+      "count": 3,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "C1",
+      "floor": "FF",
+      "count": 18,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "C2",
+      "floor": "FF",
+      "count": 6,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "C3",
+      "floor": "FF",
+      "count": 3,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "C4",
+      "floor": "FF",
+      "count": 3,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "column",
+      "mark": "NC1",
+      "floor": "FF",
+      "count": 3,
+      "dims": {
+        "b_cm": 20,
+        "d_cm": 50
+      },
+      "notes": ""
+    },
+    {
+      "type": "slab",
+      "floor": "FF",
+      "area_m2": 410.55,
+      "thickness_m": 0.20,
+      "notes": "Overall L=17.85m, W=23.00m"
+    },
+    {
+      "type": "beam",
+      "floor": "FF",
+      "totalLength_m": 140.76,
+      "notes": "all beams combined (B1, B2, B3, B4 all 25x60cm)"
+    },
+    {
+      "type": "slab",
+      "floor": "Roof",
+      "area_m2": 410.55,
+      "thickness_m": 0.20,
+      "notes": "Overall L=17.85m, W=23.00m"
+    },
+    {
+      "type": "beam",
+      "floor": "Roof",
+      "totalLength_m": 140.76,
+      "notes": "all beams combined (B1, B2, B3, B4 all 25x60cm)"
+    },
+    {
+      "type": "parapet",
+      "RF_perimeter_m": 81.70,
+      "height_m": 1.20,
+      "notes": "Parapet type: BLOCK WORK"
+    }
+  ]
+}

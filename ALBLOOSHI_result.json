@@ -1,0 +1,231 @@
+{
+  "observedElements": [
+    {
+      "type": "Footing",
+      "mark": "F1",
+      "count": 4,
+      "dims": {
+        "L": 1.7,
+        "W": 1.3,
+        "H": null,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes (gridMap): [4, 4, 4] → 4"
+    },
+    {
+      "type": "Footing",
+      "mark": "F3",
+      "count": 10,
+      "dims": {
+        "L": 2.8,
+        "W": 2.4,
+        "H": null,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes (gridMap): [10, 10, 10] → 10"
+    },
+    {
+      "type": "Footing",
+      "mark": "F2",
+      "count": 8,
+      "dims": {
+        "L": 2.6,
+        "W": 2.0,
+        "H": null,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes (gridMap): [8, 8, 8] → 8"
+    },
+    {
+      "type": "Footing",
+      "mark": "F5",
+      "count": 20,
+      "dims": {
+        "L": 3.4,
+        "W": 2.8,
+        "H": null,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes (gridMap): [20, 20, 20] → 20"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB1",
+      "dims": {
+        "L": 79.8,
+        "b": 0.2,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes (tbSegments): [79.8, 79.8, 79.8] → 79.8"
+    },
+    {
+      "type": "Tie Beam",
+      "mark": "TB2",
+      "dims": {
+        "L": 177.1,
+        "b": 0.2,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes (tbSegments): [177.05, 177.05, 177.05] → 177.05"
+    },
+    {
+      "type": "Column",
+      "mark": "NC",
+      "count": 0,
+      "dims": {
+        "b": 0.2,
+        "d": 0.2,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes: [0, 0, 0] → 0"
+    },
+    {
+      "type": "Column",
+      "mark": "C1",
+      "count": 0,
+      "dims": {
+        "b": 0.2,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes: [0, 0, 0] → 0"
+    },
+    {
+      "type": "Column",
+      "mark": "C2",
+      "count": 0,
+      "dims": {
+        "b": 0.2,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes: [0, 0, 0] → 0"
+    },
+    {
+      "type": "Column",
+      "mark": "C3",
+      "count": 0,
+      "dims": {
+        "b": 0.2,
+        "d": 0.6,
+        "unit": "m"
+      },
+      "notes": "consensus of 3 passes: [0, 0, 0] → 0"
+    }
+  ],
+  "gridDims": {
+    "L_m": 23.7,
+    "W_m": 20.45
+  },
+  "warnings": [
+    "Discrepancy: Calculated grid dimensions (L=22.45m, W=17.45m) differ from parsed overall dimensions (L=23.7m, W=20.45m). Reported grid dimensions are based on explicit grid line spacing from drawings."
+  ],
+  "qtoItems": [
+    {
+      "id": "excavation",
+      "description": "Bulk Excavation",
+      "unit": "m3",
+      "totalQty": 721.206,
+      "breakdown": "(23.7+2)×(20.45+2)×1.25=721.206",
+      "source": "deterministic"
+    },
+    {
+      "id": "road_base",
+      "description": "Road Base",
+      "unit": "m3",
+      "totalQty": 0,
+      "breakdown": "N/A",
+      "source": "deterministic"
+    },
+    {
+      "id": "pcc_footings",
+      "description": "PCC under Footings",
+      "unit": "m3",
+      "totalQty": 33.094,
+      "breakdown": "F1:4×(1.7+0.1)×(1.3+0.1)×0.1=1.008 + F3:10×(2.8+0.1)×(2.4+0.1)×0.1=7.25 + F2:8×(2.6+0.1)×(2.0+0.1)×0.1=4.536 + F5:20×(3.4+0.1)×(2.8+0.1)×0.1=20.3",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "pcc_tb",
+      "description": "PCC under Tie Beams",
+      "unit": "m3",
+      "totalQty": 10.276,
+      "breakdown": "TB1:79.8×(0.2+0.2)×0.1=3.192 + TB2:177.1×(0.2+0.2)×0.1=7.084",
+      "source": "parser_dims + vision_lengths"
+    },
+    {
+      "id": "footing_concrete",
+      "description": "Isolated Footing Concrete",
+      "unit": "m3",
+      "totalQty": 123.216,
+      "breakdown": "F1:4×1.7×1.3×0.4=3.536 + F3:10×2.8×2.4×0.4=26.88 + F2:8×2.6×2.0×0.4=16.64 + F5:20×3.4×2.8×0.4=76.16",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "neck_column",
+      "description": "Neck Column Concrete",
+      "unit": "m3",
+      "totalQty": 2.604,
+      "breakdown": "F1:4×0.2×0.2×1.55=0.248 + F3:10×0.2×0.2×1.55=0.62 + F2:8×0.2×0.2×1.55=0.496 + F5:20×0.2×0.2×1.55=1.24",
+      "source": "parser_dims + vision_counts"
+    },
+    {
+      "id": "tb_concrete",
+      "description": "Tie Beam RC Concrete",
+      "unit": "m3",
+      "totalQty": 30.828,
+      "breakdown": "TB1:79.8×0.2×0.6=9.576 + TB2:177.1×0.2×0.6=21.252",
+      "source": "parser_dims + vision_lengths"
+    },
+    {
+      "id": "bitumen",
+      "description": "Bituminous Waterproofing",
+      "unit": "m2",
+      "totalQty": 828.07,
+      "breakdown": "ftg_sides=179.84+ftg_tops=306.36+nc_sides=52.08+block=238.41+tb=51.38",
+      "source": "deterministic"
+    },
+    {
+      "id": "blockwall_solid_sub",
+      "description": "Solid Block Sub-Structure",
+      "unit": "m2",
+      "totalQty": 119.205,
+      "breakdown": "88.3×1.35=119.205",
+      "source": "deterministic"
+    },
+    {
+      "id": "slab_on_grade",
+      "description": "Slab on Grade Concrete",
+      "unit": "m3",
+      "totalQty": 48.467,
+      "breakdown": "23.7×20.45×0.10=48.467",
+      "source": "deterministic"
+    },
+    {
+      "id": "polythene",
+      "description": "Polythene Sheet",
+      "unit": "m2",
+      "totalQty": 918.365,
+      "breakdown": "pcc_ftg=330.94+pcc_tb=102.76+sog=484.665",
+      "source": "deterministic"
+    },
+    {
+      "id": "anti_termite",
+      "description": "Anti-Termite Treatment",
+      "unit": "m2",
+      "totalQty": 1056.12,
+      "breakdown": "918.365×1.15=1056.12",
+      "source": "deterministic"
+    },
+    {
+      "id": "backfill",
+      "description": "Backfill Compacted",
+      "unit": "m3",
+      "totalQty": 448.88,
+      "breakdown": "void=721.206-all_items=272.326(pcc_f=33.094+pcc_t=10.276+ftg=123.216+nc=2.604+tb=30.828+sog=48.467+blk=23.841+rb=0)",
+      "source": "deterministic"
+    }
+  ]
+}

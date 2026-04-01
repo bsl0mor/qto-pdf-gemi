@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>QTO.AI — Quantity Take-Off System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body,#root{height:100%;overflow:hidden}
+    body{font-family:'IBM Plex Mono','Courier New',monospace;background:#f1f5f9;color:#0f172a}
+    ::-webkit-scrollbar{width:5px;height:5px}
+    ::-webkit-scrollbar-track{background:#f1f5f9}
+    ::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}
+    ::-webkit-scrollbar-thumb:hover{background:#94a3b8}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.35}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+    input,select,textarea{font-family:inherit}
+    input::placeholder,textarea::placeholder{color:#94a3b8}
+    select option{background:#fff;color:#0f172a}
+    input[type=number]::-webkit-inner-spin-button{opacity:.4}
+    .drawing-row:hover{background:#f1f5f9}
+    .tab-btn:hover{background:#f1f5f9}
+    .zoom-btn:hover{background:#f1f5f9}
+    .upload-btn:hover{background:#fffbeb !important;border-color:#b45309 !important}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
+  <script type="text/babel">
+    const { useState, useRef, useCallback } = React;
+
+    /* ═══════════════════════ CONFIG ═══════════════════════ */
+    const API_KEY  = "AIzaSyAEf3myy42MZRDChyd2kRRrXDusTFG0rEY";
+    const MODEL    = "gemini-2.5-flash";
+    const BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models";
+
+    /* ═══════════════════════ THEME ═══════════════════════ */
+    const T = {
+      bg:"#f1f5f9", surface:"#ffffff", s2:"#f8fafc", s3:"#f1f5f9",
+      border:"#e2e8f0", border2:"#cbd5e1",
+      t1:"#0f172a", t2:"#334155", t3:"#64748b", t4:"#94a3b8",
+      accent:"#b45309", accentM:"#d97706", accentL:"rgba(217,119,6,0.08)", accentB:"rgba(217,119,6,0.25)",
+      green:"#15803d",  greenL:"rgba(21,128,61,0.08)",   greenB:"rgba(21,128,61,0.25)",
+      orange:"#c2410c", orangeL:"rgba(194,65,12,0.08)",  orangeB:"rgba(194,65,12,0.25)",
+      red:"#dc2626",    redL:"rgba(220,38,38,0.08)",      redB:"rgba(220,38,38,0.25)",
+      blue:"#1d4ed8",   blueL:"rgba(29,78,216,0.08)",    blueB:"rgba(29,78,216,0.25)",
+    };
+
+    const DISC_COLOR = { STR:"#1d4ed8", ARCH:"#7c3aed", FINISHING:"#c2410c", CIVIL:"#15803d", MEP:"#be185d" };
+
+    const STATUS_CFG = {
+      uploaded:    { color:T.blue,   bg:T.blueL,   border:T.blueB,   label:"READY"          },
+      analyzing:   { color:T.accent, bg:T.accentL, border:T.accentB, label:"ANALYZING…"     },
+      questions:   { color:T.orange, bg:T.orangeL, border:T.orangeB, label:"NEEDS INPUT"    },
+      calculating: { color:T.accent, bg:T.accentL, border:T.accentB, label:"CALCULATING…"   },
+      complete:    { color:T.green,  bg:T.greenL,  border:T.greenB,  label:"COMPLETE"       },
+      error:       { color:T.red,    bg:T.redL,    border:T.redB,    label:"ERROR"          },
+    };
+
+    /* ═══════════════════════ FORMULAS ═══════════════════════ */
+    const DEFAULT_FORMULAS = {
+      excavation:       { name:"Bulk Excavation",                          category:"CIVIL",     formula:"Count × (L + 2×WS) × (W + 2×WS) × D",         description:"WS=Working Space per side (m), L/W=Footing plan dims, D=Total excavation depth",                                                                                                                defaults:{WS:0.5}, unit:"m³" },
+      pcc:              { name:"PCC / Blinding Concrete",                  category:"STR",       formula:"Count × (L + 2×WS) × (W + 2×WS) × t",         description:"t=blinding thickness (typically 0.10m), WS=overhang each side (0.30m std)",                                                                                                                          defaults:{t:0.10,WS:0.30}, unit:"m³" },
+      road_base:        { name:"Road Base / Granular Fill",                category:"CIVIL",     formula:"Count × L × W × t",                            description:"t=road base/fill thickness as specified",                                                                                                                                                              defaults:{t:0.30}, unit:"m³" },
+      bitumen:          { name:"Bituminous Waterproofing (Under Footing)", category:"STR",       formula:"Count × (L + 2×OL) × (W + 2×OL)",             description:"OL=Overlap each side (0.30m std), applied on PCC surface before footing pour",                                                                                                                     defaults:{OL:0.30}, unit:"m²" },
+      footing_concrete: { name:"Isolated Footing – Concrete",              category:"STR",       formula:"Count × L × W × H",                            description:"L/W/H from footing schedule or drawing annotations",                                                                                                                                                    defaults:{}, unit:"m³" },
+      footing_formwork: { name:"Isolated Footing – Formwork",              category:"STR",       formula:"Count × 2×(L+W)×H",                            description:"4 side faces only (top & bottom excluded)",                                                                                                                                                             defaults:{}, unit:"m²" },
+      footing_rebar:    { name:"Reinforcement Steel",                      category:"STR",       formula:"TotalBarLength × UnitWeight × (1 + WF)",        description:"WF=Waste Factor (0.05=5%). UnitWeight kg/m: Ø8=0.395, Ø10=0.617, Ø12=0.888, Ø16=1.578, Ø20=2.466, Ø25=3.853",                                                                                       defaults:{WF:0.05}, unit:"Ton" },
+      column_concrete:  { name:"Column – Concrete",                        category:"STR",       formula:"Count × L × W × H",                            description:"H=clear height from top of slab to soffit of next slab",                                                                                                                                               defaults:{}, unit:"m³" },
+      column_formwork:  { name:"Column – Formwork",                        category:"STR",       formula:"Count × 2×(L+W)×H",                            description:"All 4 faces, full clear height",                                                                                                                                                                        defaults:{}, unit:"m²" },
+      beam_concrete:    { name:"Beam – Concrete",                          category:"STR",       formula:"Count × Length × B × (D−TS)",                  description:"D=total beam depth, TS=slab thickness (deducted to avoid double-count)",                                                                                                                               defaults:{TS:0.20}, unit:"m³" },
+      beam_formwork:    { name:"Beam – Formwork (Sides + Soffit)",         category:"STR",       formula:"Count × Length × (2×(D−TS) + B)",              description:"Both sides + soffit of beam stem",                                                                                                                                                                      defaults:{TS:0.20}, unit:"m²" },
+      slab_concrete:    { name:"Slab – Concrete",                          category:"STR",       formula:"NetArea × t",                                   description:"Net slab area (deduct openings >0.1m²) × slab thickness",                                                                                                                                              defaults:{t:0.20}, unit:"m³" },
+      slab_formwork:    { name:"Slab & Beam – Soffit Formwork",            category:"STR",       formula:"GrossSoffitArea × 1.0",                         description:"Gross soffit area including beam soffits, no deductions <0.5m²",                                                                                                                                      defaults:{}, unit:"m²" },
+      blockwall:        { name:"Masonry Block Wall",                       category:"ARCH",      formula:"(TotalLength × H − OpeningsArea) × 1.0",        description:"Deduct door/window openings >0.5m². H=clear wall height",                                                                                                                                              defaults:{}, unit:"m²" },
+      plaster:          { name:"Plaster / Render (per face)",              category:"FINISHING", formula:"(TotalLength × H − OpeningsArea) × 1.0",        description:"Calculate per face separately. Double for 2 faces. Deduct openings >0.5m²",                                                                                                                           defaults:{}, unit:"m²" },
+      tiling_floor:     { name:"Floor Tiling",                             category:"FINISHING", formula:"Area × (1 + WF)",                               description:"WF=Waste factor: 0.10 (straight lay), 0.15 (diagonal/herringbone)",                                                                                                                                  defaults:{WF:0.10}, unit:"m²" },
+      tiling_wall:      { name:"Wall Tiling",                              category:"FINISHING", formula:"(Perimeter × H − OpeningsArea) × (1 + WF)",     description:"WF=Waste factor 0.10–0.15. H=tiling height",                                                                                                                                                          defaults:{WF:0.10}, unit:"m²" },
+      painting:         { name:"Painting",                                 category:"FINISHING", formula:"Area × Coats",                                  description:"Coats: 2 std (1 primer + 1 finish), 3 for feature walls",                                                                                                                                               defaults:{Coats:2}, unit:"m²" },
+      waterproofing:    { name:"Waterproofing Membrane (Wet Areas)",       category:"FINISHING", formula:"Area × (1 + OL)",                               description:"OL=Overlap/wastage factor (0.15=15% std)",                                                                                                                                                              defaults:{OL:0.15}, unit:"m²" },
+      backfill:         { name:"Backfill (Imported / Compacted)",          category:"CIVIL",     formula:"ExcavationVol − ConcreteVol × (1 + Swell)",     description:"Swell factor 0.25 for compacted fill. = Excavation minus concrete volume",                                                                                                                             defaults:{Swell:0.25}, unit:"m³" },
+    };
+
+    /* ═══════════════════════ SYSTEM PROMPT ═══════════════════════ */
+    const buildSystemPrompt = (formulas) => {
+      const fText = Object.entries(formulas).map(([k,f]) =>
+        `  [${k}] ${f.name} → Formula: ${f.formula}  |  Unit: ${f.unit}\n    Notes: ${f.description}${Object.keys(f.defaults).length ? `  |  Defaults: ${JSON.stringify(f.defaults)}` : ""}`
+      ).join("\n\n");
+
+      return `You are a CHIEF QUANTITY SURVEYOR with 25+ years of experience on large-scale construction projects across the Middle East and internationally. You specialize in Quantity Take-Off (QTO) for structural, architectural, civil, and finishing works. You are precise, methodical, systematic, and never guess or fabricate critical dimensions.
+
+═══════════════════════════════════════════════════════════════════════
+DRAWING READING CAPABILITIES
+═══════════════════════════════════════════════════════════════════════
+You can read and interpret all construction drawing types:
+• Foundation plans: isolated footings (F1, F2…), strip, raft, pile caps, grade beams
+• Structural plans: column schedules, beam layouts, slab plans, shear walls, staircases
+• Architectural plans: floor plans, elevations, sections, reflected ceiling plans
+• Door/window schedules, finish schedules, room data sheets
+• Detail drawings, typical sections, structural connection details
+• Bar Bending Schedules (BBS), reinforcement plans
+• Title blocks: drawing number, scale, revision, project name, date
+
+From drawings you CAN extract directly:
+→ Element counts (footings, columns, rooms from plan grids)
+→ Plan dimensions (L × W from annotated dimensions)
+→ Footing schedules / column schedules (mark, count, dims)
+→ Grid spacings and span lengths
+→ Floor areas from room dimensions
+→ Wall lengths from plan perimeters
+→ Bar sizes, spacing, marks from reinforcement drawings
+→ Opening sizes from door/window schedules
+
+═══════════════════════════════════════════════════════════════════════
+MANDATORY QTO ITEMS BY DRAWING TYPE
+═══════════════════════════════════════════════════════════════════════
+Always extract ALL applicable items for the drawing type:
+
+FOUNDATION PLAN:
+  1. Bulk Excavation           → formulaKey: excavation      [NEEDS: depth, WS from user]
+  2. Road Base / Granular Fill → formulaKey: road_base       [NEEDS: thickness from user]
+  3. PCC / Blinding Concrete   → formulaKey: pcc             [CAN CALC if footing dims known]
+  4. Bituminous Waterproofing  → formulaKey: bitumen         [CAN CALC from footing dims]
+  5. Isolated Footing Concrete → formulaKey: footing_concrete [CAN CALC from schedule]
+  6. Footing Formwork          → formulaKey: footing_formwork [CAN CALC from schedule]
+  7. Footing Reinforcement     → formulaKey: footing_rebar   [NEEDS BBS or estimate]
+  8. Backfill                  → formulaKey: backfill        [CALC after concrete known]
+
+COLUMN SCHEDULE / PLAN:
+  1. Column Concrete           → formulaKey: column_concrete
+  2. Column Formwork           → formulaKey: column_formwork
+  3. Column Reinforcement      → formulaKey: footing_rebar
+
+BEAM / SLAB PLAN:
+  1. Beam Concrete             → formulaKey: beam_concrete
+  2. Beam Formwork             → formulaKey: beam_formwork
+  3. Slab Concrete             → formulaKey: slab_concrete
+  4. Soffit Formwork           → formulaKey: slab_formwork
+  5. Slab/Beam Reinforcement   → formulaKey: footing_rebar
+
+ARCHITECTURAL FLOOR PLAN:
+  1. Block Walls by type       → formulaKey: blockwall
+  2. Plaster both faces        → formulaKey: plaster
+  3. Door/Window counts        → No formula, count only
+  4. Floor areas by room       → Input to tiling/painting
+
+FINISH SCHEDULE / FLOOR PLAN WITH FINISHES:
+  1. Floor Tiling by room      → formulaKey: tiling_floor
+  2. Wall Tiling (wet areas)   → formulaKey: tiling_wall
+  3. Painting                  → formulaKey: painting
+  4. Waterproofing             → formulaKey: waterproofing
+  5. False ceiling             → No formula, area only
+
+═══════════════════════════════════════════════════════════════════════
+USER-DEFINED FORMULAS — APPLY EXACTLY AS WRITTEN
+═══════════════════════════════════════════════════════════════════════
+${fText}
+
+═══════════════════════════════════════════════════════════════════════
+CALCULATION RULES
+═══════════════════════════════════════════════════════════════════════
+• Show: Formula name → Variable substitution → Result for every element
+• Calculate each element mark (F1, F2, C1…) separately, then sum
+• Use drawing schedule data first; use annotations if no schedule
+• For rebar without BBS: estimate using standard ratios:
+  - Isolated footings: 60–80 kg/m³ concrete
+  - Columns: 150–200 kg/m³ concrete
+  - Beams: 120–160 kg/m³ concrete
+  - Slabs: 80–100 kg/m³ concrete
+• Round volumes/areas to 2 decimal places
+• Flag estimates vs confirmed dimensions clearly
+
+═══════════════════════════════════════════════════════════════════════
+CRITICAL RULES
+═══════════════════════════════════════════════════════════════════════
+• Return ONLY valid JSON — absolutely no text or markdown outside JSON
+• NEVER fabricate dimensions — only use clearly visible/readable values
+• NEVER skip items that should be extracted from this drawing type
+• If image is unclear, state what you CAN see and ask for confirmation
+• Questions must be SPECIFIC and TARGETED — never ask what you can read
+• Provide typical ranges as guidance for every question
+
+═══════════════════════════════════════════════════════════════════════
+JSON RESPONSE FORMAT
+═══════════════════════════════════════════════════════════════════════
+{
+  "drawingInfo": {
+    "type": "Foundation Plan",
+    "title": "from title block",
+    "number": "DWG-S-001",
+    "scale": "1:100",
+    "revision": "B",
+    "discipline": "STR",
+    "projectName": "from title block or Not visible"
+  },
+  "observedElements": [
+    {
+      "type": "Isolated Footing",
+      "mark": "F1",
+      "count": 6,
+      "dims": { "L": 2.0, "W": 2.0, "H": 0.7, "unit": "m" },
+      "location": "Grid A-C / 1-4",
+      "notes": "Corner footings — from footing schedule"
+    }
+  ],
+  "qtoItems": [
+    {
+      "id": "STR-001",
+      "description": "Bulk Excavation for Isolated Footings — all types",
+      "discipline": "CIVIL",
+      "formulaKey": "excavation",
+      "unit": "m³",
+      "canCalculate": false,
+      "elements": [],
+      "totalQty": null,
+      "breakdown": "Awaiting user input: excavation depth and working space",
+      "missingInputs": ["excav_depth_m", "working_space_m"]
+    }
+  ],
+  "questions": [
+    {
+      "id": "excav_depth_m",
+      "text": "What is the total excavation depth from existing ground level (EGL) to underside of PCC blinding?",
+      "affectsItems": ["STR-001 Bulk Excavation"],
+      "unit": "m",
+      "typicalRange": "1.50 – 3.50m depending on foundation depth and soil conditions",
+      "suggested": "2.0",
+      "required": true
+    }
+  ],
+  "summary": "Concise summary: drawing type found, elements identified, items calculated, what still needs input",
+  "warnings": ["Any flags, unusual dimensions, or items needing QS review"]
+}`;
+    };
+
+    const buildCalcPrompt = (analysis, answers, formulas) => {
+      const fText = Object.entries(formulas)
+        .map(([k,f]) => `  [${k}]: ${f.formula}  (${f.unit}) — defaults: ${JSON.stringify(f.defaults)}`)
+        .join("\n");
+      const aText = Object.entries(answers)
+        .map(([id,val]) => `  ${id} = ${val}`)
+        .join("\n");
+
+      return `You are completing a QTO calculation. The drawing was already analyzed. The user has now answered all required questions.
+
+PREVIOUS DRAWING ANALYSIS:
+${JSON.stringify(analysis, null, 2)}
+
+USER-PROVIDED VALUES:
+${aText}
+
+FORMULAS LIBRARY:
+${fText}
+
+TASK: Calculate every item that was pending (canCalculate: false, totalQty: null) using:
+1. Observed element data already extracted from the drawing (counts, dimensions from observedElements)
+2. The user-provided values listed above
+3. The exact formulas provided
+
+For each pending item:
+→ Look up its formulaKey
+→ Use the observedElements data for L, W, H, Count values
+→ Insert user-provided values for depth, thickness, etc.
+→ Calculate per element mark, then sum
+→ Show full step-by-step substitution
+
+Return ONLY valid JSON (no markdown, no text outside):
+{
+  "completedItems": [
+    {
+      "id": "STR-001",
+      "description": "full description",
+      "discipline": "CIVIL",
+      "formulaKey": "excavation",
+      "unit": "m³",
+      "elements": [
+        {
+          "mark": "F1", "count": 6,
+          "L": 2.0, "W": 2.0, "D": 2.0, "WS": 0.5,
+          "subQty": 108.0,
+          "calc": "6 × (2.0+1.0) × (2.0+1.0) × 2.0 = 6 × 3.0 × 3.0 × 2.0 = 108.00 m³"
+        }
+      ],
+      "totalQty": 108.00,
+      "breakdown": "F1×6: 108.00 m³  |  Grand Total = 108.00 m³"
+    }
+  ],
+  "notes": "QS notes, any flags or recommendations"
+}`;
+    };
+
+    /* ═══════════════════════ SHARED STYLES ═══════════════════════ */
+    const inp = {
+      background: T.s2,
+      border: `1px solid ${T.border2}`,
+      borderRadius: "4px",
+      padding: "8px 12px",
+      color: T.t1,
+      fontSize: "12px",
+      outline: "none",
+      width: "100%",
+    };
+
+    /* ═══════════════════════ MAIN COMPONENT ═══════════════════════ */
+    function QTOSystem() {
+      const [formulas, setFormulas]         = useState(DEFAULT_FORMULAS);
+      const [activeTab, setActiveTab]       = useState("drawings");
+      const [drawings, setDrawings]         = useState([]);
+      const [selectedId, setSelectedId]     = useState(null);
+      const [isProcessing, setIsProcessing] = useState(false);
+      const [processingMsg, setProcessingMsg] = useState("");
+      const [qtoTable, setQtoTable]         = useState([]);
+      const [editingKey, setEditingKey]     = useState(null);
+      const [zoom, setZoom]                 = useState(0); // 0 = fit
+      const fileInputRef = useRef(null);
+
+      const selectedDrawing = drawings.find(d => d.id === selectedId);
+
+      /* ── Gemini API ── */
+      const callGemini = async (parts) => {
+        const url = `${BASE_URL}/${MODEL}:generateContent?key=${API_KEY}`;
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ role: "user", parts }],
+            generationConfig: { temperature: 0.05, maxOutputTokens: 8192, responseMimeType: "application/json" }
+          })
+        });
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.error?.message || `Gemini API error ${res.status}`);
+        }
+        const data = await res.json();
+        const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+        try {
+          return JSON.parse(text.replace(/```json\n?|\n?```/g, "").trim());
+        } catch {
+          throw new Error("Gemini returned invalid JSON. Check drawing quality or try again.");
+        }
+      };
+
+      /* ── Helpers ── */
+      const updateDrawing = useCallback((id, updates) => {
+        setDrawings(prev => prev.map(d => d.id === id ? { ...d, ...updates } : d));
+      }, []);
+
+      const pushToTable = useCallback((drawing, items) => {
+        const rows = items
+          .filter(it => it.totalQty !== null && it.totalQty !== undefined)
+          .map((it, i) => ({
+            rowId: `${drawing.id}-${i}`,
+            drawingId: drawing.id,
+            drawingName: drawing.name,
+            drawingType: drawing.analysis?.drawingInfo?.type || "",
+            drawingNum:  drawing.analysis?.drawingInfo?.number || "",
+            discipline:  it.discipline || "",
+            itemCode:    it.id,
+            description: it.description,
+            unit: it.unit,
+            qty:  it.totalQty,
+            breakdown: it.breakdown || ""
+          }));
+        setQtoTable(prev => [...prev.filter(r => r.drawingId !== drawing.id), ...rows]);
+      }, []);
+
+      /* ── Upload ── */
+      const handleUpload = (e) => {
+        Array.from(e.target.files).forEach(file => {
+          const displayUrl = URL.createObjectURL(file);
+          const reader = new FileReader();
+          reader.onload = ev => {
+            const base64 = ev.target.result.split(",")[1];
+            const drawing = {
+              id: `d-${Date.now()}-${Math.random().toString(36).slice(2,7)}`,
+              name: file.name,
+              mime: file.type,
+              imageData: base64,
+              displayUrl,
+              isPDF: file.type === "application/pdf",
+              status: "uploaded",
+              analysis: null,
+              answers: {},
+              results: [],
+              error: null
+            };
+            setDrawings(prev => [...prev, drawing]);
+            setSelectedId(drawing.id);
+            setActiveTab("drawings");
+            setZoom(0);
+          };
+          reader.readAsDataURL(file);
+        });
+        e.target.value = "";
+      };
+
+      /* ── Analyze ── */
+      const analyzeDrawing = async (drawing) => {
+        setIsProcessing(true);
+        setProcessingMsg("Gemini 2.5 is reading the drawing…");
+        updateDrawing(drawing.id, { status: "analyzing", error: null });
+        try {
+          const prompt = buildSystemPrompt(formulas);
+          const result = await callGemini([
+            { text: prompt + "\n\nAnalyze this construction drawing and return your JSON response:" },
+            { inlineData: { mimeType: drawing.mime || "image/jpeg", data: drawing.imageData } }
+          ]);
+          const initAnswers = {};
+          (result.questions || []).forEach(q => { initAnswers[q.id] = q.suggested || ""; });
+          const hasQ = (result.questions || []).length > 0;
+          updateDrawing(drawing.id, { status: hasQ ? "questions" : "complete", analysis: result, answers: initAnswers });
+          if (!hasQ) {
+            const allItems = result.qtoItems || [];
+            updateDrawing(drawing.id, { results: allItems });
+            pushToTable({ ...drawing, analysis: result }, allItems);
+          }
+        } catch (err) {
+          updateDrawing(drawing.id, { status: "error", error: err.message });
+        } finally {
+          setIsProcessing(false);
+          setProcessingMsg("");
+        }
+      };
+
+      /* ── Submit Answers ── */
+      const submitAnswers = async (drawing) => {
+        setIsProcessing(true);
+        setProcessingMsg("Calculating quantities with your inputs…");
+        updateDrawing(drawing.id, { status: "calculating" });
+        try {
+          const result = await callGemini([
+            { text: buildCalcPrompt(drawing.analysis, drawing.answers, formulas) },
+            { inlineData: { mimeType: drawing.mime || "image/jpeg", data: drawing.imageData } }
+          ]);
+          const readyItems = (drawing.analysis?.qtoItems || []).filter(i => i.canCalculate && i.totalQty !== null);
+          const allItems = [...readyItems, ...(result.completedItems || [])];
+          updateDrawing(drawing.id, { status: "complete", results: allItems });
+          pushToTable({ ...drawing, analysis: drawing.analysis }, allItems);
+        } catch (err) {
+          updateDrawing(drawing.id, { status: "error", error: err.message });
+        } finally {
+          setIsProcessing(false);
+          setProcessingMsg("");
+        }
+      };
+
+      /* ── Export CSV ── */
+      const exportCSV = () => {
+        const hdrs = ["Drawing","Dwg No.","Type","Discipline","Item Code","Description","Unit","Quantity"];
+        const rows = qtoTable.map(r => [r.drawingName,r.drawingNum,r.drawingType,r.discipline,r.itemCode,r.description,r.unit,r.qty ?? ""]);
+        const csv = [hdrs,...rows].map(r => r.map(c => `"${String(c ?? "").replace(/"/g,'""')}"`).join(",")).join("\n");
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(new Blob([csv],{type:"text/csv"}));
+        a.download = "QTO_Export.csv";
+        a.click();
+      };
+
+      /* ════════ RENDER ════════ */
+      return (
+        <div style={{display:"flex",height:"100vh",overflow:"hidden",background:T.bg,fontFamily:"'IBM Plex Mono','Courier New',monospace",color:T.t1}}>
+
+          {/* ══════════════════════════════════════════
+              LEFT DASHBOARD  25%
+          ══════════════════════════════════════════ */}
+          <div style={{width:"25%",minWidth:"280px",maxWidth:"420px",display:"flex",flexDirection:"column",background:T.surface,borderRight:`1px solid ${T.border}`,boxShadow:"2px 0 8px rgba(0,0,0,0.06)"}}>
+
+            {/* Brand Header */}
+            <div style={{padding:"14px 18px",borderBottom:`1px solid ${T.border}`,flexShrink:0,display:"flex",alignItems:"center",justifyContent:"space-between",gap:"10px"}}>
+              <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
+                <span style={{fontSize:"18px",fontWeight:900,color:T.t1,letterSpacing:"-1.5px",lineHeight:1}}>
+                  QTO<span style={{color:T.accent}}>.AI</span>
+                </span>
+                <span style={{fontSize:"8px",letterSpacing:"1.5px",color:T.accent,background:T.accentL,border:`1px solid ${T.accentB}`,padding:"2px 7px",borderRadius:"3px",fontWeight:700}}>GEMINI 2.5</span>
+              </div>
+              {isProcessing && (
+                <div style={{display:"flex",alignItems:"center",gap:"6px",flexShrink:0}}>
+                  <span style={{animation:"spin 1s linear infinite",display:"inline-block",fontSize:"13px",color:T.accent}}>◌</span>
+                </div>
+              )}
+            </div>
+
+            {/* Processing label */}
+            {isProcessing && (
+              <div style={{padding:"7px 18px",background:T.accentL,borderBottom:`1px solid ${T.accentB}`,fontSize:"9px",color:T.accent,letterSpacing:"1px",animation:"blink 1.5s ease infinite",flexShrink:0}}>
+                ⬡  {processingMsg}
+              </div>
+            )}
+
+            {/* Upload Button */}
+            <div style={{padding:"12px 16px",borderBottom:`1px solid ${T.border}`,flexShrink:0}}>
+              <button
+                className="upload-btn"
+                onClick={() => fileInputRef.current?.click()}
+                style={{
+                  width:"100%",background:"transparent",
+                  border:`1.5px dashed ${T.accentB}`,borderRadius:"5px",
+                  padding:"10px 12px",color:T.accent,fontSize:"10px",
+                  letterSpacing:"2px",cursor:"pointer",fontFamily:"inherit",
+                  fontWeight:700,transition:"all 0.15s",display:"flex",alignItems:"center",justifyContent:"center",gap:"6px"
+                }}
+              >
+                <span style={{fontSize:"14px",fontWeight:400}}>+</span> UPLOAD DRAWING
+              </button>
+              <input ref={fileInputRef} type="file" multiple hidden accept="image/*,application/pdf" onChange={handleUpload} />
+              <div style={{fontSize:"9px",color:T.t4,marginTop:"6px",textAlign:"center",letterSpacing:"0.5px"}}>
+                JPG · PNG · WEBP · PDF
+              </div>
+            </div>
+
+            {/* Scrollable body */}
+            <div style={{flex:1,overflowY:"auto",padding:"0"}}>
+
+              {/* Drawing List */}
+              {drawings.length === 0 ? (
+                <div style={{padding:"32px 18px",textAlign:"center",color:T.t4,fontSize:"10px",letterSpacing:"1px",lineHeight:2.2}}>
+                  <div style={{fontSize:"28px",opacity:0.2,marginBottom:"12px"}}>⬡</div>
+                  Upload drawings<br/>to begin
+                </div>
+              ) : (
+                <div style={{padding:"8px 8px 0"}}>
+                  <div style={{fontSize:"8px",color:T.t4,letterSpacing:"2px",padding:"8px 10px 4px",marginBottom:"2px"}}>
+                    DRAWINGS ({drawings.length})
+                  </div>
+                  {drawings.map(d => {
+                    const sc = STATUS_CFG[d.status] || STATUS_CFG.uploaded;
+                    const isSel = selectedId === d.id;
+                    return (
+                      <div
+                        key={d.id}
+                        className="drawing-row"
+                        onClick={() => { setSelectedId(d.id); setActiveTab("drawings"); }}
+                        style={{
+                          padding:"9px 10px",borderRadius:"5px",cursor:"pointer",marginBottom:"2px",
+                          background: isSel ? T.accentL : "transparent",
+                          border: isSel ? `1px solid ${T.accentB}` : "1px solid transparent",
+                          transition:"all 0.15s",animation:"fadeIn 0.2s ease"
+                        }}
+                      >
+                        <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"3px"}}>
+                          <span style={{
+                            display:"inline-block",width:"6px",height:"6px",borderRadius:"50%",
+                            background:sc.color,flexShrink:0
+                          }}/>
+                          <span style={{fontSize:"10px",color:isSel?T.t1:T.t2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",flex:1,fontWeight:isSel?600:400}}>
+                            {d.name.replace(/\.[^.]+$/,"")}
+                          </span>
+                          <span style={{
+                            fontSize:"7px",color:sc.color,letterSpacing:"1px",flexShrink:0,
+                            background:sc.bg,padding:"1px 5px",borderRadius:"3px",fontWeight:700
+                          }}>{sc.label}</span>
+                        </div>
+                        {d.analysis?.drawingInfo?.type && (
+                          <div style={{fontSize:"9px",color:T.t4,paddingLeft:"12px",marginTop:"1px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                            {d.analysis.drawingInfo.type}
+                            {d.analysis.drawingInfo.number && <span style={{color:T.t4}}> · {d.analysis.drawingInfo.number}</span>}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
+              {/* Selected Drawing Panel */}
+              {selectedDrawing && (
+                <div style={{padding:"12px 14px",borderTop:`1px solid ${T.border}`,marginTop:"8px",animation:"fadeIn 0.2s ease"}}>
+
+                  {/* Status + name */}
+                  <div style={{display:"flex",alignItems:"center",gap:"8px",marginBottom:"12px"}}>
+                    <div style={{
+                      fontSize:"8px",letterSpacing:"1px",fontWeight:700,
+                      color: STATUS_CFG[selectedDrawing.status]?.color || T.t3,
+                      background: STATUS_CFG[selectedDrawing.status]?.bg,
+                      border:`1px solid ${STATUS_CFG[selectedDrawing.status]?.border}`,
+                      padding:"2px 8px",borderRadius:"3px"
+                    }}>
+                      ● {STATUS_CFG[selectedDrawing.status]?.label}
+                    </div>
+                  </div>
+
+                  {/* Drawing info */}
+                  {selectedDrawing.analysis?.drawingInfo && (
+                    <div style={{background:T.s2,border:`1px solid ${T.border}`,borderRadius:"5px",padding:"10px 12px",marginBottom:"12px"}}>
+                      {Object.entries(selectedDrawing.analysis.drawingInfo)
+                        .filter(([,v]) => v && v !== "Not visible" && v !== "not visible")
+                        .map(([k,v]) => (
+                          <div key={k} style={{display:"flex",gap:"8px",marginBottom:"4px",alignItems:"baseline"}}>
+                            <span style={{fontSize:"8px",color:T.t4,minWidth:"64px",textTransform:"uppercase",letterSpacing:"1px",flexShrink:0}}>{k}</span>
+                            <span style={{fontSize:"10px",color:T.t2,lineHeight:1.4}}>{v}</span>
+                          </div>
+                        ))}
+                    </div>
+                  )}
+
+                  {/* Action: Analyze */}
+                  {selectedDrawing.status === "uploaded" && (
+                    <button
+                      onClick={() => analyzeDrawing(selectedDrawing)}
+                      disabled={isProcessing}
+                      style={{
+                        width:"100%",background:isProcessing?"#e2e8f0":`linear-gradient(135deg,${T.accent},${T.accentM})`,
+                        border:"none",borderRadius:"5px",padding:"11px",
+                        color:isProcessing?T.t4:"#fff",
+                        fontSize:"9px",letterSpacing:"2.5px",fontWeight:800,
+                        cursor:isProcessing?"not-allowed":"pointer",marginBottom:"12px",
+                        boxShadow:isProcessing?"none":"0 2px 12px rgba(180,83,9,0.25)",
+                        transition:"all 0.2s"
+                      }}
+                    >
+                      ANALYZE WITH GEMINI →
+                    </button>
+                  )}
+
+                  {/* Error */}
+                  {selectedDrawing.status === "error" && (
+                    <div style={{background:T.redL,border:`1px solid ${T.redB}`,borderRadius:"5px",padding:"12px",marginBottom:"12px"}}>
+                      <div style={{fontSize:"9px",color:T.red,letterSpacing:"1px",marginBottom:"5px",fontWeight:700}}>⚠ ERROR</div>
+                      <div style={{fontSize:"10px",color:T.red,lineHeight:1.7}}>{selectedDrawing.error}</div>
+                      <button
+                        onClick={() => updateDrawing(selectedDrawing.id, { status:"uploaded", error:null })}
+                        style={{marginTop:"10px",background:"transparent",border:`1px solid ${T.redB}`,borderRadius:"3px",padding:"5px 14px",color:T.red,fontSize:"8px",cursor:"pointer",letterSpacing:"1px"}}
+                      >RETRY</button>
+                    </div>
+                  )}
+
+                  {/* Complete badge */}
+                  {selectedDrawing.status === "complete" && (
+                    <div style={{background:T.greenL,border:`1px solid ${T.greenB}`,borderRadius:"5px",padding:"9px 12px",marginBottom:"12px"}}>
+                      <div style={{fontSize:"9px",color:T.green,letterSpacing:"1px",fontWeight:700}}>
+                        ✓ {selectedDrawing.results?.filter(r=>r.totalQty!==null).length||0} items added to QTO table
+                      </div>
+                    </div>
+                  )}
+
+                  {/* AI Summary */}
+                  {selectedDrawing.analysis?.summary && (
+                    <div style={{background:T.accentL,border:`1px solid ${T.accentB}`,borderRadius:"5px",padding:"10px 12px",marginBottom:"12px"}}>
+                      <div style={{fontSize:"8px",color:T.accent,letterSpacing:"2px",marginBottom:"5px",fontWeight:700}}>AI SUMMARY</div>
+                      <div style={{fontSize:"10px",color:T.t2,lineHeight:1.8}}>{selectedDrawing.analysis.summary}</div>
+                    </div>
+                  )}
+
+                  {/* Warnings */}
+                  {selectedDrawing.analysis?.warnings?.filter(Boolean).length > 0 && (
+                    <div style={{background:T.orangeL,border:`1px solid ${T.orangeB}`,borderRadius:"5px",padding:"10px 12px",marginBottom:"12px"}}>
+                      <div style={{fontSize:"8px",color:T.orange,letterSpacing:"2px",marginBottom:"5px",fontWeight:700}}>⚠ QS FLAGS</div>
+                      {selectedDrawing.analysis.warnings.map((w,i) => (
+                        <div key={i} style={{fontSize:"10px",color:T.orange,lineHeight:1.8}}>· {w}</div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* QTO Items compact list */}
+                  {selectedDrawing.analysis?.qtoItems?.length > 0 && (
+                    <div style={{marginBottom:"12px"}}>
+                      <div style={{fontSize:"8px",color:T.t4,letterSpacing:"2px",marginBottom:"8px",display:"flex",gap:"8px",alignItems:"center"}}>
+                        <span>QTO ITEMS ({selectedDrawing.analysis.qtoItems.length})</span>
+                        <span style={{color:T.green,fontWeight:700}}>✓ {selectedDrawing.analysis.qtoItems.filter(i=>i.canCalculate&&i.totalQty!==null).length}</span>
+                        <span style={{color:T.orange}}>⏳ {selectedDrawing.analysis.qtoItems.filter(i=>!i.canCalculate||i.totalQty===null).length}</span>
+                      </div>
+                      {selectedDrawing.analysis.qtoItems.map(item => (
+                        <div key={item.id} style={{
+                          display:"flex",alignItems:"center",gap:"8px",
+                          padding:"7px 10px",borderRadius:"4px",marginBottom:"2px",
+                          background:T.s2,border:`1px solid ${T.border}`,
+                        }}>
+                          <span style={{fontSize:"7px",color:DISC_COLOR[item.discipline]||T.t4,fontWeight:700,minWidth:"28px",letterSpacing:"0.5px"}}>{item.discipline}</span>
+                          <span style={{fontSize:"9px",color:T.t2,flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{item.description}</span>
+                          {item.totalQty !== null && item.totalQty !== undefined ? (
+                            <span style={{fontSize:"10px",fontWeight:700,color:T.t1,flexShrink:0}}>
+                              {Number(item.totalQty).toFixed(2)} <span style={{fontSize:"8px",color:T.t4,fontWeight:400}}>{item.unit}</span>
+                            </span>
+                          ) : (
+                            <span style={{fontSize:"8px",color:T.orange,flexShrink:0}}>⏳</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Questions form */}
+                  {selectedDrawing.status === "questions" && selectedDrawing.analysis?.questions?.length > 0 && (
+                    <div style={{background:T.s2,border:`1px solid ${T.accentB}`,borderRadius:"6px",padding:"14px",marginBottom:"12px"}}>
+                      <div style={{fontSize:"8px",color:T.accent,letterSpacing:"2.5px",marginBottom:"14px",fontWeight:700}}>
+                        ✦ AGENT REQUIRES DATA
+                      </div>
+                      {selectedDrawing.analysis.questions.map((q,qi) => (
+                        <div key={q.id} style={{marginBottom: qi < selectedDrawing.analysis.questions.length-1 ? "16px" : "0"}}>
+                          <div style={{fontSize:"10px",color:T.t1,lineHeight:1.7,marginBottom:"3px",fontWeight:500}}>
+                            <span style={{color:T.accent,marginRight:"5px",fontWeight:700}}>Q{qi+1}.</span>{q.text}
+                          </div>
+                          <div style={{fontSize:"9px",color:T.t4,marginBottom:"7px",lineHeight:1.5}}>
+                            Typical: {q.typicalRange}
+                          </div>
+                          <div style={{display:"flex",gap:"6px",alignItems:"center"}}>
+                            <input
+                              type="text"
+                              value={selectedDrawing.answers[q.id] ?? ""}
+                              onChange={e => updateDrawing(selectedDrawing.id, { answers: { ...selectedDrawing.answers, [q.id]: e.target.value } })}
+                              placeholder={q.suggested || "Enter value"}
+                              style={{...inp,flex:1,borderColor:T.accentB,color:T.t1,padding:"8px 10px",fontSize:"13px",fontWeight:600}}
+                            />
+                            {q.unit && (
+                              <span style={{fontSize:"9px",color:T.t3,background:T.s3,padding:"8px 10px",border:`1px solid ${T.border2}`,borderRadius:"4px",flexShrink:0}}>{q.unit}</span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                      <button
+                        onClick={() => submitAnswers(selectedDrawing)}
+                        disabled={isProcessing}
+                        style={{
+                          width:"100%",marginTop:"16px",
+                          background:isProcessing?"#e2e8f0":`linear-gradient(135deg,${T.accent},${T.accentM})`,
+                          border:"none",borderRadius:"5px",padding:"11px",
+                          color:isProcessing?T.t4:"#fff",
+                          fontSize:"9px",letterSpacing:"2.5px",fontWeight:800,
+                          cursor:isProcessing?"not-allowed":"pointer",
+                          boxShadow:isProcessing?"none":"0 2px 12px rgba(180,83,9,0.25)"
+                        }}
+                      >{isProcessing?"CALCULATING…":"CALCULATE ALL QUANTITIES →"}</button>
+                    </div>
+                  )}
+
+                  {/* Observed Elements */}
+                  {selectedDrawing.analysis?.observedElements?.length > 0 && (
+                    <div>
+                      <div style={{fontSize:"8px",color:T.t4,letterSpacing:"2px",marginBottom:"7px"}}>ELEMENTS FROM DRAWING</div>
+                      <div style={{background:T.s2,border:`1px solid ${T.border}`,borderRadius:"5px",overflow:"hidden"}}>
+                        {selectedDrawing.analysis.observedElements.map((el,i) => (
+                          <div key={i} style={{
+                            display:"flex",alignItems:"center",gap:"8px",
+                            padding:"7px 10px",fontSize:"10px",
+                            borderBottom: i < selectedDrawing.analysis.observedElements.length-1 ? `1px solid ${T.border}` : "none"
+                          }}>
+                            <span style={{color:T.accent,minWidth:"28px",fontWeight:700}}>{el.mark||"—"}</span>
+                            <span style={{color:T.t4,minWidth:"22px"}}>×{el.count}</span>
+                            <span style={{color:T.t2,flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{el.type}</span>
+                            {el.dims && (
+                              <span style={{color:T.t4,fontSize:"9px",flexShrink:0}}>
+                                {el.dims.L}×{el.dims.W}×{el.dims.H}
+                              </span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Footer: export */}
+            {qtoTable.length > 0 && (
+              <div style={{padding:"10px 16px",borderTop:`1px solid ${T.border}`,flexShrink:0}}>
+                <button
+                  onClick={exportCSV}
+                  style={{
+                    width:"100%",background:T.greenL,border:`1px solid ${T.greenB}`,
+                    borderRadius:"5px",padding:"9px",color:T.green,
+                    fontSize:"9px",letterSpacing:"2px",cursor:"pointer",fontWeight:700,transition:"all 0.15s"
+                  }}
+                >EXPORT QTO CSV ({qtoTable.length} items) ↓</button>
+              </div>
+            )}
+          </div>
+
+          {/* ══════════════════════════════════════════
+              RIGHT PANEL  75%
+          ══════════════════════════════════════════ */}
+          <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden",minWidth:0}}>
+
+            {/* Tab Bar */}
+            <div style={{
+              height:"48px",flexShrink:0,
+              background:T.surface,borderBottom:`1px solid ${T.border}`,
+              display:"flex",alignItems:"center",padding:"0 20px",gap:"4px",
+              boxShadow:"0 1px 4px rgba(0,0,0,0.04)"
+            }}>
+              {[
+                { id:"drawings",  label:`DRAWINGS (${drawings.length})`            },
+                { id:"formulas",  label:`FORMULAS (${Object.keys(formulas).length})`},
+                { id:"results",   label:`QTO TABLE (${qtoTable.length})`           },
+              ].map(t => (
+                <button
+                  key={t.id}
+                  className="tab-btn"
+                  onClick={() => setActiveTab(t.id)}
+                  style={{
+                    background: activeTab===t.id ? T.accentL : "transparent",
+                    border: activeTab===t.id ? `1px solid ${T.accentB}` : "1px solid transparent",
+                    color: activeTab===t.id ? T.accent : T.t3,
+                    padding:"7px 16px",borderRadius:"5px",cursor:"pointer",
+                    fontSize:"9px",letterSpacing:"1.5px",fontWeight:activeTab===t.id?700:400,
+                    transition:"all 0.15s",fontFamily:"inherit"
+                  }}
+                >{t.label}</button>
+              ))}
+              <div style={{marginLeft:"auto",fontSize:"9px",color:T.t4,letterSpacing:"1px"}}>{MODEL}</div>
+            </div>
+
+            {/* ── DRAWINGS: PDF Viewer ── */}
+            {activeTab === "drawings" && (
+              <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
+
+                {/* Viewer Toolbar */}
+                <div style={{
+                  height:"44px",flexShrink:0,background:T.s2,borderBottom:`1px solid ${T.border}`,
+                  display:"flex",alignItems:"center",padding:"0 16px",gap:"10px"
+                }}>
+                  {selectedDrawing ? (
+                    <>
+                      <span style={{fontSize:"10px",color:T.t2,fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",flex:1}}>
+                        {selectedDrawing.name}
+                        {selectedDrawing.analysis?.drawingInfo?.number && (
+                          <span style={{color:T.t4,fontSize:"9px",marginLeft:"8px"}}>· {selectedDrawing.analysis.drawingInfo.number}</span>
+                        )}
+                      </span>
+                      {!selectedDrawing.isPDF && (
+                        <div style={{display:"flex",gap:"3px",alignItems:"center",flexShrink:0}}>
+                          <span style={{fontSize:"9px",color:T.t4,marginRight:"4px"}}>ZOOM</span>
+                          {[0,50,75,100,125,150,200].map(z => (
+                            <button
+                              key={z}
+                              className="zoom-btn"
+                              onClick={() => setZoom(z)}
+                              style={{
+                                background: zoom===z ? T.accent : T.surface,
+                                color: zoom===z ? "#fff" : T.t3,
+                                border: zoom===z ? `1px solid ${T.accent}` : `1px solid ${T.border2}`,
+                                borderRadius:"3px",padding:"3px 8px",fontSize:"9px",
+                                cursor:"pointer",fontFamily:"inherit",fontWeight:zoom===z?700:400,
+                                minWidth:"36px",transition:"all 0.12s"
+                              }}
+                            >{z===0?"FIT":`${z}%`}</button>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <span style={{fontSize:"9px",color:T.t4,letterSpacing:"1.5px"}}>SELECT A DRAWING TO PREVIEW</span>
+                  )}
+                </div>
+
+                {/* Viewer Canvas */}
+                <div style={{
+                  flex:1,overflow:"auto",
+                  background:"linear-gradient(135deg,#dde1e7 0%,#e8ecf0 100%)",
+                  display:"flex",
+                  alignItems: zoom===0 ? "center" : "flex-start",
+                  justifyContent: zoom===0 ? "center" : "center",
+                  padding:"28px"
+                }}>
+                  {selectedDrawing ? (
+                    selectedDrawing.isPDF ? (
+                      <iframe
+                        src={selectedDrawing.displayUrl}
+                        title={selectedDrawing.name}
+                        style={{
+                          width:"100%",height:"100%",border:"none",
+                          borderRadius:"4px",
+                          boxShadow:"0 8px 40px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.1)"
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src={selectedDrawing.displayUrl}
+                        alt={selectedDrawing.name}
+                        style={{
+                          width: zoom===0 ? "100%" : `${zoom}%`,
+                          maxWidth: zoom===0 ? "100%" : "none",
+                          height: zoom===0 ? "auto" : "auto",
+                          maxHeight: zoom===0 ? "100%" : "none",
+                          objectFit:"contain",
+                          borderRadius:"4px",
+                          boxShadow:"0 8px 40px rgba(0,0,0,0.18),0 2px 8px rgba(0,0,0,0.1)",
+                          display:"block",
+                          imageRendering:"auto"
+                        }}
+                      />
+                    )
+                  ) : (
+                    <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:"14px",opacity:0.4}}>
+                      <div style={{fontSize:"64px",lineHeight:1}}>⬡</div>
+                      <div style={{fontSize:"11px",letterSpacing:"3px",color:T.t2,textAlign:"center"}}>
+                        UPLOAD & SELECT A DRAWING<br/>
+                        <span style={{fontSize:"9px",letterSpacing:"1px",opacity:0.7}}>JPG · PNG · WEBP · PDF</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* ── FORMULAS ── */}
+            {activeTab === "formulas" && (
+              <div style={{flex:1,overflowY:"auto",padding:"28px 32px"}}>
+                <div style={{maxWidth:"900px",margin:"0 auto"}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:"28px"}}>
+                    <div>
+                      <div style={{fontSize:"9px",color:T.accent,letterSpacing:"4px",marginBottom:"8px",fontWeight:700}}>FORMULA LIBRARY</div>
+                      <div style={{fontSize:"11px",color:T.t3,lineHeight:1.8}}>
+                        Formulas injected into the Gemini prompt and applied during calculations.<br/>
+                        Edit any formula to match your project or client standards.
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => { setFormulas(DEFAULT_FORMULAS); setEditingKey(null); }}
+                      style={{background:T.s2,border:`1px solid ${T.border2}`,borderRadius:"4px",padding:"8px 16px",color:T.t3,fontSize:"8px",letterSpacing:"2px",cursor:"pointer",fontFamily:"inherit",flexShrink:0,fontWeight:600}}
+                    >RESET ALL</button>
+                  </div>
+
+                  {["CIVIL","STR","ARCH","FINISHING"].map(cat => {
+                    const items = Object.entries(formulas).filter(([,f]) => f.category === cat);
+                    if (!items.length) return null;
+                    const catColor = cat==="CIVIL"?T.green:cat==="STR"?T.blue:cat==="ARCH"?T.violet:T.orange;
+                    return (
+                      <div key={cat} style={{marginBottom:"32px"}}>
+                        <div style={{
+                          fontSize:"9px",letterSpacing:"4px",color:catColor,fontWeight:700,
+                          marginBottom:"12px",paddingBottom:"8px",
+                          borderBottom:`2px solid ${catColor}22`
+                        }}>{cat}</div>
+
+                        <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"8px"}}>
+                          {items.map(([key,formula]) => (
+                            <div key={key} style={{
+                              background:T.surface,border:`1px solid ${T.border}`,
+                              borderRadius:"6px",padding:"14px 16px",
+                              boxShadow:"0 1px 4px rgba(0,0,0,0.04)"
+                            }}>
+                              {editingKey===key ? (
+                                <div style={{display:"flex",flexDirection:"column",gap:"8px"}}>
+                                  <div style={{display:"flex",gap:"8px"}}>
+                                    <input value={formula.name} onChange={e=>setFormulas(p=>({...p,[key]:{...p[key],name:e.target.value}}))} style={{...inp,flex:1,fontSize:"11px"}} />
+                                    <input value={formula.unit} onChange={e=>setFormulas(p=>({...p,[key]:{...p[key],unit:e.target.value}}))} style={{...inp,width:"56px",fontSize:"11px"}} />
+                                  </div>
+                                  <textarea value={formula.formula} rows={2}
+                                    onChange={e=>setFormulas(p=>({...p,[key]:{...p[key],formula:e.target.value}}))}
+                                    style={{...inp,color:T.accent,resize:"vertical",lineHeight:1.6}} />
+                                  <textarea value={formula.description} rows={2}
+                                    onChange={e=>setFormulas(p=>({...p,[key]:{...p[key],description:e.target.value}}))}
+                                    style={{...inp,color:T.t3,fontSize:"10px",resize:"vertical",lineHeight:1.6}} />
+                                  <div style={{display:"flex",gap:"6px"}}>
+                                    <button onClick={()=>setEditingKey(null)} style={{background:T.greenL,border:`1px solid ${T.greenB}`,borderRadius:"3px",padding:"5px 14px",color:T.green,fontSize:"8px",cursor:"pointer",letterSpacing:"2px",fontWeight:700}}>SAVE</button>
+                                    <button onClick={()=>{setFormulas(p=>({...p,[key]:DEFAULT_FORMULAS[key]}));setEditingKey(null);}} style={{background:T.s2,border:`1px solid ${T.border2}`,borderRadius:"3px",padding:"5px 14px",color:T.t3,fontSize:"8px",cursor:"pointer",letterSpacing:"2px"}}>RESET</button>
+                                    <button onClick={()=>setEditingKey(null)} style={{background:"transparent",border:"none",padding:"5px 8px",color:T.t4,fontSize:"12px",cursor:"pointer",lineHeight:1}}>✕</button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <>
+                                  <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",gap:"8px",marginBottom:"6px"}}>
+                                    <div>
+                                      <span style={{fontSize:"11px",color:T.t1,fontWeight:700}}>{formula.name}</span>
+                                      <span style={{fontSize:"8px",color:T.t4,marginLeft:"6px"}}>[{key}]</span>
+                                    </div>
+                                    <div style={{display:"flex",alignItems:"center",gap:"6px",flexShrink:0}}>
+                                      <span style={{fontSize:"9px",color:T.t4}}>{formula.unit}</span>
+                                      <button onClick={()=>setEditingKey(key)}
+                                        style={{background:T.s2,border:`1px solid ${T.border2}`,borderRadius:"3px",padding:"3px 10px",color:T.t3,fontSize:"8px",cursor:"pointer",letterSpacing:"1px"}}
+                                      >EDIT</button>
+                                    </div>
+                                  </div>
+                                  <div style={{fontSize:"10px",color:T.accentM,marginBottom:"5px",wordBreak:"break-all",fontWeight:500}}>{formula.formula}</div>
+                                  <div style={{fontSize:"9px",color:T.t4,lineHeight:1.6}}>{formula.description}</div>
+                                  {Object.keys(formula.defaults).length > 0 && (
+                                    <div style={{fontSize:"8px",color:T.blue,marginTop:"5px",background:T.blueL,padding:"3px 7px",borderRadius:"3px",display:"inline-block"}}>
+                                      {Object.entries(formula.defaults).map(([k,v])=>`${k}=${v}`).join("  ·  ")}
+                                    </div>
+                                  )}
+                                </>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* ── QTO TABLE ── */}
+            {activeTab === "results" && (
+              <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
+                <div style={{
+                  padding:"10px 24px",borderBottom:`1px solid ${T.border}`,
+                  display:"flex",alignItems:"center",justifyContent:"space-between",flexShrink:0,
+                  background:T.surface
+                }}>
+                  <span style={{fontSize:"9px",color:T.t3,letterSpacing:"2px",fontWeight:600}}>
+                    MASTER QTO TABLE — {qtoTable.length} LINE ITEMS
+                  </span>
+                  {qtoTable.length > 0 && (
+                    <button
+                      onClick={exportCSV}
+                      style={{background:T.greenL,border:`1px solid ${T.greenB}`,borderRadius:"4px",padding:"6px 16px",color:T.green,fontSize:"8px",letterSpacing:"2px",cursor:"pointer",fontWeight:700}}
+                    >EXPORT CSV ↓</button>
+                  )}
+                </div>
+
+                {qtoTable.length === 0 ? (
+                  <div style={{flex:1,display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:"12px",opacity:0.35}}>
+                    <div style={{fontSize:"48px"}}>⊞</div>
+                    <div style={{fontSize:"9px",color:T.t2,letterSpacing:"2px",textAlign:"center"}}>COMPLETE DRAWING ANALYSIS<br/>TO POPULATE QTO TABLE</div>
+                  </div>
+                ) : (
+                  <div style={{flex:1,overflow:"auto"}}>
+                    <table style={{width:"100%",borderCollapse:"collapse",minWidth:"780px"}}>
+                      <thead>
+                        <tr style={{position:"sticky",top:0,background:T.s2,zIndex:5,borderBottom:`2px solid ${T.border2}`}}>
+                          {["DRAWING","TYPE","DISC","ITEM CODE","DESCRIPTION","UNIT","QUANTITY"].map((h,i) => (
+                            <th key={h} style={{
+                              padding:"10px 16px",fontSize:"8px",letterSpacing:"2px",
+                              color:T.t4,fontWeight:700,textAlign:i===6?"right":"left",
+                              borderBottom:`1px solid ${T.border}`
+                            }}>{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {Array.from(new Set(qtoTable.map(r=>r.drawingId))).flatMap(drawingId => {
+                          const rows = qtoTable.filter(r => r.drawingId === drawingId);
+                          return rows.map((row,i) => (
+                            <tr key={row.rowId} style={{borderBottom:`1px solid ${T.border}`,background:i%2===0?T.surface:T.s2}}>
+                              <td style={{padding:"9px 16px",fontSize:"10px",color:T.t3,maxWidth:"130px",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>
+                                {i===0?row.drawingName.replace(/\.[^.]+$/,""):""}
+                              </td>
+                              <td style={{padding:"9px 16px",fontSize:"9px",color:T.t4}}>{row.drawingType}</td>
+                              <td style={{padding:"9px 16px"}}>
+                                <span style={{fontSize:"8px",color:DISC_COLOR[row.discipline]||T.t4,letterSpacing:"1px",fontWeight:700,background:(DISC_COLOR[row.discipline]||T.t4)+"18",padding:"2px 7px",borderRadius:"3px"}}>
+                                  {row.discipline}
+                                </span>
+                              </td>
+                              <td style={{padding:"9px 16px",fontSize:"9px",color:T.accent,fontWeight:700}}>{row.itemCode}</td>
+                              <td style={{padding:"9px 16px",fontSize:"11px",color:T.t2,maxWidth:"260px"}}>{row.description}</td>
+                              <td style={{padding:"9px 16px",fontSize:"10px",color:T.t3}}>{row.unit}</td>
+                              <td style={{padding:"9px 16px",textAlign:"right"}}>
+                                <span style={{fontSize:"14px",fontWeight:900,color:T.t1,letterSpacing:"-0.5px"}}>
+                                  {row.qty!==null&&row.qty!==undefined?Number(row.qty).toFixed(2):"—"}
+                                </span>
+                              </td>
+                            </tr>
+                          ));
+                        })}
+                      </tbody>
+                      <tfoot>
+                        <tr>
+                          <td colSpan={7} style={{borderTop:`2px solid ${T.border2}`,padding:"14px 16px",background:T.s2}}>
+                            <div style={{display:"flex",gap:"24px",flexWrap:"wrap",alignItems:"center"}}>
+                              <span style={{fontSize:"8px",color:T.t4,letterSpacing:"2px",fontWeight:700}}>UNIT TOTALS:</span>
+                              {Array.from(new Set(qtoTable.map(r=>r.unit))).map(unit => {
+                                const total = qtoTable.filter(r=>r.unit===unit&&r.qty!==null).reduce((s,r)=>s+Number(r.qty||0),0);
+                                return (
+                                  <div key={unit} style={{fontSize:"11px"}}>
+                                    <span style={{color:T.t3}}>{unit} </span>
+                                    <span style={{color:T.accent,fontWeight:800}}>{total.toFixed(2)}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </td>
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<QTOSystem />);
+  </script>
+</body>
+</html>
