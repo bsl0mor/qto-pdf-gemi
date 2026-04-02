@@ -1,0 +1,22 @@
+# Python bytecode
+*.pyc
+*.pyo
+__pycache__/
+
+# Secrets / API keys — never commit
+config_local.py
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp
+
+# Generated output (large binary / xlsx)
+BOQ_*.xlsx
+*_raw.txt
+*_pagemap.json
+raw_response.txt

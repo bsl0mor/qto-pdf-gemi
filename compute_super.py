@@ -7,7 +7,8 @@ floor heights) and recomputes ALL 8 super items using exact QS formulas.
 
 
 def recompute_super(observed_elements, floor_heights, parsed_cols,
-                    slab_thickness=0.20, parapet_type="block"):
+                    slab_thickness=0.20, parapet_type="block",
+                    avg_beam_b=0.25, avg_beam_d_net=0.40):
     """
     Recompute all 8 superstructure items from observed + parsed data.
 
@@ -23,6 +24,12 @@ def recompute_super(observed_elements, floor_heights, parsed_cols,
         Slab thickness in metres (from text parser or default 0.20).
     parapet_type : str
         "block" or "concrete"
+
+    avg_beam_b    : float, optional
+        Average beam width in metres (default 0.25).  Override via manual input
+        or extracted from observed beam elements.
+    avg_beam_d_net : float, optional
+        Average beam net depth (d − slab_t) in metres (default 0.40).
 
     Returns
     -------
@@ -175,21 +182,25 @@ def recompute_super(observed_elements, floor_heights, parsed_cols,
     roof_slab = r(roof_slab_area * slab_t)
 
     # ── Beams ──────────────────────────────────────────────────────
-    # We get total beam length from Gemini but not per-mark breakdown.
-    # For accurate beam concrete: need average beam b and (d - slab_t).
-    # Best approach: use beam schedule from Gemini if available, else estimate.
-    # Average beam dims: typical villa beams are 0.20×0.50 or 0.25×0.60
-    # We use observed beam schedule if available, else defaults
-    avg_beam_b = 0.25
-    avg_beam_d_net = 0.40   # d - slab_t
+    # Use b_m / d_net_m from observed beam elements if the caller stored them
+    # (manual_input.py writes these fields).  Fall back to the function arguments
+    # (which themselves fall back to defaults 0.25 / 0.40).
+    for el in observed_elements:
+        etype = str(el.get("type", "")).lower().replace(" ", "")
+        if etype == "beam":
+            if el.get("b_m"):
+                avg_beam_b = float(el["b_m"])
+            if el.get("d_net_m"):
+                avg_beam_d_net = float(el["d_net_m"])
+            break   # one beam element is enough — all floors share same avg dims
 
     ff_beams  = r(ff_beam_total_length * avg_beam_b * avg_beam_d_net)
     roof_beams = r(roof_beam_total_length * avg_beam_b * avg_beam_d_net)
 
     if ff_beams == 0 and ff_beam_total_length == 0:
-        corrections.append("  ⚠ FF beam total length = 0 from Gemini")
+        corrections.append("  ⚠ FF beam total length = 0")
     if roof_beams == 0 and roof_beam_total_length == 0:
-        corrections.append("  ⚠ Roof beam total length = 0 from Gemini")
+        corrections.append("  ⚠ Roof beam total length = 0")
 
     # ── Parapet ────────────────────────────────────────────────────
     if rf_perimeter == 0 and roof_slab_area > 0:

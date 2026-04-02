@@ -224,7 +224,7 @@ def run_project(cfg):
     # ══════════════════════════════════════════════════════════════════
     # VISION: Per-page focused calls (improved strategy)
     # ══════════════════════════════════════════════════════════════════
-    from vision_reader import read_arch as _vision_read_arch
+    from manual_input import read_arch as _vision_read_arch
     from compute_arch import compute_arch_items
     from guards import run_all_checks
 

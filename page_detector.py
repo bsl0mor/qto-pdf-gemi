@@ -1,216 +1,208 @@
 """
-page_detector.py — Auto-detect drawing page numbers in STR/ARCH PDFs using Gemini.
+page_detector.py — Text-based page classifier for STR/ARCH PDFs.
+══════════════════════════════════════════════════════════════════
+Reads the text layer of every PDF page and searches for known
+drawing-type keywords.  Falls back to interactive user prompt for
+any page whose type cannot be determined from text alone.
 
-Renders every page as a small thumbnail, sends them all in ONE Gemini call,
-and returns a complete config dict ready to pass into run_batch.py.
+No AI, no API key, works fully offline.
 
 Usage (CLI):
     py page_detector.py <str_pdf> <arch_pdf>
-    py page_detector.py "B:\\...\\Str.pdf" "B:\\...\\Arch.pdf"
-    py page_detector.py "B:\\...\\Str.pdf" none        # STR only
-    py page_detector.py none "B:\\...\\Arch.pdf"       # ARCH only
+    py page_detector.py "path/Str.pdf" "path/Arch.pdf"
+    py page_detector.py "path/Str.pdf" none        # STR only
+    py page_detector.py none "path/Arch.pdf"       # ARCH only
 
 Usage (as module):
     from page_detector import detect_pages
-    cfg = detect_pages(str_pdf=r"...", arch_pdf=r"...")
+    cfg = detect_pages(str_pdf="...", arch_pdf="...")
     # cfg = {"pg_foundation": 7, "pg_tbeam": 8, "pg_gf_plan": 2, ...}
 """
 
-import fitz, base64, json, urllib.request, os, sys
+import fitz, re, sys, json, os
 
-API_KEY     = "AIzaSyAEf3myy42MZRDChyd2kRRrXDusTFG0rEY"
-MODEL       = "gemini-2.5-flash"
-URL         = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={API_KEY}"
-THUMB_SCALE = 0.35   # ~35% — small enough to be cheap, large enough to read titles
+# ══════════════════════════════════════════════════════════════════════════════
+# KEYWORD SIGNATURES
+# ══════════════════════════════════════════════════════════════════════════════
+# Each value is a list of keyword phrases (case-insensitive).
+# A page matches a type if ANY keyword is found in its text.
+# More-specific keywords should appear first to avoid false positives.
+
+_STR_KEYWORDS = {
+    "foundation_layout": [
+        "FOUNDATION LAYOUT",
+        "FOOTING LAYOUT",
+        "SCHEDULE OF FOOTINGS",
+        "SCHEDULE OF FOOTING",
+        "FOUNDATION PLAN",
+    ],
+    "tiebeam_layout": [
+        "TIE BEAM LAYOUT",
+        "TIE BEAMS LAYOUT",
+        "TIEBEAM LAYOUT",
+        "GROUND BEAM LAYOUT",
+        "GROUND BEAMS LAYOUT",
+        "SOG LAYOUT",
+        "SCHEDULE OF TIE BEAMS",
+        "TIE BEAM PLAN",
+    ],
+    "columns_ff": [
+        "FIRST FLOOR COLUMN",
+        "FF COLUMN LAYOUT",
+        "1ST FLOOR COLUMN",
+        "FIRST FLOOR COLUMN LAYOUT",
+        "FF COLS",
+    ],
+    "columns_gf": [
+        "GROUND FLOOR COLUMN",
+        "GF COLUMN LAYOUT",
+        "COLUMN LAYOUT",
+        "COLUMNS LAYOUT",
+        "SCHEDULE OF COLUMNS",
+        "COLUMN LAYOUT AT GROUND FLOOR",
+    ],
+    "ff_slab": [
+        "FIRST FLOOR SLAB LAYOUT",
+        "FF SLAB LAYOUT",
+        "1ST FLOOR SLAB",
+        "FIRST SLAB LAYOUT",
+        "FIRST FLOOR SLAB",
+    ],
+    "roof_slab": [
+        "ROOF SLAB LAYOUT",
+        "RF SLAB LAYOUT",
+        "ROOF SLAB",
+        "RF SLAB",
+        "ROOF FLOOR SLAB",
+    ],
+}
+
+_ARCH_KEYWORDS = {
+    "dw_schedule": [
+        "DOORS AND WINDOWS SCHEDULE",
+        "DOOR AND WINDOW SCHEDULE",
+        "D&W SCHEDULE",
+        "SCHEDULE OF DOORS AND WINDOWS",
+        "WINDOWS SCHEDULE",
+        "ALUMINUM WINDOWS DETAILS",
+        "ALUMINIUM WINDOWS DETAILS",
+        "DOOR SCHEDULE",
+    ],
+    "section_heights": [
+        "BUILDING SECTION",
+        "CROSS SECTION",
+        "SECTION A-A",
+        "SECTION B-B",
+        "SECTION A",
+        "SECTION B",
+        "FFL",
+        "FINISHED FLOOR LEVEL",
+        "FLOOR TO FLOOR",
+    ],
+    "ff_plan": [
+        "FIRST FLOOR PLAN",
+        "FF FLOOR PLAN",
+        "1ST FLOOR PLAN",
+        "FIRST FLOOR ARCHITECTURAL PLAN",
+        "FIRST FLOOR LAYOUT",
+    ],
+    "gf_plan": [
+        "GROUND FLOOR PLAN",
+        "G.F. PLAN",
+        "GF FLOOR PLAN",
+        "GROUND FLOOR LAYOUT",
+        "GROUND FLOOR ARCHITECTURAL PLAN",
+    ],
+    "elevation_2": [
+        "ELEVATION 3",
+        "ELEVATION 4",
+        "ELEVATIONS 3",
+        "ELEVATIONS 4",
+        "SIDE ELEVATION",
+        "E3",
+        "E4",
+    ],
+    "elevation_1": [
+        "ELEVATION 1",
+        "ELEVATION 2",
+        "ELEVATIONS 1",
+        "ELEVATIONS 2",
+        "FRONT ELEVATION",
+        "REAR ELEVATION",
+        "E1",
+        "E2",
+        "ELEVATION",
+    ],
+}
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# RENDERING
+# DETECTION
 # ══════════════════════════════════════════════════════════════════════════════
 
-def _render_pdf(pdf_path: str, scale: float = THUMB_SCALE) -> list:
-    """Render all pages of a PDF → list of {index, width, height, b64}."""
+def _classify_page(text: str, keyword_map: dict) -> list:
+    """
+    Return list of drawing types matched in 'text'.
+    text is the raw text of ONE PDF page.
+    """
+    text_upper = text.upper()
+    matches = []
+    for dtype, keywords in keyword_map.items():
+        for kw in keywords:
+            if kw in text_upper:
+                matches.append(dtype)
+                break
+    return matches
+
+
+def _detect_from_pdf(pdf_path: str, keyword_map: dict, pdf_label: str) -> dict:
+    """
+    Scan all pages in pdf_path, return {drawing_type: page_index}.
+    When multiple pages match the same type, the first match wins.
+    """
+    if not os.path.exists(pdf_path):
+        print(f"  ⚠ PDF not found: {pdf_path}")
+        return {}
+
     doc = fitz.open(pdf_path)
-    pages = []
-    total_kb = 0
-    for i in range(len(doc)):
-        pix = doc[i].get_pixmap(
-            matrix=fitz.Matrix(scale, scale),
-            colorspace=fitz.csRGB
-        )
-        b64 = base64.b64encode(pix.tobytes("jpeg", jpg_quality=75)).decode()
-        kb  = len(b64) // 1024
-        total_kb += kb
-        pages.append({"index": i, "width": pix.width, "height": pix.height, "b64": b64})
-        print(f"    pg{i:02d}: {pix.width}x{pix.height}px  {kb}KB")
+    n = doc.page_count
+    print(f"\nScanning {pdf_label}: {os.path.basename(pdf_path)}  ({n} pages)")
+
+    detected = {}          # drawing_type → page_index
+    page_texts = []
+    for i in range(n):
+        text = doc[i].get_text()
+        page_texts.append(text)
+        matched = _classify_page(text, keyword_map)
+        for dtype in matched:
+            if dtype not in detected:
+                detected[dtype] = i
+                print(f"  ✓  page {i:02d}  →  {dtype}")
+
     doc.close()
-    print(f"  Total: {len(pages)} pages, {total_kb}KB")
-    return pages
+    return detected, page_texts, n
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# GEMINI CALL
-# ══════════════════════════════════════════════════════════════════════════════
-
-PROMPT = """You are a structural/architectural drawing classifier for UAE villa construction projects.
-
-I am showing you thumbnail images of all pages from one or two PDFs (labelled STR or ARCH).
-Each image is labelled with [STR PAGE N] or [ARCH PAGE N] (0-based index).
-
-YOUR TASK: identify the 0-based page index for each drawing type listed below.
-
-──────────────────────────────────────────────────────────────
-STRUCTURAL drawing types (look in STR pages):
-  foundation_layout  → Plan showing footing positions + Schedule of Footings table
-  tiebeam_layout     → Plan showing tie beams / ground beams layout
-  columns_gf         → Ground floor column layout plan (+ column schedule if present)
-  columns_ff         → First floor column layout plan
-                       If the column drawing covers ALL FLOORS / GF TO ROOF, set columns_ff = columns_gf
-  ff_slab            → First floor (FF) slab layout / beam plan
-  roof_slab          → Roof floor slab layout / beam plan
-
-ARCHITECTURAL drawing types (look in ARCH pages):
-  gf_plan            → Ground floor architectural floor plan (rooms, walls, dimensions)
-  ff_plan            → First floor architectural floor plan
-  section_heights    → Section or elevation clearly showing floor heights / FFL levels
-                       (e.g. GF = +0.60m, FF = +4.30m, Roof = +8.00m)
-  elevation_1        → First facade elevation sheet (front / rear, labelled E1 or E2)
-  elevation_2        → Second facade elevation sheet (sides, labelled E3/E4 or different from above)
-                       If all elevations are on one page, set elevation_2 = elevation_1
-  dw_schedule        → Doors and Windows schedule table (D1, D2... / W1, W2... with dimensions)
-──────────────────────────────────────────────────────────────
-
-RULES:
-  - Page indices are 0-based
-  - If two types share the same page, use the same index for both
-  - If a type is NOT found, use null
-  - Do NOT guess — only assign a page you are confident about
-
-Return ONLY this JSON (no markdown fences, no comments):
-{
-  "str": {
-    "foundation_layout": <int or null>,
-    "tiebeam_layout":    <int or null>,
-    "columns_gf":        <int or null>,
-    "columns_ff":        <int or null>,
-    "ff_slab":           <int or null>,
-    "roof_slab":         <int or null>
-  },
-  "arch": {
-    "gf_plan":           <int or null>,
-    "ff_plan":           <int or null>,
-    "section_heights":   <int or null>,
-    "elevation_1":       <int or null>,
-    "elevation_2":       <int or null>,
-    "dw_schedule":       <int or null>
-  },
-  "notes": "<brief observations e.g. pages not found, combined pages, etc.>"
-}"""
-
-
-def detect_pages(str_pdf: str = None, arch_pdf: str = None) -> dict:
-    """
-    Auto-detect page numbers in STR and/or ARCH PDFs using Gemini.
-
-    Returns a flat config dict:
-        {pg_foundation, pg_tbeam, pg_columns, pg_gf_cols, pg_ff_cols,
-         pg_ff_slab, pg_roof_slab, pg_elevation, pg_gf_plan, pg_ff_plan,
-         pg_elev1, pg_elev2, pg_dw_sched}
-    """
-    parts = []
-
-    # ── STR PDF ──────────────────────────────────────────────────────────────
-    if str_pdf and str_pdf.lower() != "none" and os.path.exists(str_pdf):
-        print(f"\nRendering STR: {os.path.basename(str_pdf)}")
-        str_pages = _render_pdf(str_pdf)
-        parts.append({"text": f"\n=== STRUCTURAL PDF: {os.path.basename(str_pdf)} "
-                               f"({len(str_pages)} pages) ===\n"})
-        for pg in str_pages:
-            parts.append({"text": f"[STR PAGE {pg['index']} | {pg['width']}x{pg['height']}px]"})
-            parts.append({"inlineData": {"mimeType": "image/jpeg", "data": pg["b64"]}})
-    elif str_pdf and str_pdf.lower() != "none":
-        print(f"  ⚠ STR PDF not found: {str_pdf}")
-
-    # ── ARCH PDF ─────────────────────────────────────────────────────────────
-    if arch_pdf and arch_pdf.lower() != "none" and os.path.exists(arch_pdf):
-        print(f"\nRendering ARCH: {os.path.basename(arch_pdf)}")
-        arch_pages = _render_pdf(arch_pdf)
-        parts.append({"text": f"\n=== ARCHITECTURAL PDF: {os.path.basename(arch_pdf)} "
-                               f"({len(arch_pages)} pages) ===\n"})
-        for pg in arch_pages:
-            parts.append({"text": f"[ARCH PAGE {pg['index']} | {pg['width']}x{pg['height']}px]"})
-            parts.append({"inlineData": {"mimeType": "image/jpeg", "data": pg["b64"]}})
-    elif arch_pdf and arch_pdf.lower() != "none":
-        print(f"  ⚠ ARCH PDF not found: {arch_pdf}")
-
-    if not parts:
-        raise ValueError("No valid PDFs provided.")
-
-    # ── Call Gemini ───────────────────────────────────────────────────────────
-    body = json.dumps({
-        "contents": [{"role": "user", "parts": [
-            {"text": PROMPT},
-            *parts
-        ]}],
-        "generationConfig": {
-            "temperature": 0.0,
-            "maxOutputTokens": 4096,
-            "responseMimeType": "application/json",
-            "thinkingConfig": {"thinkingBudget": 3000}
-        }
-    }).encode()
-
-    print("\nCalling Gemini for page detection...")
-    req = urllib.request.Request(
-        URL, data=body,
-        headers={"Content-Type": "application/json"},
-        method="POST"
-    )
-    with urllib.request.urlopen(req, timeout=300) as resp:
-        data = json.loads(resp.read())
-
-    raw = data["candidates"][0]["content"]["parts"][0]["text"]
-
+def _ask_page(drawing_label: str, pdf_label: str, n_pages: int) -> int | None:
+    """Interactively ask the user for a 0-based page number."""
+    raw = input(
+        f"  Enter 0-based page number for '{drawing_label}' in {pdf_label}"
+        f" (0–{n_pages-1}, or ENTER to skip): "
+    ).strip()
+    if raw == "":
+        return None
     try:
-        result = json.loads(raw)
-    except json.JSONDecodeError:
-        import re
-        m = re.search(r'\{.*\}', raw, re.DOTALL)
-        if m:
-            result = json.loads(m.group(0))
-        else:
-            print(f"⚠ Could not parse Gemini response:\n{raw}")
-            raise
-
-    # ── Map to pipeline config keys ───────────────────────────────────────────
-    s = result.get("str",  {}) or {}
-    a = result.get("arch", {}) or {}
-
-    cfg = {
-        "pg_foundation": s.get("foundation_layout"),
-        "pg_tbeam":      s.get("tiebeam_layout"),
-        "pg_columns":    s.get("columns_gf"),
-        "pg_gf_cols":    s.get("columns_gf"),
-        "pg_ff_cols":    s.get("columns_ff"),
-        "pg_ff_slab":    s.get("ff_slab"),
-        "pg_roof_slab":  s.get("roof_slab"),
-        "pg_elevation":  a.get("section_heights"),
-        "pg_gf_plan":    a.get("gf_plan"),
-        "pg_ff_plan":    a.get("ff_plan"),
-        "pg_elev1":      a.get("elevation_1"),
-        "pg_elev2":      a.get("elevation_2"),
-        "pg_dw_sched":   a.get("dw_schedule"),
-    }
-
-    notes = result.get("notes", "")
-    if notes:
-        print(f"\nGemini notes: {notes}")
-
-    return cfg, result
+        v = int(raw)
+        if 0 <= v < n_pages:
+            return v
+        print(f"    ✗ Must be 0–{n_pages-1}")
+    except ValueError:
+        pass
+    return None
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# DISPLAY
+# PUBLIC API
 # ══════════════════════════════════════════════════════════════════════════════
 
 _LABELS = {
@@ -228,7 +220,82 @@ _LABELS = {
     "pg_dw_sched":   "Doors & Windows Sched (ARCH)",
 }
 
+
+def detect_pages(str_pdf: str = None, arch_pdf: str = None) -> tuple:
+    """
+    Detect page numbers in STR and/or ARCH PDFs using text-layer keywords.
+    Falls back to interactive user prompt for any undetected type.
+
+    Returns
+    -------
+    cfg : dict   flat config — {pg_foundation, pg_tbeam, pg_columns,
+                 pg_gf_cols, pg_ff_cols, pg_ff_slab, pg_roof_slab,
+                 pg_elevation, pg_gf_plan, pg_ff_plan,
+                 pg_elev1, pg_elev2, pg_dw_sched}
+    result : dict  raw detection detail
+    """
+    cfg = {k: None for k in _LABELS}
+    result = {"str": {}, "arch": {}, "notes": "text-based detection"}
+
+    str_n = 0
+    arch_n = 0
+
+    # ── STR detection ─────────────────────────────────────────────
+    if str_pdf and str_pdf.lower() != "none" and os.path.exists(str_pdf):
+        str_detected, str_texts, str_n = _detect_from_pdf(
+            str_pdf, _STR_KEYWORDS, "STR"
+        )
+        result["str"] = {k: v for k, v in str_detected.items()}
+
+        cfg["pg_foundation"] = str_detected.get("foundation_layout")
+        cfg["pg_tbeam"]      = str_detected.get("tiebeam_layout")
+        cfg["pg_columns"]    = str_detected.get("columns_gf")
+        cfg["pg_gf_cols"]    = str_detected.get("columns_gf")
+        cfg["pg_ff_cols"]    = str_detected.get("columns_ff",
+                                                 str_detected.get("columns_gf"))
+        cfg["pg_ff_slab"]    = str_detected.get("ff_slab")
+        cfg["pg_roof_slab"]  = str_detected.get("roof_slab")
+
+    elif str_pdf and str_pdf.lower() != "none":
+        print(f"  ⚠ STR PDF not found: {str_pdf}")
+
+    # ── ARCH detection ────────────────────────────────────────────
+    if arch_pdf and arch_pdf.lower() != "none" and os.path.exists(arch_pdf):
+        arch_detected, arch_texts, arch_n = _detect_from_pdf(
+            arch_pdf, _ARCH_KEYWORDS, "ARCH"
+        )
+        result["arch"] = {k: v for k, v in arch_detected.items()}
+
+        cfg["pg_elevation"] = arch_detected.get("section_heights")
+        cfg["pg_gf_plan"]   = arch_detected.get("gf_plan")
+        cfg["pg_ff_plan"]   = arch_detected.get("ff_plan")
+        cfg["pg_elev1"]     = arch_detected.get("elevation_1")
+        cfg["pg_elev2"]     = arch_detected.get("elevation_2",
+                                                 arch_detected.get("elevation_1"))
+        cfg["pg_dw_sched"]  = arch_detected.get("dw_schedule")
+
+    elif arch_pdf and arch_pdf.lower() != "none":
+        print(f"  ⚠ ARCH PDF not found: {arch_pdf}")
+
+    # ── Interactive fallback for undetected types ─────────────────
+    undetected = [(k, label) for k, label in _LABELS.items() if cfg.get(k) is None]
+    if undetected:
+        print(f"\n  {len(undetected)} drawing type(s) not auto-detected — please enter manually:")
+        for cfg_key, label in undetected:
+            is_str = "(STR)" in label
+            pdf_label = "STR" if is_str else "ARCH"
+            n_pages = str_n if is_str else arch_n
+            if n_pages == 0:
+                continue
+            v = _ask_page(label, pdf_label, n_pages)
+            if v is not None:
+                cfg[cfg_key] = v
+
+    return cfg, result
+
+
 def print_cfg(cfg: dict):
+    """Print a formatted detection summary."""
     print("\n" + "=" * 55)
     print("  DETECTED PAGE MAP")
     print("=" * 55)
@@ -241,7 +308,7 @@ def print_cfg(cfg: dict):
         else:
             print(f"  ✓  {label}  →  page {v}")
     if missing:
-        print(f"\n  ⚠ {len(missing)} item(s) not detected — set manually in config")
+        print(f"\n  ⚠ {len(missing)} item(s) not detected")
     else:
         print("\n  ✓ All drawings detected successfully!")
     print("=" * 55)
@@ -262,14 +329,12 @@ if __name__ == "__main__":
     cfg, raw_result = detect_pages(str_pdf, arch_pdf)
     print_cfg(cfg)
 
-    # Save pagemap JSON next to this script
     base = os.path.splitext(os.path.basename(str_pdf or arch_pdf))[0]
     out  = os.path.join(os.path.dirname(os.path.abspath(__file__)), f"{base}_pagemap.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump({"config": cfg, "raw": raw_result}, f, indent=2, ensure_ascii=False)
     print(f"\nSaved: {out}")
 
-    # Print as Python dict snippet for copy-paste into run_batch.py
     print("\n── Config snippet (copy into run_batch.py) ──")
     for k, v in cfg.items():
         print(f'    "{k}": {v},')

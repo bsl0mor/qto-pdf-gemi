@@ -844,7 +844,7 @@ def run_project(cfg):
     # ══════════════════════════════════════════════════════════════════
     # VISION: READ-ONLY multi-pass (Gemini reads, does NOT calculate)
     # ══════════════════════════════════════════════════════════════════
-    from vision_reader import read_sub as _vision_read_sub
+    from manual_input import read_sub as _vision_read_sub
     from compute_sub import recompute_sub
     from guards import run_all_checks
 

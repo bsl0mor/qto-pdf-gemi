@@ -57,8 +57,9 @@ def compute_arch_items(observed, dw, gf_h, ff_h, roof_area, parapet_h=1.20):
     gf_win_a  = gf_op.get("win_area",  0);ff_win_a  = ff_op.get("win_area",  0)
     gf_door_w = gf_op.get("door_w",    0);ff_door_w = ff_op.get("door_w",    0)
     gf_door_a = gf_op.get("door_area", 0);ff_door_a = ff_op.get("door_area", 0)
-    gf_door_a_ext = gf_op.get("door_area_ext", 0)
-    ff_door_a_ext = ff_op.get("door_area_ext", 0)
+    # Prefer split values; fall back to total so old result files still work.
+    gf_door_a_ext = gf_op.get("door_area_ext", gf_door_a)
+    ff_door_a_ext = ff_op.get("door_area_ext", ff_door_a)
     gf_door_a_int = gf_op.get("door_area_int", gf_door_a)
     ff_door_a_int = ff_op.get("door_area_int", ff_door_a)
 
@@ -81,10 +82,11 @@ def compute_arch_items(observed, dw, gf_h, ff_h, roof_area, parapet_h=1.20):
 
     def r(v): return round(max(v, 0), 3)  # clamp negatives to 0
 
-    # GF
-    block_20_ext_gf = r(gf_ext_p * gf_h - gf_win_a - gf_door_a)
-    block_20_int_gf = r(gf_l20   * gf_h - 0.4 * gf_door_a)
-    block_10_int_gf = r(gf_l10   * gf_h - 0.4 * gf_door_a)
+    # GF — external block: subtract only external door openings from external wall area.
+    # Internal block walls: subtract only internal door openings.
+    block_20_ext_gf = r(gf_ext_p * gf_h - gf_win_a - gf_door_a_ext)
+    block_20_int_gf = r(gf_l20   * gf_h - 0.4 * gf_door_a_int)
+    block_10_int_gf = r(gf_l10   * gf_h - 0.4 * gf_door_a_int)
     plaster_int_gf  = r((gf_l20 + gf_l10) * gf_h * 2 + gf_ext_p * gf_h
                         - gf_door_a_int * 2 - gf_door_a_ext * 1 - gf_win_a)
     flooring_dry_gf = r(gf_dry_a)
@@ -93,10 +95,10 @@ def compute_arch_items(observed, dw, gf_h, ff_h, roof_area, parapet_h=1.20):
     paint_gf        = r(skirting_gf * gf_h)
     tiles_wall_gf   = r(gf_wet_p * (gf_h - 0.5))
 
-    # FF
-    block_20_ext_ff = r(ff_ext_p * ff_h - ff_win_a - ff_door_a)
-    block_20_int_ff = r(ff_l20   * ff_h - 0.4 * ff_door_a)
-    block_10_int_ff = r(ff_l10   * ff_h - 0.4 * ff_door_a)
+    # FF — same split as GF
+    block_20_ext_ff = r(ff_ext_p * ff_h - ff_win_a - ff_door_a_ext)
+    block_20_int_ff = r(ff_l20   * ff_h - 0.4 * ff_door_a_int)
+    block_10_int_ff = r(ff_l10   * ff_h - 0.4 * ff_door_a_int)
     plaster_int_ff  = r((ff_l20 + ff_l10) * ff_h * 2 + ff_ext_p * ff_h
                         - ff_door_a_int * 2 - ff_door_a_ext * 1 - ff_win_a)
     flooring_dry_ff = r(ff_dry_a)
@@ -112,11 +114,11 @@ def compute_arch_items(observed, dw, gf_h, ff_h, roof_area, parapet_h=1.20):
 
     return [
         {"id":"block_20_ext_gf","u":"m2","q":block_20_ext_gf,
-         "bd":f"{gf_ext_p}x{gf_h}-{gf_win_a}w-{gf_door_a}d"},
+         "bd":f"{gf_ext_p}x{gf_h}-{gf_win_a}(win)-{gf_door_a_ext}(door_ext)"},
         {"id":"block_20_int_gf","u":"m2","q":block_20_int_gf,
-         "bd":f"{gf_l20}x{gf_h}-0.4x{gf_door_a}"},
+         "bd":f"{gf_l20}x{gf_h}-0.4x{gf_door_a_int}(door_int)"},
         {"id":"block_10_int_gf","u":"m2","q":block_10_int_gf,
-         "bd":f"{gf_l10}x{gf_h}-0.4x{gf_door_a}"},
+         "bd":f"{gf_l10}x{gf_h}-0.4x{gf_door_a_int}(door_int)"},
         {"id":"plaster_int_gf","u":"m2","q":plaster_int_gf,
          "bd":f"({gf_l20}+{gf_l10})x{gf_h}x2+{gf_ext_p}x{gf_h}-{gf_door_a_int}x2-{gf_door_a_ext}-{gf_win_a}"},
         {"id":"flooring_dry_gf","u":"m2","q":flooring_dry_gf,"bd":"dry area GF"},
@@ -131,11 +133,11 @@ def compute_arch_items(observed, dw, gf_h, ff_h, roof_area, parapet_h=1.20):
          "bd":f"{gf_wet_p}x({gf_h}-0.5)"},
 
         {"id":"block_20_ext_ff","u":"m2","q":block_20_ext_ff,
-         "bd":f"{ff_ext_p}x{ff_h}-{ff_win_a}w-{ff_door_a}d"},
+         "bd":f"{ff_ext_p}x{ff_h}-{ff_win_a}(win)-{ff_door_a_ext}(door_ext)"},
         {"id":"block_20_int_ff","u":"m2","q":block_20_int_ff,
-         "bd":f"{ff_l20}x{ff_h}-0.4x{ff_door_a}"},
+         "bd":f"{ff_l20}x{ff_h}-0.4x{ff_door_a_int}(door_int)"},
         {"id":"block_10_int_ff","u":"m2","q":block_10_int_ff,
-         "bd":f"{ff_l10}x{ff_h}-0.4x{ff_door_a}"},
+         "bd":f"{ff_l10}x{ff_h}-0.4x{ff_door_a_int}(door_int)"},
         {"id":"plaster_int_ff","u":"m2","q":plaster_int_ff,
          "bd":f"({ff_l20}+{ff_l10})x{ff_h}x2+{ff_ext_p}x{ff_h}-{ff_door_a_int}x2-{ff_door_a_ext}-{ff_win_a}"},
         {"id":"flooring_dry_ff","u":"m2","q":flooring_dry_ff,"bd":"dry area FF"},

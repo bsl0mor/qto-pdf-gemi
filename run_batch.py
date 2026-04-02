@@ -24,9 +24,21 @@ print("Modules loaded.\n")
 
 from utils import extract_super_heights
 
-# ── Base path ─────────────────────────────────────────────────────────────────
-BASE = r"B:\work\projects estimation\projects\unknown jobs\id\done\done payment"
-BASE_2VILLAS = r"B:\work\projects estimation\projects\downloads\2 villas\TENDER FOR MOHAMMED ALI JAFFAR ALBLOOSHI\TENDER FOR MOHAMMED ALI JAFFAR ALBLOOSHI"
+# ── Base paths ────────────────────────────────────────────────────────────────
+# Override by setting environment variables, or edit the strings below to match
+# your local folder structure.  Use forward slashes or raw strings for Windows.
+#
+#   set QTO_BASE=C:\path\to\projects\folder
+#   set QTO_BASE_2VILLAS=C:\path\to\2villas\folder
+#
+BASE         = os.environ.get(
+    "QTO_BASE",
+    os.path.join(HERE, "projects"),      # relative fallback — put PDFs here
+)
+BASE_2VILLAS = os.environ.get(
+    "QTO_BASE_2VILLAS",
+    os.path.join(HERE, "projects_2villas"),
+)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # PROJECT CONFIGS
